@@ -41,7 +41,7 @@ const DonateCard = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, margin: "auto", padding: 2, borderRadius: 2, boxShadow: 3 , backgroundColor: "#f5f5f5"}}>
+    <Box sx={{ maxWidth: 400, margin: "auto", padding: 2, borderRadius: 2, boxShadow: 10 , backgroundColor: "#f5f5f5",}}>
       <Typography variant="h6" gutterBottom color="primary">
         Donate to a Cause
       </Typography>

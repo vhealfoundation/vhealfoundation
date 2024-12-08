@@ -7,7 +7,13 @@ module.exports = {
     './pages/**/*.{js,jsx,ts,tsx}', 
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#2A9D8F',
+        'secondary': '#EFD372',
+        'tertiary': '#EFD372',
+      }
+  },
   },
   plugins: [],
 }

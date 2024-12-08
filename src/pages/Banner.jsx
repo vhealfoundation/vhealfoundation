@@ -1,21 +1,25 @@
 import React from "react";
 import Hero from "../assets/hero.jpg";
 import DonateCard from "../components/DonateCard";
+import { useInView } from "react-intersection-observer";
 import {motion} from "framer-motion";
 
 const Banner = () => {
+  const { ref, inView } = useInView({ threshold: 0.1 });
+
     return (
         <section
-            className="relative bg-cover bg-center bg-no-repeat md:h-[730px] h-[500px]"
+            className="relative bg-cover bg-center bg-no-repeat h-[530px] md:h-[730px] mb-[350px] md:mb-0"
             style={{ backgroundImage: ` url(${Hero}) ` }}
         >
             <div className="absolute inset-0  bg-black bg-opacity-25"></div> {/* Optional dark overlay */}
             <div className="relative flex flex-col md:flex-row items-center justify-between md:px-12">
-                <div className="mt-12 md:mt-16 flex items-center">
+                <div className="mt-16 flex items-center">
 
                    <motion.div
+                        ref={ref}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 10 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8}}
                     >
                          <div className="text-white w-[300px] md:w-[750px] px-[20px] md:px-[60px] ">
@@ -42,11 +46,12 @@ const Banner = () => {
                     </div>
                     </motion.div>
                 </div>
-                <div className="mt-16 p-4">
+                <div className="mt-2 md:mt-16 p-4">
              
                     <motion.div
+                        ref={ref}
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8}}
                     >
                         <DonateCard />

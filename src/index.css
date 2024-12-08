@@ -28,3 +28,7 @@ code {
   -ms-overflow-style: none; 
   scrollbar-width: none;   
 }
+
+.card-stacker:hover .card{
+  margin-left: 10px;
+}
