@@ -5,14 +5,14 @@ import Footer from "../components/Footer";
 const Layout = (Component) => {
   return function LayoutWrapper(props) {
     return (
-      <div className="w-full min-h-screen">
+      <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="">
+        <main className="flex-grow bg-secondary">
           <Component {...props} />
         </main>
         <Footer />
       </div>
-    ); 
+    );
   };
 };
 

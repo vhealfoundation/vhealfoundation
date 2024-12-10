@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/ContactUs";
+import Stories from "./pages/Stories";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,11 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8}}><AboutUs /></motion.div>} />
+            <Route path="/stories" element={<motion.div
+           initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8}}><Stories /></motion.div>} />
           <Route path="/contactus" element={<motion.div
            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

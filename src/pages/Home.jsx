@@ -1,18 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../hoc/Layout";
-import Banner from "./Banner";
+import Banner from "../components/Banner";
 import StatsCard from "../components/StatsCard";
 import AboutCard from "../components/AboutCard";
-import Contact from "./ContactUs";
 import CardStacker from "../components/CardStacker";
 import DynamicCardStacker from "../components/DynamicCardStacker";
-import { data, cardData } from "../constants/data";
+import Slider from "../components/Slider";
+import ContactCard from "../components/ContactCard";
+import ContactLeft from "../components/ContactLeft";
+import { data, cardData, sections, testimonials } from "../constants/data";
+import StoriesBanner from "../components/StoriesBanner";
 
 
 
 const Home = () => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/stories");
+    };
+
     return (
-        <div className="pt-16 bg-gray-100 mb-[500px]">
+        <div className="pt-16">
             <div className="">
                 <Banner />
 
@@ -21,20 +31,37 @@ const Home = () => {
                 <StatsCard />
             </div>
             <div className="mt-5">
-                <AboutCard />
+
+                <AboutCard sections={sections} />
+            </div>
+            <div>
+                <DynamicCardStacker data={data}></DynamicCardStacker>
             </div>
 
-            <div className="mt-5">
+           
+           
+
+            <div className="">
                 <CardStacker data={cardData} />
             </div>
-            <div className="mt-5 bg-black flex items-center justify-center">
-
-                <DynamicCardStacker data={data}></DynamicCardStacker>
-
-            </div>
 
             <div className="mt-5">
-                <Contact />
+                <Slider testimonials={testimonials} />
+            </div>
+            <div className="">
+                <StoriesBanner />
+            </div>
+
+            <div className="max-w-6xl mx-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Side */}
+                <div className="bg-gray-100 rounded-lg shadow-lg">
+                    <ContactLeft />
+                </div>
+
+                {/* Right Side */}
+                <div className="bg-white rounded-lg shadow-lg">
+                    <ContactCard />
+                </div>
             </div>
 
         </div>

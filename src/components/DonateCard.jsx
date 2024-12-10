@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Box, Typography } from "@mui/material";
+import {Box, Typography } from "@mui/material";
+import CustomButton from "./CustomButton";
+import CustomTextField from "./CustomTextField";
 
 const DonateCard = () => {
   const [donationAmount, setDonationAmount] = useState("");
@@ -41,61 +43,78 @@ const DonateCard = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, margin: "auto", padding: 2, borderRadius: 2, boxShadow: 10 , backgroundColor: "#f5f5f5",}}>
-      <Typography variant="h6" gutterBottom color="primary">
+    <Box className="w-[310px] md:w-[400px]" sx={{ padding: 2, borderRadius: 2, boxShadow: 10, backgroundColor: "#f5f5f5", }}>
+      <Typography variant="h6" gutterBottom className="text-primary">
         Donate to a Cause
       </Typography>
-      
-      <form onSubmit={handleSubmit}>
-        {/* Quick Amount Selection */}
-        <Grid container spacing={2}>
-          {quickAmounts.map((amount) => (
-            <Grid item xs={6} key={amount}>
-              <Button
-                variant={donationAmount === amount ? "contained" : "outlined"}
-                fullWidth
-                onClick={() => handleQuickAmount(amount)}
-              >
-                ₹{amount}
-              </Button>
-            </Grid>
-          ))}
-        </Grid>
 
-        {/* Custom Amount Input */}
-        <TextField
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-0">
+        {/* Quick Amount Selection */}
+        <div className="grid grid-cols-2 gap-2 mb-4 ">
+          {quickAmounts.map((amount) => (
+            <CustomButton
+              key={amount}
+              className="bg-primary hover:bg-primary-dark"
+              onClick={() => handleQuickAmount(amount)}
+            >
+              ${amount}
+            </CustomButton>
+          ))}
+        </div>
+
+ 
+       <CustomTextField
           label="Custom Amount"
           type="number"
-          fullWidth
           value={customAmount}
           onChange={handleCustomAmount}
-          sx={{ mt: 2 }}
+          error={Boolean(customAmount) && customAmount.length > 10}
+          className="mt-6 mb-4 "
+          inputClassName="bg-gray-100"
+          labelClassName="font-bold"
         />
 
-        {/* Name and Email Fields */}
-        <TextField
+
+        <CustomTextField
           label="Name"
-          fullWidth
+           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          sx={{ mt: 2 }}
+          error={Boolean(name) && name.length > 10}
+          className="mb-4 "
+          inputClassName="bg-gray-100"
+          labelClassName="font-bold"
         />
-        <TextField
+
+        <CustomTextField
           label="Email"
-          type="email"
-          fullWidth
+            type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          sx={{ mt: 2 }}
+          error={Boolean(email) && email.length > 30}
+          className="mb-4 "
+          inputClassName="bg-gray-100"
+          labelClassName="font-bold"
         />
+
+
+
 
         {/* Error Message */}
         {error && <Typography color="error" sx={{ mt: 1 }}>{error}</Typography>}
 
         {/* Submit Button */}
-        <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
-          Donate
-        </Button>
+
+        <CustomButton
+          className="bg-primary hover:bg-primary-dark"
+          type="submit"
+        >
+          <span>❤️</span>
+          Donate Now
+        </CustomButton>
+
+
       </form>
     </Box>
   );
