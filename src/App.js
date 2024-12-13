@@ -9,6 +9,8 @@ import Gallery from "./pages/Gallery";
 import ScrollToTop from "./components/ScrollToTop";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import WhatWeDo from "./pages/WhatWeDo";
+import StoryDetail from "./pages/StoryDetail";
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
     <div>
 
       <AnimatePresence>
-      <ScrollToTop /> 
+        <ScrollToTop />
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
@@ -34,25 +36,35 @@ function App() {
             }
           />
           <Route path="/aboutus" element={<motion.div
-           initial={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8}}><AboutUs /></motion.div>} />
-             <Route path="/gallery" element={<motion.div
-           initial={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><AboutUs /></motion.div>} />
+             <Route path="/what-we-do/:id" element={<motion.div
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8}}><Gallery /></motion.div>} />
-            <Route path="/stories" element={<motion.div
-           initial={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><WhatWeDo /></motion.div>} />
+          <Route path="/gallery" element={<motion.div
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8}}><Stories /></motion.div>} />
+            transition={{ duration: 0.8 }}><Gallery /></motion.div>} />
+          <Route path="/stories" element={<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><Stories /></motion.div>} />
+             <Route path="/stories/:id" element={<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><StoryDetail /></motion.div>} />
           <Route path="/contactus" element={<motion.div
-           initial={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8}}><Contact /></motion.div>} />
+            transition={{ duration: 0.8 }}><Contact /></motion.div>} />
 
         </Routes>
       </AnimatePresence>

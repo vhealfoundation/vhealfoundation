@@ -3,22 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { authConfig } from './authConfig.js';
 
 import { BrowserRouter } from 'react-router-dom';  // Import BrowserRouter
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* Wrap the App component with BrowserRouter */}
     <BrowserRouter>
-      <App />
+      <KindeProvider
+        domain={authConfig.domain}
+        clientId={authConfig.clientId}
+        redirectUri={authConfig.redirectUri}
+        logoutRedirectUri={authConfig.logoutRedirectUri}
+      >
+        <App />
+      </KindeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -17,7 +17,7 @@ const Banner = () => {
       className="relative bg-cover bg-center bg-no-repeat h-[650px] md:h-[730px] mb-[350px] md:mb-0"
       style={{ backgroundImage: ` url(${Hero}) ` }}
     >
-      <div className="absolute inset-0  bg-black bg-opacity-25"></div>
+      <div className="absolute inset-0  bg-black bg-opacity-35 z-0"></div>
       <div className="relative flex flex-col md:flex-row items-center pr-0 justify-between md:px-12 md:pr-40">
         <div className="mt-16 md:mt-32 flex items-center opacity-100">
 

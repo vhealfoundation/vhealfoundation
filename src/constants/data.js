@@ -3,7 +3,7 @@ import Hero from '../assets/hero.jpg'
 
 export const data = [
   {
-    title: "Rehabilitation Programs",
+    title: "Rehabilitation",
     subtitle: "Support a Fresh Start",
     rating: "4.9",
     backgroundColors: { top: "#6A1B9A", bottom: "#4527A0" }, // Gradient with a sense of hope and dignity
@@ -17,14 +17,14 @@ export const data = [
     image: Hero,
   },
   {
-    title: "Mental Health Support",
+    title: "Mental Health",
     subtitle: "Heal and Rebuild Lives",
     rating: "4.7",
     backgroundColors: { top: "#EF5350", bottom: "#C62828" }, // Gradient with warmth and compassion
     image: Hero,
   },
   {
-    title: "Community Reintegration",
+    title: "Reintegration",
     subtitle: "Help Them Belong Again",
     rating: "4.8",
     backgroundColors: { top: "#FFCA28", bottom: "#F57F17" }, // Gradient symbolizing a bright future

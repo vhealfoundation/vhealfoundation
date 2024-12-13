@@ -63,7 +63,7 @@ const Contact = () => {
       {/* Contact Cards Section */}
       <div className="mt-8 max-w-6xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Left Side */}
-        <div className="rounded-lg shadow-lg ">
+        <div className="">
           <ContactLeft />
         </div>
 

@@ -1,12 +1,13 @@
 import React from "react";
 import CustomButton from "./CustomButton";
+import { Link } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-const Card = ({ imageSrc, title, description, link }) => {
+const Card = ({ imageSrc, title, description}) => {
   return (
-    <div className="h-[500px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
-      
-      <a href={link} className="block overflow-hidden rounded-t-lg group">
+    <Link to="/what-we-do/8" className="h-[500px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col hover:cursor-pointer">
+     
+      <div className="block overflow-hidden rounded-t-lg group">
         <div className="h-[270px]">
           <img
             className="w-full h-full object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
@@ -14,16 +15,16 @@ const Card = ({ imageSrc, title, description, link }) => {
             alt={title}
           />
         </div>
-      </a>
+      </div>
 
      
       <div className="flex flex-col flex-1 p-4 overflow-hidden">
    
-        <a href={link}>
+   
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
-        </a>
+   
 
     
         <p className="flex-1 mt-2 mb-4 font-normal text-gray-700 dark:text-gray-400 overflow-hidden overflow-ellipsis">
@@ -38,7 +39,8 @@ const Card = ({ imageSrc, title, description, link }) => {
           </CustomButton>
         </div>
       </div>
-    </div>
+   
+    </Link>
   );
 };
 

@@ -77,7 +77,8 @@ const ContactCard = () => {
             inputClassName="w-full"
             labelClassName="text-xl font-semibold"
             rows="5"
-            isTextarea // Pass this prop to make the field a textarea
+            textarea
+            size="large"
           />
 
           <CustomButton

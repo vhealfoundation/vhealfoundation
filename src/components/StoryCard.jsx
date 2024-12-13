@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const StoryCard = ({ image, title, description, link }) => {
@@ -22,13 +23,12 @@ const StoryCard = ({ image, title, description, link }) => {
         <p className="text-gray-600 text-sm md:text-base">
           {description}
         </p>
-        <a
-          href={link}
+        <Link to ='/stories/5'
           className="flex items-center text-primary font-semibold hover:underline"
         >
           Read More
           <span className="ml-2">&rarr;</span>
-        </a>
+        </Link>
       </div>
     </motion.div>
   );

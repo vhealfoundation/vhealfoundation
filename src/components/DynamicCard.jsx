@@ -1,12 +1,11 @@
 import React from 'react'
-import Bg from '../assets/hero.jpg'
 
 const DynamicCard = ({ title, subtitle, rating, backgroundColors, className="", image }) => {
     const { top, bottom } = backgroundColors;
   
     return (
       <div
-        className={'card flex flex-col justify-center p-5 rounded-[10%] relative text-white overflow-hidden h-fit w-fit z-10 hover:-translate-y-10 transition-all duration-300 hover:cursor-pointer ' + className}
+        className={'card flex flex-col justify-center p-5 rounded-[10%] relative text-white overflow-hidden h-fit w-fit z-10 hover:-translate-y-10 transition-all duration-300' + className}
         style={{
           background: `linear-gradient(to bottom, ${top}, ${bottom})`,
         }}

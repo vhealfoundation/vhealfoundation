@@ -1,5 +1,5 @@
 import React from "react";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
 import { sections } from "../constants/data";
