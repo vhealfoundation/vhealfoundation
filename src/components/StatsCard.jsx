@@ -40,7 +40,7 @@ const StatsCard = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="w-full p-4"
     >
-      <div className="w-full max-w-lg mx-auto bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 p-4">
+      <div className="w-full md:w-[50%] mx-auto bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 p-4">
         {/* Fundraisers */}
         <div className="flex flex-col items-center text-center w-full md:w-auto">
           <p className="text-lg md:text-xl font-semibold">Fundraisers</p>

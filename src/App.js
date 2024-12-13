@@ -5,6 +5,11 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/ContactUs";
 import Stories from "./pages/Stories";
+import Gallery from "./pages/Gallery";
+import ScrollToTop from "./components/ScrollToTop";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   const location = useLocation();
@@ -13,6 +18,7 @@ function App() {
     <div>
 
       <AnimatePresence>
+      <ScrollToTop /> 
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
@@ -32,6 +38,11 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8}}><AboutUs /></motion.div>} />
+             <Route path="/gallery" element={<motion.div
+           initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8}}><Gallery /></motion.div>} />
             <Route path="/stories" element={<motion.div
            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

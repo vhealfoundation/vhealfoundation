@@ -40,13 +40,13 @@ const DynamicCardStacker = ({ data }) => {
       <div className="absolute inset-0 bg-black bg-opacity-50 "></div>
       {/* Desktop Layout */}
       <div className='flex flex-col items-center gap-4 '>
-        <h1 className="mt-12 text-3xl text-center md:text-4xl font-medium italic text-white opacity-90">
+        <h1 className="mt-8 text-3xl text-center md:text-4xl font-medium italic text-white opacity-90">
           Areas We Help
         </h1>
         <div className='w-[120px] rounded-full border-4 border-b border-yellow-400 opacity-90'></div>
       </div>
 
-      <div className="hidden md:flex items-center justify-center card-stacker py-10 pb-20">
+      <div className="hidden md:flex items-center justify-center card-stacker pt-16 pb-20">
         {data.map((eachData, index) => (
           <DynamicCard
             key={index}

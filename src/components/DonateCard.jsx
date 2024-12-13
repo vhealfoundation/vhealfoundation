@@ -11,7 +11,7 @@ const DonateCard = () => {
   const [error, setError] = useState("");
 
   // Quick amounts for donation
-  const quickAmounts = [10, 20, 50, 100];
+  const quickAmounts = [1000, 2000, 5000, 10000];
 
   // Handle quick donation amount selection
   const handleQuickAmount = (amount) => {
@@ -58,7 +58,7 @@ const DonateCard = () => {
               className="bg-primary hover:bg-primary-dark"
               onClick={() => handleQuickAmount(amount)}
             >
-              ${amount}
+              ₹{amount}
             </CustomButton>
           ))}
         </div>

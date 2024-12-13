@@ -1,45 +1,44 @@
-import Img1 from '../assets/hero.jpg'
 import Hero from '../assets/hero.jpg'
-import donation from '../assets/donation.png'
 
 
 export const data = [
   {
-    title: 'Food Drive',
-    subtitle: 'Feed the Hungry',
-    rating: '4.9',
-    backgroundColors: { top: '#FFB84C', bottom: '#FF914D' },
+    title: "Rehabilitation Programs",
+    subtitle: "Support a Fresh Start",
+    rating: "4.9",
+    backgroundColors: { top: "#6A1B9A", bottom: "#4527A0" }, // Gradient with a sense of hope and dignity
     image: Hero,
   },
   {
-    title: 'Education Fund',
-    subtitle: 'Empower Learning',
-    rating: '4.8',
-    backgroundColors: { top: '#4CAF50', bottom: '#388E3C' },
+    title: "Skill Development",
+    subtitle: "Empower with New Skills",
+    rating: "4.8",
+    backgroundColors: { top: "#009688", bottom: "#00796B" }, // Gradient symbolizing growth and stability
     image: Hero,
   },
   {
-    title: 'Disaster Relief',
-    subtitle: 'Support Communities',
-    rating: '5.0',
-    backgroundColors: { top: '#03A9F4', bottom: '#0288D1' },
+    title: "Mental Health Support",
+    subtitle: "Heal and Rebuild Lives",
+    rating: "4.7",
+    backgroundColors: { top: "#EF5350", bottom: "#C62828" }, // Gradient with warmth and compassion
     image: Hero,
   },
   {
-    title: 'Animal Welfare',
-    subtitle: 'Protect Wildlife',
-    rating: '4.7',
-    backgroundColors: { top: '#FF5722', bottom: '#E64A19' },
+    title: "Community Reintegration",
+    subtitle: "Help Them Belong Again",
+    rating: "4.8",
+    backgroundColors: { top: "#FFCA28", bottom: "#F57F17" }, // Gradient symbolizing a bright future
     image: Hero,
   },
   {
-    title: 'Medical Aid',
-    subtitle: 'Health for All',
-    rating: '4.9',
-    backgroundColors: { top: '#9C27B0', bottom: '#7B1FA2' },
+    title: "Educational Grants",
+    subtitle: "Learn and Grow Together",
+    rating: "4.9",
+    backgroundColors: { top: "#42A5F5", bottom: "#1E88E5" }, // Gradient for opportunities and growth
     image: Hero,
   },
 ];
+
 
 
 export const cardData = [
@@ -67,34 +66,49 @@ export const cardData = [
 
 export const sections = [
   {
-    image: Img1,
-    alt: "Donation Image",
-    heading: "Keep projects on schedule",
-    subheading: "More speed. Less spend",
+    image: Hero, // Replace with your actual image variable or path
+    alt: "Empowering Released Jailers",
+    heading: "Support Their Second Chance",
+    subheading: "Rebuilding Lives. Restoring Dignity.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Empower former jailers to reintegrate into society, rebuild their lives, and restore hope. Your donation helps provide essential resources and opportunities for a fresh start.",
     features: [
-      "Duis aute irure dolor in reprehenderit",
-      "Excepteur sint occaecat",
-      "Amet consectetur adipiscing elit",
+      "Access to skill development and education",
+      "Comprehensive reintegration programs",
+      "Mental health and counseling support",
     ],
     reverse: false,
   },
   {
-    image: donation,
-    alt: "Donation Image 2",
-    heading: "Achieve your goals faster",
-    subheading: "Better planning. Better results",
+    image: Hero, // Replace with your actual image variable or path
+    alt: "Donation for Jailers",
+    heading: "Break the Cycle of Challenges",
+    subheading: "Empowering Through Opportunities",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "By donating, you help break the cycle of stigma and unemployment faced by former jailers, creating pathways to stable employment and independence.",
     features: [
-      "Sed ut perspiciatis unde omnis",
-      "Nemo enim ipsam voluptatem quia",
-      "Quis autem vel eum iure reprehenderit",
+      "Partnerships with local employers",
+      "Workshops on financial literacy",
+      "Community-driven mentorship initiatives",
     ],
     reverse: true,
   },
+  {
+    image: Hero, // Replace with your actual image variable or path
+    alt: "Success Stories",
+    heading: "Celebrate Stories of Success",
+    subheading: "Transforming Lives Together",
+    description:
+      "Every contribution helps write a new story of resilience and hope. Be a part of a community that celebrates the transformation of lives and societies.",
+    features: [
+      "Regular updates on program impact",
+      "Personalized thank-you messages from beneficiaries",
+      "Opportunities to engage with success stories",
+    ],
+    reverse: false,
+  },
 ];
+
 
 export const testimonials = [
   {
@@ -115,6 +129,16 @@ export const testimonials = [
     image: Hero, 
     supportType: "Education Sponsorship",
   },
+];
+
+
+export const images = [
+  "https://via.placeholder.com/300",
+  "https://via.placeholder.com/400",
+  "https://via.placeholder.com/500",
+  "https://via.placeholder.com/600",
+  "https://via.placeholder.com/700",
+  "https://via.placeholder.com/800",
 ];
 
 

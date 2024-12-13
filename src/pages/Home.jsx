@@ -1,5 +1,4 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Layout from "../hoc/Layout";
 import Banner from "../components/Banner";
 import StatsCard from "../components/StatsCard";
@@ -11,59 +10,55 @@ import ContactCard from "../components/ContactCard";
 import ContactLeft from "../components/ContactLeft";
 import { data, cardData, sections, testimonials } from "../constants/data";
 import StoriesBanner from "../components/StoriesBanner";
-
-
+import PopUpCard from "../components/PopUpCard";
 
 const Home = () => {
-    const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
-    const handleNavigate = () => {
-        navigate("/stories");
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowModal(true);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     return (
         <div className="pt-16">
+            {showModal && <PopUpCard onClose={closeModal} />}
             <div className="">
                 <Banner />
-
             </div>
             <div className="mt-5">
                 <StatsCard />
             </div>
             <div className="mt-5">
-
                 <AboutCard sections={sections} />
             </div>
             <div>
                 <DynamicCardStacker data={data}></DynamicCardStacker>
             </div>
-
-           
-           
-
             <div className="">
                 <CardStacker data={cardData} />
             </div>
-
             <div className="mt-5">
                 <Slider testimonials={testimonials} />
             </div>
             <div className="">
                 <StoriesBanner />
             </div>
-
-            <div className="max-w-6xl mx-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Side */}
+            <div className="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="bg-gray-100 rounded-lg shadow-lg">
                     <ContactLeft />
                 </div>
-
-                {/* Right Side */}
                 <div className="bg-white rounded-lg shadow-lg">
                     <ContactCard />
                 </div>
             </div>
-
         </div>
     );
 };

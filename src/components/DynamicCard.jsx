@@ -6,14 +6,12 @@ const DynamicCard = ({ title, subtitle, rating, backgroundColors, className="", 
   
     return (
       <div
-        className={'card flex flex-col justify-center p-5 rounded-[10%] relative text-white overflow-hidden h-fit w-fit z-10 hover:-translate-y-10 transition-all duration-300 ' + className}
+        className={'card flex flex-col justify-center p-5 rounded-[10%] relative text-white overflow-hidden h-fit w-fit z-10 hover:-translate-y-10 transition-all duration-300 hover:cursor-pointer ' + className}
         style={{
           background: `linear-gradient(to bottom, ${top}, ${bottom})`,
         }}
       >
-        <div className="inset-0 absolute z-0">
-          <img src={Bg} alt="background" className="w-full h-full object-cover opacity-10" />
-        </div>
+      
         <div className="flex items-center justify-between z-10">
           <div>
             <h2 className="text-2xl font-bold mb-0.5">{title}</h2>
@@ -37,7 +35,7 @@ const DynamicCard = ({ title, subtitle, rating, backgroundColors, className="", 
         <img
           src={image}
           alt={title}
-          className="w-52 h-52 object-contain mt-5 drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] mx-5 mb-7"
+          className="w-52 h-52 object-cover mt-5 drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] mx-5 mb-7"
         />
       </div>
     );

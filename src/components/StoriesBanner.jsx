@@ -24,7 +24,7 @@ const StoriesBanner = () => {
       {/* Button */}
       <button
         onClick={handleNavigate}
-        className="w-1/3 bg-white text-primary font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+        className="w-1/2 md:w-1/3 bg-white text-primary font-semibold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
       >
         Read Stories
       </button>

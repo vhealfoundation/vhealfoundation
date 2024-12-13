@@ -4,23 +4,23 @@ import { useInView } from "react-intersection-observer";
 
 const AboutCard = ({ sections }) => {
   const { ref, inView } = useInView({
-    rootMargin: window.innerWidth <= 768 ? "430px" : "250px",
+    rootMargin: window.innerWidth <= 768 ? "1300px" : "430px",
     threshold: 0.2,
   });
   return (
-    <section className="px-4 py-12 md:px-48 border-t border-gray-800">
+    <section className="px-4 pt-4 pb-8 md:px-48">
       <div className="max-w-3xl mx-auto text-center">
         <div className="inline-flex text-sm font-semibold py-1 px-3 m-2 text-green-600 bg-green-200 rounded-full mb-4">
-          Reach goals that matter
+          Empower Lives. Build Communities.
         </div>
-        <div className="mb-4">One product, unlimited solutions</div>
+        <div className="mb-4">Transforming Second Chances into Success Stories</div>
         <div className="text-xl text-gray-400">
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit laborum — semper quis lectus nulla.
+          Your support helps former jailers rebuild their lives, find meaningful opportunities, and contribute positively to society — because everyone deserves a second chance.
         </div>
       </div>
 
       {/* Map through sections */}
-      <div className="flex flex-col gap-12 md:gap-0">
+      <div className="mt-8 flex flex-col gap-12 md:gap-0">
         {sections.map((section, index) => {
           // Calculate delay based on the index
           const delay = index * 0.3;
@@ -42,15 +42,14 @@ const AboutCard = ({ sections }) => {
           return (
             <div
               key={index}
-              className={`mt-2 md:mt-12 flex flex-col-reverse ${
-                section.reverse ? "md:flex-row-reverse" : "md:flex-row"
-              } items-center gap-8 md:gap-12`}
+              className={`mt-2 md:mt-12 flex flex-col-reverse ${section.reverse ? "md:flex-row-reverse" : "md:flex-row"
+                } items-center gap-8 md:gap-12`}
             >
-            
-             
+
+
               <motion.div
                 ref={ref}
-                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0"
+                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6  md:mb-0"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeUp}
@@ -62,7 +61,7 @@ const AboutCard = ({ sections }) => {
                 />
               </motion.div>
 
-            
+
               <motion.div
                 ref={ref}
                 className="flex flex-col  pr-0 md:block md:pr-4 lg:pr-12 xl:pr-16"
