@@ -4,14 +4,14 @@ import { AiFillCloseCircle } from "react-icons/ai";
 
 const GalleryCard = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(null);
-
+    console.log(images);
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, // Set the delay here for each image
+        staggerChildren: 0.3, // Stagger animation for each image
       },
     },
   };
@@ -31,15 +31,15 @@ const GalleryCard = ({ images }) => {
       >
         {images.map((image, index) => (
           <motion.div
-            key={index}
+            key={image._id || index} // Use _id if available, fallback to index
             className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer group"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
-            onClick={() => setSelectedImage(image)}
+            onClick={() => setSelectedImage(image.url)} // Pass the image URL to modal
           >
             <motion.img
-              src={image}
-              alt={`Gallery ${index}`}
+              src={image.url} // Use the `url` property from the image object
+              alt={`Gallery Image ${index + 1}`}
               className="w-full h-64 object-cover group-hover:opacity-90 transition-opacity duration-300"
             />
             <motion.div
@@ -66,7 +66,7 @@ const GalleryCard = ({ images }) => {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.8 }}
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()} // Prevent modal close on inside click
           >
             <img
               src={selectedImage}

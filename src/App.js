@@ -40,7 +40,7 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><AboutUs /></motion.div>} />
-             <Route path="/what-we-do/:id" element={<motion.div
+             <Route path="/what-we-do" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

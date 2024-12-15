@@ -1,8 +1,9 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
-import { sections } from "../constants/data";
 import AboutVideo from "../assets/aboutVideo.mp4";
 
 const AboutUs = () => {
@@ -11,8 +12,26 @@ const AboutUs = () => {
     visible: { x: 0, opacity: 1, transition: { duration: 1, delay: 0.5 } },
   });
 
+  const [sections, setSections] = useState([]);
+
+
+
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
+        setSections(response.data.data);
+
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchSections();
+  }, []);
+
   return (
-    <div className="mt-16 space-y-8" style={{backgroundVideo: `url(${AboutVideo})`}}>
+    <div className="mt-16 space-y-8" style={{ backgroundVideo: `url(${AboutVideo})` }}>
 
       <div className="relative flex flex-col items-center gap-4">
         <div className="w-full h-full absolute inset-0 -z-10"></div>

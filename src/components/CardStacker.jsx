@@ -1,7 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Card from './Card';
-import { useInView } from 'react-intersection-observer';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Card from "./Card";
+import { useInView } from "react-intersection-observer";
+import axios from "axios";
 
 // Component to handle motion and inView logic
 const AnimatedCard = ({ card, delay }) => {
@@ -28,11 +29,34 @@ const AnimatedCard = ({ card, delay }) => {
   );
 };
 
-const CardStacker = ({ data }) => {
+
+const CardStacker = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const { ref, inView } = useInView({
     rootMargin: window.innerWidth <= 768 ? "0px" : "-100px",
     threshold: 0.2,
   });
+
+  // Fetch data from API when the component mounts
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
+        setData(response.data.data); 
+        setLoading(false); // Set loading to false once data is fetched
+      } catch (err) {
+        setError(err); // Handle error if fetching fails
+        setLoading(false);
+      }
+    };
+
+    fetchSections();
+  }, []); 
+
+
   return (
     <div>
       {/* Desktop Layout */}
@@ -54,7 +78,7 @@ const CardStacker = ({ data }) => {
 
           >
             <Card
-              imageSrc={card.imageSrc}
+              imageSrc={card.image}
               title={card.title}
               description={card.description}
               link={card.link}

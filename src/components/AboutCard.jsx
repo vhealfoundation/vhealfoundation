@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 
 const AboutCard = ({ sections }) => {
   const { ref, inView } = useInView({
-    rootMargin: window.innerWidth <= 768 ? "1300px" : "430px",
+    rootMargin: window.innerWidth <= 768 ? "1300px" : "880px",
     threshold: 0.2,
   });
   return (
@@ -49,7 +49,7 @@ const AboutCard = ({ sections }) => {
 
               <motion.div
                 ref={ref}
-                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6  md:mb-0"
+                className="w-full md:w-1/2 mx-auto md:col-span-5 lg:col-span-6  md:mb-0"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeUp}
@@ -64,7 +64,7 @@ const AboutCard = ({ sections }) => {
 
               <motion.div
                 ref={ref}
-                className="flex flex-col  pr-0 md:block md:pr-4 lg:pr-12 xl:pr-16"
+                className="w-full flex flex-col  pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeHorizontal}

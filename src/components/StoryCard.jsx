@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const StoryCard = ({ image, title, description, link }) => {
+const StoryCard = ({ id, image, title, description}) => {
   return (
     <motion.div
       className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
@@ -23,7 +23,7 @@ const StoryCard = ({ image, title, description, link }) => {
         <p className="text-gray-600 text-sm md:text-base">
           {description}
         </p>
-        <Link to ='/stories/5'
+        <Link to={`/stories/${id}`}
           className="flex items-center text-primary font-semibold hover:underline"
         >
           Read More

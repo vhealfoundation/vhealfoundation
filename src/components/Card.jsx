@@ -5,7 +5,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 const Card = ({ imageSrc, title, description}) => {
   return (
-    <Link to="/what-we-do/8" className="h-[500px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col hover:cursor-pointer">
+    <Link to="/what-we-do" className="h-[500px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col hover:cursor-pointer">
      
       <div className="block overflow-hidden rounded-t-lg group">
         <div className="h-[270px]">

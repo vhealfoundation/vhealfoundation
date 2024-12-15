@@ -43,7 +43,7 @@ const Home = () => {
                 <DynamicCardStacker data={data}></DynamicCardStacker>
             </div>
             <div className="">
-                <CardStacker data={cardData} />
+                <CardStacker />
             </div>
             <div className="mt-5">
                 <Slider testimonials={testimonials} />
