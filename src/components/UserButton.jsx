@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import CustomButton from "./CustomButton";
 
@@ -6,6 +6,7 @@ export default function UserButton() {
     const { isAuthenticated, user, login, logout } = useKindeAuth();
     const [isClicked, setIsClicked] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Track loading state
+    const dropdownRef = useRef(null); // Reference to the dropdown container
 
     useEffect(() => {
         // Once user data is available, stop loading
@@ -14,24 +15,38 @@ export default function UserButton() {
         }
     }, [isAuthenticated]); // Re-run this when `isAuthenticated` changes
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsClicked(false); // Close the dropdown if clicked outside
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     if (isLoading) {
         return null;
     }
 
     return (
-        <div className="relative" onClick={() => setIsClicked(!isClicked)}>
+        <div className="relative" ref={dropdownRef}>
             {isAuthenticated ? (
                 <div className="relative">
                     {/* User Avatar */}
-                    <div className="relative">
+                    <div
+                        className="relative"
+                        onClick={() => setIsClicked(!isClicked)}
+                    >
                         {user.picture ? (
-                            <>
-                                <img
-                                    src={user.picture}
-                                    alt="User Avatar"
-                                    className="rounded-full w-10 h-10 cursor-pointer"
-                                />
-                            </>
+                            <img
+                                src={user.picture}
+                                alt="User Avatar"
+                                className="rounded-full w-10 h-10 cursor-pointer"
+                            />
                         ) : (
                             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-500 text-white cursor-pointer">
                                 {user?.given_name?.[0]}
@@ -42,10 +57,9 @@ export default function UserButton() {
 
                     {/* Show additional profile info on click */}
                     {isClicked && (
-                        <div className="absolute right-0 top-12 mt-2 w-[300px] p-6 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                        <div className="absolute right-0 top-12 mt-2 w-[300px] md:w-[350px] p-4 md:p-6 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
                             {/* User Info */}
                             <div className="flex flex-col items-center gap-4">
-
                                 {/* User Avatar and Email in a Row */}
                                 <div className="flex items-center gap-4">
                                     {/* User Avatar */}
@@ -77,7 +91,7 @@ export default function UserButton() {
                                     {/* Your Donations Button */}
                                     <button
                                         onClick={() => (window.location.href = "/yourdonations")}
-                                        className="w-full rounded-md bg-tertiary text-white px-4 py-2 text-sm hover:bg-gray-900"
+                                        className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark"
                                     >
                                         Your Donations
                                     </button>
@@ -93,7 +107,6 @@ export default function UserButton() {
                             </div>
                         </div>
                     )}
-
                 </div>
             ) : (
                 <CustomButton

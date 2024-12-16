@@ -46,18 +46,18 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-tertiary flex justify-between md:justify-center space-x-0 md:space-x-32 items-center h-16 px-4 text-primary z-50">
+    <div className="fixed top-0 left-0 w-full bg-primary flex justify-between md:justify-center space-x-0 md:space-x-32 items-center h-16 px-4  z-50">
       {/* Mobile Navigation Toggle */}
       <div className="flex items-center space-x-2">
         <div onClick={handleNav} className="block md:hidden mt-1">
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
         <Link to="/" className="block md:hidden" >
-          <h1 className="text-3xl font-bold text-primary">D&M</h1>
+          <h1 className="text-3xl font-bold text-white">D&M</h1>
         </Link>
       </div>
       <Link to="/" className="hidden md:block" >
-        <h1 className="text-3xl font-bold text-primary">D&M</h1>
+        <h1 className="text-3xl font-bold text-white">D&M</h1>
       </Link>
 
       {/* Desktop Navbar */}
@@ -73,8 +73,8 @@ const Navbar = () => {
               <Link to={item.link}>
                 <li
                   className={`p-4 cursor-pointer relative ${activeNav === item.link
-                    ? "text-primary"
-                    : "text-white hover:text-primary"
+                    ? "text-white"
+                    : "text-white hover:text-gray-300"
                     }`}
                   onClick={() => setActiveNav(item.link)}
                 >
@@ -82,7 +82,7 @@ const Navbar = () => {
                   {/* Underline */}
                   <span className="mt-2 relative flex items-center">
                     <motion.div
-                      className="absolute bottom-0 left-0 h-1 w-full bg-primary rounded-full"
+                      className="absolute bottom-0 left-0 h-1 w-full bg-white rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{
                         scaleX: activeNav === item.link ? 1 : 0,
@@ -128,7 +128,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <Link to={item.link} key={item.id}>
               <li
-                className={`p-4 border-b border-gray-600 w-full cursor-pointer ${activeNav === item.link ? "text-primary" : "text-white"}`}
+                className={`p-4 border-b border-gray-600 w-full cursor-pointer ${activeNav === item.link ? "text-white" : "text-white"}`}
                 onClick={() => {
                   setActiveNav(item.link);
                   setNav(false); // Close mobile nav after click

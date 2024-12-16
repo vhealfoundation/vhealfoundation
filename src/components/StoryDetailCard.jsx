@@ -2,7 +2,7 @@ import React from "react";
 
 const StoryDetailCard = ({ coverImage, title, description, content }) => {
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="px-4 pt-4 pb-8 md:px-48 p-6 space-y-8">
       {/* Cover Section */}
       <div className="relative">
         <img
@@ -30,7 +30,7 @@ const StoryDetailCard = ({ coverImage, title, description, content }) => {
               <img
                 src={section.image}
                 alt={section.title}
-                className="rounded-lg shadow-lg w-full h-[250px] object-cover"
+                className="rounded-lg shadow-lg w-full h-auto object-cover"
               />
             </div>
             {/* Text */}

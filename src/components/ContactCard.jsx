@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import CustomButton from "./CustomButton";
 import CustomTextField from "./CustomTextField";
 
@@ -10,33 +10,70 @@ const ContactCard = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null); // Track errors
+  const messageRef = useRef(null); // Reference for textarea
 
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // For message, dynamically adjust the height of the textarea
+    if (name === "message" && messageRef.current) {
+      messageRef.current.style.height = "auto"; // Reset height
+      messageRef.current.style.height = `${messageRef.current.scrollHeight}px`; // Adjust to content
+    }
   };
 
+  // Validate email format
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simple form validation
+
+    // Validate required fields and email format
     if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill in all fields");
+      setError("Please fill in all required fields.");
       return;
     }
 
-    // Handle form submission (e.g., sending data to the server)
-    console.log("Form Data:", formData);
+    if (!isValidEmail(formData.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    try {
+      // Send the email data to the backend
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          subject: `New message from ${formData.name}`,
+          message: formData.message,
+        }),
+      });
 
-    setIsSubmitted(true);
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      // Reset form and show success message
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setError(null);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Error sending email:", err);
+      setError("Failed to send your message. Please try again later.");
+    }
   };
 
   return (
@@ -69,17 +106,29 @@ const ContactCard = () => {
             labelClassName="text-xl font-semibold"
           />
 
+  
+
           <CustomTextField
             label="Message"
             name="message"
             value={formData.message}
-            onChange={handleChange}
-            inputClassName="w-full"
+            onChange={(e) => {
+              const textarea = e.target;
+              setFormData((prev) => ({ ...prev, message: textarea.value }));
+
+              // Auto-adjust height for textarea
+              textarea.style.height = "auto"; // Reset height
+              textarea.style.height = `${textarea.scrollHeight}px`; // Adjust to fit content
+            }}
+            inputClassName="w-full resize-none overflow-hidden"
             labelClassName="text-xl font-semibold"
-            rows="5"
+            rows="1" // Default to a single row
             textarea
             size="large"
           />
+
+
+          {error && <p className="text-red-500 text-center">{error}</p>}
 
           <CustomButton
             type="submit"

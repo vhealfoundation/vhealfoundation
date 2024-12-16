@@ -55,7 +55,7 @@ const AboutCard = ({ sections }) => {
                 variants={fadeUp}
               >
                 <img
-                  className="h-full w-full object-cover rounded-md"
+                  className="rounded-lg shadow-lg w-full h-auto object-cover"
                   src={section.image}
                   alt={section.alt || "Image"}
                 />

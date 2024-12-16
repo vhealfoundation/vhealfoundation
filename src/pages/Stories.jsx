@@ -42,7 +42,7 @@ const Stories = () => {
   }
 
   return (
-    <div className="mt-14 max-w-7xl mx-auto p-8 space-y-8">
+    <div className="mt-14 px-4 md:px-48 p-8 space-y-8">
       <div className="flex flex-col items-center gap-4">
         <h1 className="text-3xl md:text-4xl font-bold text-center text-primary">
           Stories of Hope and Change
