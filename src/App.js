@@ -11,6 +11,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WhatWeDo from "./pages/WhatWeDo";
 import StoryDetail from "./pages/StoryDetail";
+import Beneficiaries from "./pages/Beneficiaries";
+import ThankYou from "./pages/ThankYou";
 
 
 function App() {
@@ -60,11 +62,21 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><StoryDetail /></motion.div>} />
+              <Route path="/beneficiaries" element={<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><Beneficiaries /></motion.div>} />
           <Route path="/contactus" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><Contact /></motion.div>} />
+             <Route path="/thank-you" element={<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><ThankYou /></motion.div>} />
 
         </Routes>
       </AnimatePresence>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../assets/hero.jpg";
 import DonateCard from "./DonateCard";
 import { useInView } from "react-intersection-observer";
@@ -11,6 +12,8 @@ const Banner = () => {
   const { ref, inView } = useInView({ 
     rootMargin: window.innerWidth <= 768 ? "100px" : "-100px",
     threshold: 0.1 });
+
+  const navigate = useNavigate();
 
   return (
     <section
@@ -66,7 +69,7 @@ const Banner = () => {
             </div>
           </motion.div>
         </div>
-        <div className="mt-6 md:mt-32 z-10 opacity-100">
+        <div className="mt-6 md:mt-20 z-10 opacity-100">
 
           <motion.div
             ref={ref}

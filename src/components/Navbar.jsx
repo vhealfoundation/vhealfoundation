@@ -99,7 +99,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: showHoverCard ? 1 : 0, y: showHoverCard ? 0 : -10 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="absolute top-16 -right-24 transform -translate-x-1/2 w-[300px] bg-white shadow-lg rounded-lg p-4 text-center z-50"
+              className="absolute top-20 -right-28 transform -translate-x-1/2 w-[300px] bg-white shadow-lg rounded-lg p-4 text-center z-50"
             >
               <h3 className="text-lg font-bold text-gray-800 mb-2">
                 Why Book an Appointment?

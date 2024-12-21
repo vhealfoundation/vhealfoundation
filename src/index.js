@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Toaster } from "react-hot-toast";
 import { authConfig } from './authConfig.js';
 
 import { BrowserRouter } from 'react-router-dom';  // Import BrowserRouter
@@ -21,6 +22,8 @@ root.render(
         logoutRedirectUri={authConfig.logoutRedirectUri}
       >
         <App />
+      <Toaster />
+
       </KindeProvider>
     </BrowserRouter>
   </React.StrictMode>

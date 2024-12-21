@@ -1,61 +1,104 @@
 import React, { useState } from "react";
-import {Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import CustomTextField from "./CustomTextField";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+
+
 
 const DonateCard = () => {
+  const { user } = useKindeAuth();
   const [donationAmount, setDonationAmount] = useState("");
   const [customAmount, setCustomAmount] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const email = user?.email || "";
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
 
-  // Quick amounts for donation
+ 
+
+  const navigate = useNavigate();
+
+  // Quick donation amounts
   const quickAmounts = [1000, 2000, 5000, 10000];
 
-  // Handle quick donation amount selection
+  // Handle quick amount button click
   const handleQuickAmount = (amount) => {
+    setCustomAmount(amount.toString()); // Populate the custom amount field
     setDonationAmount(amount);
-    setCustomAmount(""); // Clear the custom amount if a quick amount is selected
+    setError(""); // Clear any previous errors
   };
 
   // Handle custom amount input
   const handleCustomAmount = (e) => {
-    setCustomAmount(e.target.value);
-    setDonationAmount(""); // Clear the quick donation amount if custom amount is entered
+    const amount = e.target.value;
+    if (amount.match(/^\d*$/)) {
+      setCustomAmount(amount);
+      setDonationAmount(""); // Clear quick amount when custom input is provided
+    }
+    setError(""); // Clear any previous errors
+  };
+
+  // Form validation
+  const validateForm = () => {
+    if (!customAmount || Number(customAmount) <= 0) {
+      setError("Please enter a valid donation amount.");
+      return false;
+    }
+    if (!name.trim()) {
+      setError("Name is required.");
+      return false;
+    }
+    if (!phone.match(/^[0-9]{10}$/)) {
+      setError("Please enter a valid 10-digit phone number.");
+      return false;
+    }
+    setError("");
+    return true;
   };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!donationAmount && !customAmount) {
-      setError("Please enter a donation amount.");
-      return;
-    }
-    if (!name || !email) {
-      setError("Name and email are required.");
+
+    if (!validateForm()) {
       return;
     }
 
-    // Proceed with donation logic
-    setError("");
-    alert(`Thank you for your donation of $${donationAmount || customAmount}.`);
+    const donationData = {
+      amount: customAmount || donationAmount,
+      name,
+      email,
+      phone,
+    };
+
+    navigate("/beneficiaries", { state: donationData });
   };
 
   return (
-    <Box className="w-[310px] md:w-[400px]" sx={{ padding: 2, borderRadius: 2, boxShadow: 10, backgroundColor: "#f5f5f5", }}>
-      <Typography variant="h6" gutterBottom className="text-primary">
+    <Box
+      className="w-[310px] md:w-[400px]"
+      sx={{
+        padding: 2,
+        borderRadius: 2,
+        boxShadow: 10,
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <Typography variant="h6" gutterBottom className="text-primary text-center">
         Donate to a Cause
       </Typography>
 
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-0">
-        {/* Quick Amount Selection */}
-        <div className="grid grid-cols-2 gap-2 mb-4 ">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        {/* Quick Donation Buttons */}
+        <div className="grid grid-cols-2 gap-2">
           {quickAmounts.map((amount) => (
             <CustomButton
               key={amount}
-              className="bg-primary hover:bg-primary-dark"
+              className={`${
+                customAmount == amount ? "bg-primary text-white" : "bg-white text-tertiary border border-tertiary hover:bg-primary hover:text-white"
+              } hover:bg-primary`}
               onClick={() => handleQuickAmount(amount)}
             >
               ₹{amount}
@@ -63,58 +106,61 @@ const DonateCard = () => {
           ))}
         </div>
 
- 
-       <CustomTextField
+        {/* Custom Amount Field */}
+        <CustomTextField
           label="Custom Amount"
           type="number"
           value={customAmount}
           onChange={handleCustomAmount}
-          error={Boolean(customAmount) && customAmount.length > 10}
-          className="mt-6 mb-4 "
+          error={Boolean(customAmount) && Number(customAmount) <= 0}
+          className="mt-6 mb-4"
           inputClassName="bg-gray-100"
           labelClassName="font-bold"
         />
 
-
+        {/* Name Field */}
         <CustomTextField
           label="Name"
-           type="text"
+          type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          error={Boolean(name) && name.length > 10}
-          className="mb-4 "
+          onChange={(e) => {
+            setName(e.target.value);
+            setError(""); // Clear any previous errors
+          }}
+          className="mb-4"
           inputClassName="bg-gray-100"
           labelClassName="font-bold"
         />
 
+
+        {/* Phone Field */}
         <CustomTextField
-          label="Email"
-            type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          error={Boolean(email) && email.length > 30}
-          className="mb-4 "
+          label="Phone"
+          type="tel"
+          value={phone}
+          onChange={(e) => {
+            setPhone(e.target.value);
+            setError(""); // Clear any previous errors
+          }}
+          className="mb-4"
           inputClassName="bg-gray-100"
           labelClassName="font-bold"
         />
-
-
-
 
         {/* Error Message */}
-        {error && <Typography color="error" sx={{ mt: 1 }}>{error}</Typography>}
+        {error && (
+          <Typography color="error" sx={{ mt: 1 }}>
+            {error}
+          </Typography>
+        )}
 
         {/* Submit Button */}
-
         <CustomButton
           className="bg-primary hover:bg-primary-dark"
           type="submit"
         >
-          <span>❤️</span>
-          Donate Now
+          ❤️ Donate Now
         </CustomButton>
-
-
       </form>
     </Box>
   );
