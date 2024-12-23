@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
 import AboutVideo from "../assets/aboutVideo.mp4";
+import Loader from "../components/Loader";
 
 const AboutUs = () => {
   const cardAnimation = (direction) => ({
@@ -13,22 +14,36 @@ const AboutUs = () => {
   });
 
   const [sections, setSections] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
 
 
   useEffect(() => {
     const fetchSections = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
         setSections(response.data.data);
 
       } catch (err) {
         console.error(err);
+        setError("Failed to load. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSections();
   }, []);
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl text-red-500">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-16 space-y-8" style={{ backgroundVideo: `url(${AboutVideo})` }}>
@@ -96,6 +111,7 @@ const AboutUs = () => {
 
       {/* Additional Sections */}
       <div>
+        {loading && <Loader />}
         <AboutCard sections={sections} />
       </div>
     </div>

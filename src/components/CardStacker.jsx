@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Card from "./Card";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
+import Loader from "./Loader";
 
 // Component to handle motion and inView logic
 const AnimatedCard = ({ card, delay }) => {
@@ -44,11 +45,14 @@ const CardStacker = () => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
         setData(response.data.data); 
-        setLoading(false); // Set loading to false once data is fetched
       } catch (err) {
-        setError(err); // Handle error if fetching fails
+        setError("Failed to load. Please try again later.");
+        setLoading(false);
+      }
+      finally {
         setLoading(false);
       }
     };
@@ -56,16 +60,27 @@ const CardStacker = () => {
     fetchSections();
   }, []); 
 
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl text-red-500">{error}</p>
+      </div>
+    );
+  }
+
 
   return (
     <div>
-      {/* Desktop Layout */}
+     
       <div className='flex flex-col items-center justify-center gap-4'>
       <h1 className="mt-12 text-3xl text-center md:text-4xl font-bold italic text-primary">
         What We Do
       </h1>
+      
       <div className='w-[120px] rounded-full border-4 border-b border-yellow-400'></div>
       </div>
+      {loading && <Loader />}
+
       
       <div className="hidden md:flex items-center justify-center gap-4 py-10">
         {data.map((card, index) => (

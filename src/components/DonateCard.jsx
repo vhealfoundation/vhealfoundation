@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
@@ -16,18 +17,19 @@ const DonateCard = () => {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
 
- 
+
 
   const navigate = useNavigate();
 
   // Quick donation amounts
   const quickAmounts = [1000, 2000, 5000, 10000];
 
+
   // Handle quick amount button click
   const handleQuickAmount = (amount) => {
-    setCustomAmount(amount.toString()); // Populate the custom amount field
+    setCustomAmount(amount.toString());
     setDonationAmount(amount);
-    setError(""); // Clear any previous errors
+    setError("");
   };
 
   // Handle custom amount input
@@ -61,19 +63,22 @@ const DonateCard = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!validateForm()) {
       return;
     }
-
     const donationData = {
       amount: customAmount || donationAmount,
       name,
       email,
       phone,
     };
+    
+    if (user?.email) {
 
-    navigate("/beneficiaries", { state: donationData });
+      navigate("/beneficiaries", { state: donationData  });
+    } else {
+      toast.error("Please login to donate");
+    }
   };
 
   return (
@@ -96,9 +101,8 @@ const DonateCard = () => {
           {quickAmounts.map((amount) => (
             <CustomButton
               key={amount}
-              className={`${
-                customAmount == amount ? "bg-primary text-white" : "bg-white text-tertiary border border-tertiary hover:bg-primary hover:text-white"
-              } hover:bg-primary`}
+              className={`${customAmount == amount ? "bg-primary text-white" : "bg-white text-tertiary border border-tertiary hover:bg-primary hover:text-white"
+                } hover:bg-primary`}
               onClick={() => handleQuickAmount(amount)}
             >
               ₹{amount}
@@ -156,7 +160,7 @@ const DonateCard = () => {
 
         {/* Submit Button */}
         <CustomButton
-          className="bg-primary hover:bg-primary-dark"
+          className="text-white bg-primary hover:bg-primary-dark"
           type="submit"
         >
           ❤️ Donate Now

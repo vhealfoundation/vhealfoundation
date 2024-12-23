@@ -22,7 +22,16 @@ root.render(
         logoutRedirectUri={authConfig.logoutRedirectUri}
       >
         <App />
-      <Toaster />
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            style: {
+              fontSize: '14px',
+              marginTop: '10px',
+            },
+          }}
+        />
 
       </KindeProvider>
     </BrowserRouter>

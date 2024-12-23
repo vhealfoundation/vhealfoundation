@@ -10,9 +10,9 @@ const Beneficiaries = () => {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
+  const loaction = useLocation();
   
-  const location = useLocation(); // Access the location state
-  const donationDetails = location.state?.donationDetails;
+  const donationDetails = loaction.state || {};
 
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const Beneficiaries = () => {
   // Create Razorpay Order
   const createRazorpayOrder = async (donationDetails) => {
     try {
-      console.log("Sending request to backend...");
+    
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/payments/order`, {
         donorName: donationDetails.donorName,
         donorEmail: donationDetails.donorEmail,
@@ -50,8 +50,7 @@ const Beneficiaries = () => {
         amount: donationDetails.amount,
         beneficiaryId: donationDetails.beneficiaryId,
       });
-  
-      console.log("Response from backend:", response);
+
       return response.data;
     } catch (error) {
       console.error("Error creating Razorpay order:", error.response || error);
@@ -78,13 +77,13 @@ const Beneficiaries = () => {
         beneficiaryId: selectedBeneficiary._id, 
       });
 
-      console.log("Order details:", orderDetails);
+
 
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Your Razorpay key
         amount: orderDetails.amount,
         currency: "INR",
-        name: "Your Organization Name",
+        name: "Dymphna And Medals Foundation",
         description: "Donation Payment",
         order_id: orderDetails.orderId,
         handler: async (response) => {
@@ -98,11 +97,11 @@ const Beneficiaries = () => {
               razorpaySignature: razorpay_signature,
             });
         
-            toast("Payment Successful! Thank you for your donation.");
+            toast.success("Payment Successful! Thank you for your donation.");
             navigate("/thank-you");
           } catch (error) {
             console.error("Payment verification failed:", error);
-            toast("Payment verification failed. Please contact support.");
+            toast.error("Payment verification failed. Please contact support.");
           }
         },        
         prefill: {
@@ -119,7 +118,7 @@ const Beneficiaries = () => {
       razorpay.open();
     } catch (error) {
       console.error("Error processing payment:", error);
-      toast("Unable to initiate payment. Please try again later.");
+      toast.error("Unable to initiate payment. Please try again later.");
     }
   };
 

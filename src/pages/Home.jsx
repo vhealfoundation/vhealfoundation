@@ -28,7 +28,7 @@ const Home = () => {
     };
 
     return (
-        <div className="pt-16">
+        <div className="pt-12">
             {showModal && <PopUpCard onClose={closeModal} />}
             <div className="">
                 <Banner />
@@ -42,9 +42,9 @@ const Home = () => {
             <div>
                 <DynamicCardStacker data={data}></DynamicCardStacker>
             </div>
-            <div className="">
+            <section className="" id='what-we-do'>
                 <CardStacker />
-            </div>
+            </section>
             <div className="mt-5">
                 <Slider testimonials={testimonials} />
             </div>

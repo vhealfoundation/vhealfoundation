@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import CustomButton from "./CustomButton";
 
@@ -87,22 +88,25 @@ export default function UserButton() {
                                 <div className="w-full border-t border-gray-200 my-2"></div>
 
                                 {/* Buttons */}
-                                <div className="w-full space-y-3">
+                                <div className="w-full flex flex-col gap-3 ">
                                     {/* Your Donations Button */}
+                                    <Link to ="/your-donations">
                                     <button
-                                        onClick={() => (window.location.href = "/yourdonations")}
-                                        className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark"
-                                    >
+                                        className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark">
+                                   
                                         Your Donations
                                     </button>
+                                    </Link>
 
                                     {/* Sign Out Button */}
+                                    <Link>
                                     <button
                                         onClick={logout}
                                         className="w-full rounded-md bg-red-500 text-white px-4 py-2 text-sm hover:bg-red-600 transition-all"
                                     >
                                         Sign Out
-                                    </button>
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

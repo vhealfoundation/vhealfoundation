@@ -33,7 +33,7 @@ const Card = ({ imageSrc, title, description}) => {
 
       
         <div className="mt-auto">
-          <CustomButton className="w-[150px] bg-primary hover:bg-primary-dark flex items-center gap-2">
+          <CustomButton className="w-[150px] text-white bg-primary hover:bg-primary-dark flex items-center gap-2">
             Get Involved
             <AiOutlineArrowRight size={20} />
           </CustomButton>

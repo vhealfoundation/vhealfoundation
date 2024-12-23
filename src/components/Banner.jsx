@@ -6,12 +6,15 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import CustomButton from "./CustomButton";
+import { Link } from "react-scroll";
 
 
 const Banner = () => {
-  const { ref, inView } = useInView({ 
+  const { ref, inView } = useInView({
     rootMargin: window.innerWidth <= 768 ? "100px" : "-100px",
-    threshold: 0.1 });
+    threshold: 0.1
+  });
+
 
   const navigate = useNavigate();
 
@@ -57,13 +60,23 @@ const Banner = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className=""
               >
+                <Link
+                  to="what-we-do"
+                  activeClass="active"
+                  spy={true}
+                  smooth={true}
+                  offset={-60}
+                  duration={800}
+                >
                 <CustomButton
-                  className="w-[150px] h-12 bg-primary hover:bg-primary-dark "
+                  className="w-[150px] h-12 text-white bg-primary hover:bg-primary-dark "
+                  
                 >
 
                   Get Involved
                   <AiOutlineArrowRight size={20} />
                 </CustomButton>
+                </Link>
               </motion.div>
 
             </div>

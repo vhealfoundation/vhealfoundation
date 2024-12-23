@@ -1,9 +1,25 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
+
+
+
 export default function Footer() {
+
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    toast.success("Thanks for subscribing!");
+
+    setEmail("");
+
+  };
+
   return (
-    <footer className="bg-primary text-white py-8">
+    <footer className="bg-primary text-white pt-8 pb-4 ">
       <div className="container mx-auto px-6 md:px-12">
         {/* Footer Top Section */}
         <div className="flex flex-wrap justify-between mb-8">
@@ -76,13 +92,15 @@ export default function Footer() {
           <div className="w-full sm:w-1/2 md:w-1/4 mb-6 md:mb-0">
             <h5 className="font-bold text-lg mb-4">Newsletter</h5>
             <p className="text-sm mb-4">Subscribe to our newsletter to stay updated on our latest activities and news.</p>
-            <form action="#" method="POST" className="flex">
+            <form action="#" method="POST" className=" flex" onSubmit={handleSubmit}>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="text-black p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
+                className="rounded-l-md text-black p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <button type="submit" className="p-2 bg-primary text-white rounded-r-md hover:bg-primary-dark focus:ring-2 focus:ring-primary">
+              <button type="submit" className="p-2 bg-blue-400 text-white rounded-r-md hover:bg-blue-500 focus:ring-2 focus:ring-primary">
                 Subscribe
               </button>
             </form>
@@ -91,7 +109,7 @@ export default function Footer() {
 
         {/* Footer Bottom Section */}
         <div className="text-center text-sm">
-          <p>© 2024 My Website. All Rights Reserved.</p>
+          <p>© 2025 Dymphna And Medals Foundation. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

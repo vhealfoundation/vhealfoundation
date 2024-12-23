@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../hoc/Layout";
 import StoryCard from "../components/StoryCard";
-import axios from "axios"; // Import axios for API calls
+import axios from "axios"; 
+import Loader from "../components/Loader";
 
 const Stories = () => {
-  const [stories, setStories] = useState([]); // State to hold stories data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [stories, setStories] = useState([]); 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(false); 
 
   // Fetch stories from the API
   useEffect(() => {
     const fetchStories = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/stories`);
         setStories(response.data.data);
-        setLoading(false);
+      
       } catch (err) {
         console.error("Error fetching stories:", err);
-        setError("Failed to load stories. Please try again later.");
+        setError("Failed to load. Please try again later.");
+
+      } finally{
         setLoading(false);
       }
     };
@@ -25,13 +29,6 @@ const Stories = () => {
     fetchStories();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl text-gray-500">Loading Stories...</p>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -55,6 +52,7 @@ const Stories = () => {
       </p>
 
       {/* Stories Grid */}
+      {loading && <Loader />}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {stories.map((story, index) => (
           <StoryCard

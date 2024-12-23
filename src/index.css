@@ -13,13 +13,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
+
 
 .architects-daughter-regular {
   font-family: "Architects Daughter", cursive;
   font-weight: 400;
   font-style: normal;
 }
+
 
 
 code {
@@ -31,23 +34,12 @@ code {
 ::-webkit-scrollbar {
   display: none;
 }
+
 .scrollable {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;   
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.card-stacker:hover .card{
+.card-stacker:hover .card {
   margin-left: 10px;
 }
-
-.masonry-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.masonry-item {
-  break-inside: avoid;
-}
-
-

@@ -13,6 +13,7 @@ import WhatWeDo from "./pages/WhatWeDo";
 import StoryDetail from "./pages/StoryDetail";
 import Beneficiaries from "./pages/Beneficiaries";
 import ThankYou from "./pages/ThankYou";
+import YourDonations from "./pages/YourDonations";
 
 
 function App() {
@@ -72,11 +73,16 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><Contact /></motion.div>} />
-             <Route path="/thank-you" element={<motion.div
+            <Route path="/thank-you" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><ThankYou /></motion.div>} />
+             <Route path="/your-donations" element={<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}><YourDonations /></motion.div>} />
 
         </Routes>
       </AnimatePresence>

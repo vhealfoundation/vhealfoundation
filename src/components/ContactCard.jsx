@@ -132,7 +132,7 @@ const ContactCard = () => {
 
           <CustomButton
             type="submit"
-            className="w-full bg-primary hover:bg-primary-dark"
+            className="text-white w-full bg-primary hover:bg-primary-dark"
           >
             Submit
           </CustomButton>

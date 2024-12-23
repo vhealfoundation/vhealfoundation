@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Layout from "../hoc/Layout";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 
@@ -110,4 +111,4 @@ const ThankYou = () => {
   );
 };
 
-export default ThankYou;
+export default Layout(ThankYou);
