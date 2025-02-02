@@ -93,7 +93,7 @@ const ContactCard = () => {
             value={formData.name}
             onChange={handleChange}
             inputClassName="w-full"
-            labelClassName="text-xl font-semibold"
+            className="text-xl font-semibold"
           />
 
           <CustomTextField
@@ -103,7 +103,7 @@ const ContactCard = () => {
             value={formData.email}
             onChange={handleChange}
             inputClassName="w-full"
-            labelClassName="text-xl font-semibold"
+            className="text-xl font-semibold"
           />
 
   
@@ -121,7 +121,7 @@ const ContactCard = () => {
               textarea.style.height = `${textarea.scrollHeight}px`; // Adjust to fit content
             }}
             inputClassName="w-full resize-none overflow-hidden"
-            labelClassName="text-xl font-semibold"
+            className="text-xl font-semibold"
             rows="1" // Default to a single row
             textarea
             size="large"

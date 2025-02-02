@@ -50,7 +50,7 @@ const Navbar = () => {
       {/* Mobile Navigation Toggle */}
       <div className="flex items-center space-x-2">
         <div onClick={handleNav} className="block md:hidden mt-1">
-          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+          {nav ? <AiOutlineClose size={20} className="text-white"/> : <AiOutlineMenu size={20} className="text-white"/>}
         </div>
         <Link to="/" className="block md:hidden" >
           <h1 className="text-3xl font-bold text-white">D&M</h1>

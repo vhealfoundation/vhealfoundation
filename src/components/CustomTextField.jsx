@@ -5,7 +5,7 @@ const CustomTextField = ({
   placeholder = "",
   value,
   onChange,
-  type = "text",
+  type = "",
   error = false,
   helperText = "",
   className = "",
@@ -47,7 +47,7 @@ const CustomTextField = ({
             focus:ring-1 focus:ring-primary focus:border-none
             ${error ? "border-red-500" : "border-gray-300"}
             ${sizeClasses[size]} ${inputClassName}`}
-          placeholder={placeholder}
+          placeholder={type !== "date" ? placeholder : ""}
           {...props}
         />
       ) : (
@@ -61,7 +61,7 @@ const CustomTextField = ({
             focus:ring-1 focus:ring-primary focus:border-none
             ${error ? "border-red-500" : "border-gray-300"}
             ${sizeClasses[size]} ${inputClassName}`}
-          placeholder={placeholder}
+          placeholder={type !== "date" ? placeholder : ""}
           {...props}
         />
       )}

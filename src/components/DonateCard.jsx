@@ -21,25 +21,23 @@ const DonateCard = () => {
 
   const navigate = useNavigate();
 
-  // Quick donation amounts
-  const quickAmounts = [1000, 2000, 5000, 10000];
-
-
-  // Handle quick amount button click
-  const handleQuickAmount = (amount) => {
-    setCustomAmount(amount.toString());
-    setDonationAmount(amount);
-    setError("");
-  };
 
   // Handle custom amount input
   const handleCustomAmount = (e) => {
     const amount = e.target.value;
     if (amount.match(/^\d*$/)) {
       setCustomAmount(amount);
-      setDonationAmount(""); // Clear quick amount when custom input is provided
     }
-    setError(""); // Clear any previous errors
+    setError("");
+  };
+
+
+  const handlePhone = (e) => {
+    const phoneNumber = e.target.value;
+    if (phoneNumber.match(/^\d*$/)) {
+      setPhone(phoneNumber);
+    }
+    setError("");
   };
 
   // Form validation
@@ -96,30 +94,17 @@ const DonateCard = () => {
       </Typography>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* Quick Donation Buttons */}
-        <div className="grid grid-cols-2 gap-2">
-          {quickAmounts.map((amount) => (
-            <CustomButton
-              key={amount}
-              className={`${customAmount == amount ? "bg-primary text-white" : "bg-white text-tertiary border border-tertiary hover:bg-primary hover:text-white"
-                } hover:bg-primary`}
-              onClick={() => handleQuickAmount(amount)}
-            >
-              ₹{amount}
-            </CustomButton>
-          ))}
-        </div>
+        
 
         {/* Custom Amount Field */}
         <CustomTextField
-          label="Custom Amount"
+          label="Amount"
           type="number"
           value={customAmount}
           onChange={handleCustomAmount}
           error={Boolean(customAmount) && Number(customAmount) <= 0}
           className="mt-6 mb-4"
           inputClassName="bg-gray-100"
-          labelClassName="font-bold"
         />
 
         {/* Name Field */}
@@ -129,11 +114,10 @@ const DonateCard = () => {
           value={name}
           onChange={(e) => {
             setName(e.target.value);
-            setError(""); // Clear any previous errors
+            setError("");
           }}
           className="mb-4"
           inputClassName="bg-gray-100"
-          labelClassName="font-bold"
         />
 
 
@@ -142,13 +126,9 @@ const DonateCard = () => {
           label="Phone"
           type="tel"
           value={phone}
-          onChange={(e) => {
-            setPhone(e.target.value);
-            setError(""); // Clear any previous errors
-          }}
+          onChange={handlePhone}
           className="mb-4"
           inputClassName="bg-gray-100"
-          labelClassName="font-bold"
         />
 
         {/* Error Message */}
