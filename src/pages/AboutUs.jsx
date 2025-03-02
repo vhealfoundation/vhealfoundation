@@ -13,18 +13,18 @@ const AboutUs = () => {
     visible: { x: 0, opacity: 1, transition: { duration: 1, delay: 0.5 } },
   });
 
-  const [sections, setSections] = useState([]);
+  const [about, setAbout] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
 
 
   useEffect(() => {
-    const fetchSections = async () => {
+    const fetchAbout = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
-        setSections(response.data.data);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/aboutcards`);
+        setAbout(response.data.data);
 
       } catch (err) {
         console.error(err);
@@ -34,7 +34,7 @@ const AboutUs = () => {
       }
     };
 
-    fetchSections();
+    fetchAbout();
   }, []);
 
   if (error) {
@@ -112,7 +112,7 @@ const AboutUs = () => {
       {/* Additional Sections */}
       <div>
         {loading && <Loader />}
-        <AboutCard sections={sections} />
+        <AboutCard sections={about} />
       </div>
     </div>
   );

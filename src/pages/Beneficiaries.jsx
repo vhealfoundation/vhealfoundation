@@ -80,7 +80,7 @@ const Beneficiaries = () => {
 
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Your Razorpay key
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID, 
         amount: orderDetails.amount,
         currency: "INR",
         name: "Dymphna And Medals Foundation",
