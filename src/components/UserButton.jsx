@@ -79,7 +79,9 @@ export default function UserButton() {
 
                                     {/* User Email */}
                                     <div className="flex flex-col items-start">
-                                        <p className="text-lg font-medium text-gray-800">{user?.given_name} {user?.family_name}</p>
+                                        <p className="text-lg font-medium text-gray-800">
+                                            {user?.given_name} {user?.family_name}
+                                        </p>
                                         <p className="text-sm text-gray-600">{user?.email}</p>
                                     </div>
                                 </div>
@@ -90,21 +92,24 @@ export default function UserButton() {
                                 {/* Buttons */}
                                 <div className="w-full flex flex-col gap-3 ">
                                     {/* Your Donations Button */}
-                                    <Link to ="/your-donations">
-                                    <button
-                                        className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark">
-                                   
-                                        Your Donations
-                                    </button>
+                                    <Link to="/your-donations">
+                                        <button className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark">
+                                            Your Donations
+                                        </button>
                                     </Link>
-
+                                    {/* Your Appointments Button */}
+                                    <Link to="/your-appointments">
+                                        <button className="w-full rounded-md bg-primary text-white px-4 py-2 text-sm hover:bg-primary-dark">
+                                            Your Appointments
+                                        </button>
+                                    </Link>
                                     {/* Sign Out Button */}
                                     <Link>
-                                    <button
-                                        onClick={logout}
-                                        className="w-full rounded-md bg-red-500 text-white px-4 py-2 text-sm hover:bg-red-600 transition-all"
-                                    >
-                                        Sign Out
+                                        <button
+                                            onClick={logout}
+                                            className="w-full rounded-md bg-red-500 text-white px-4 py-2 text-sm hover:bg-red-600 transition-all"
+                                        >
+                                            Sign Out
                                         </button>
                                     </Link>
                                 </div>

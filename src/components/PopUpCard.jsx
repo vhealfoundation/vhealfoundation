@@ -16,10 +16,7 @@ const PopUpCard = ({ onClose }) => {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleAppointment = () => {
-        navigate("/appointment");
-        onClose(); // Close the modal after navigation
-    };
+
 
     return (
         <div className=" fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-500">
@@ -60,13 +57,8 @@ const PopUpCard = ({ onClose }) => {
                     </div>
 
                     {/* Call to Actions */}
-                    <div className="flex flex-col gap-4 w-full">
-                        <button
-                            onClick={handleAppointment}
-                            className="bg-gradient-to-r from-green-600 to-green-500 text-white py-3 px-6 rounded-lg hover:from-green-700 hover:to-green-600 transition duration-300 shadow-lg"
-                        >
-                            Book an Appointment
-                        </button>
+                    <div className="bg-blue-50 p-4 rounded-lg shadow-inner w-full">
+                        Book your appointment now and start your healing journey | Help us rebuild lives
                     </div>
                 </div>
             </div>

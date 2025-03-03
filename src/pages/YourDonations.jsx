@@ -40,10 +40,11 @@ const YourDonations = () => {
   if (loading) {
     return <div className="text-center text-xl">Loading...</div>; // Custom loading text
   }
+  console.log(donations);
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-semibold mb-6 text-center text-blue-500">
+      <h1 className="mt-12 text-3xl font-semibold mb-6 text-center text-blue-500">
         Your Donations
       </h1>
       {donations.length > 0 ? (

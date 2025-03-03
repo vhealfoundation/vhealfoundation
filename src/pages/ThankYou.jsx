@@ -101,7 +101,7 @@ const ThankYou = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.8 }}
         >
-          Thank you for your donation. Redirecting you to the home page...
+          Thank you. Redirecting you to the home page...
         </motion.p>
 
 

@@ -42,7 +42,6 @@ const Navbar = () => {
     { id: 3, text: "Stories", link: "/stories" },
     { id: 4, text: "Gallery", link: "/gallery" },
     { id: 5, text: "Contact", link: "/contactus" },
-    { id: 6, text: "Book Now", link: "/book" },
   ];
 
   return (
@@ -53,11 +52,11 @@ const Navbar = () => {
           {nav ? <AiOutlineClose size={20} className="text-white"/> : <AiOutlineMenu size={20} className="text-white"/>}
         </div>
         <Link to="/" className="block md:hidden" >
-          <h1 className="text-3xl font-bold text-white">D&M</h1>
+          <h1 className="text-3xl font-bold text-white">VHeal</h1>
         </Link>
       </div>
       <Link to="/" className="hidden md:block" >
-        <h1 className="text-3xl font-bold text-white">D&M</h1>
+        <h1 className="text-3xl font-bold text-white">VHeal</h1>
       </Link>
 
       {/* Desktop Navbar */}

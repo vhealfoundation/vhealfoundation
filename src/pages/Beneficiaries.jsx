@@ -5,15 +5,16 @@ import BeneficiaryCard from "../components/BeneficiaryCard";
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loader from "../components/Loader"; // Import Loader component
 
 const Beneficiaries = () => {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [paymentLoading, setPaymentLoading] = useState(false); // State for payment verification loader
   const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
-  const loaction = useLocation();
-  
-  const donationDetails = loaction.state || {};
+  const location = useLocation();
 
+  const donationDetails = location.state || {};
   const navigate = useNavigate();
 
   // Fetch data from API
@@ -30,7 +31,6 @@ const Beneficiaries = () => {
         setLoading(false);
       }
     };
-
     fetchBeneficiaries();
   }, []);
 
@@ -42,15 +42,16 @@ const Beneficiaries = () => {
   // Create Razorpay Order
   const createRazorpayOrder = async (donationDetails) => {
     try {
-    
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/payments/order`, {
-        donorName: donationDetails.donorName,
-        donorEmail: donationDetails.donorEmail,
-        donorPhone: donationDetails.donorPhone,
-        amount: donationDetails.amount,
-        beneficiaryId: donationDetails.beneficiaryId,
-      });
-
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/payments/order`,
+        {
+          donorName: donationDetails.donorName,
+          donorEmail: donationDetails.donorEmail,
+          donorPhone: donationDetails.donorPhone,
+          amount: donationDetails.amount,
+          beneficiaryId: donationDetails.beneficiaryId,
+        }
+      );
       return response.data;
     } catch (error) {
       console.error("Error creating Razorpay order:", error.response || error);
@@ -58,52 +59,47 @@ const Beneficiaries = () => {
     }
   };
 
-  
-  
-
   // Handle Payment
   const handlePayment = async () => {
     if (!donationDetails || !selectedBeneficiary) {
       console.error("No donation details or beneficiary selected.");
       return;
     }
-
     try {
       const orderDetails = await createRazorpayOrder({
-        amount: donationDetails.amount ,
+        amount: donationDetails.amount,
         donorName: donationDetails.name,
         donorEmail: donationDetails.email,
         donorPhone: donationDetails.phone,
-        beneficiaryId: selectedBeneficiary._id, 
+        beneficiaryId: selectedBeneficiary._id,
       });
 
-
-
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID, 
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: orderDetails.amount,
         currency: "INR",
-        name: "Dymphna And Medals Foundation",
+        name: "VHeal Foundation",
         description: "Donation Payment",
         order_id: orderDetails.orderId,
         handler: async (response) => {
+          // Show loader immediately when payment is made
+          setPaymentLoading(true);
           try {
             const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
-        
             // Send both payment ID and order ID to the backend for verification
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}/payments/verify`, {
               razorpayPaymentId: razorpay_payment_id,
-              razorpayOrderId: razorpay_order_id,  
+              razorpayOrderId: razorpay_order_id,
               razorpaySignature: razorpay_signature,
             });
-        
             toast.success("Payment Successful! Thank you for your donation.");
             navigate("/thank-you");
           } catch (error) {
             console.error("Payment verification failed:", error);
             toast.error("Payment verification failed. Please contact support.");
+            setPaymentLoading(false);
           }
-        },        
+        },
         prefill: {
           name: donationDetails.name,
           email: donationDetails.email,
@@ -121,6 +117,15 @@ const Beneficiaries = () => {
       toast.error("Unable to initiate payment. Please try again later.");
     }
   };
+
+  // If payment verification is in progress, show Loader
+  if (paymentLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="mt-16 max-w-7xl mx-auto p-8">
@@ -152,8 +157,11 @@ const Beneficiaries = () => {
         </div>
       ) : (
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 "
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+          }}
           initial="hidden"
           animate="visible"
         >

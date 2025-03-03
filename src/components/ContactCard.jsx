@@ -10,6 +10,7 @@ const ContactCard = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for submission progress
   const [error, setError] = useState(null); // Track errors
   const messageRef = useRef(null); // Reference for textarea
 
@@ -26,8 +27,7 @@ const ContactCard = () => {
   };
 
   // Validate email format
-  const isValidEmail = (email) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -43,6 +43,9 @@ const ContactCard = () => {
       setError("Please enter a valid email address.");
       return;
     }
+
+    setError(null);
+    setIsSubmitting(true);  // Show loader message "Submitting..."
 
     try {
       // Send the email data to the backend
@@ -68,13 +71,22 @@ const ContactCard = () => {
         email: "",
         message: "",
       });
-      setError(null);
       setIsSubmitted(true);
     } catch (err) {
       console.error("Error sending email:", err);
       setError("Failed to send your message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  if (isSubmitting) {
+    return (
+      <div className="max-w-4xl mx-auto p-8 text-center">
+        <h2 className="text-3xl font-bold mb-6">Submitting...</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-8">
@@ -106,8 +118,6 @@ const ContactCard = () => {
             className="text-xl font-semibold"
           />
 
-  
-
           <CustomTextField
             label="Message"
             name="message"
@@ -115,7 +125,6 @@ const ContactCard = () => {
             onChange={(e) => {
               const textarea = e.target;
               setFormData((prev) => ({ ...prev, message: textarea.value }));
-
               // Auto-adjust height for textarea
               textarea.style.height = "auto"; // Reset height
               textarea.style.height = `${textarea.scrollHeight}px`; // Adjust to fit content
@@ -126,7 +135,6 @@ const ContactCard = () => {
             textarea
             size="large"
           />
-
 
           {error && <p className="text-red-500 text-center">{error}</p>}
 
