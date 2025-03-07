@@ -49,7 +49,7 @@ export default function Footer() {
                 <p>Phone: <a href="tel:+1234567890" className="hover:text-white">+123 456 7890</a></p>
               </li>
               <li className="mb-2">
-                <p>Address: 1234 Charity St, City, Country</p>
+                <p>Address: Old No: 18/A/1, New No: 6/A/1, Zackaria Colony, 2nd Street, Choolaimedu, Chennai, 600 094, </p>
               </li>
             </ul>
           </div>

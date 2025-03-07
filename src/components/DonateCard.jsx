@@ -6,21 +6,34 @@ import CustomButton from "./CustomButton";
 import CustomTextField from "./CustomTextField";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
-
+const LOCAL_STORAGE_KEY = "savedDonationDetails";
 
 const DonateCard = () => {
   const { user } = useKindeAuth();
-  const [donationAmount, setDonationAmount] = useState("");
-  const [customAmount, setCustomAmount] = useState("");
-  const [name, setName] = useState("");
-  const email = user?.email || "";
-  const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
-
-
-
   const navigate = useNavigate();
 
+  // Initialize state with local storage values if available
+  const [customAmount, setCustomAmount] = useState(() => {
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedData ? JSON.parse(storedData).customAmount || "" : "";
+  });
+  const [name, setName] = useState(() => {
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedData ? JSON.parse(storedData).name || "" : "";
+  });
+  const [phone, setPhone] = useState(() => {
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedData ? JSON.parse(storedData).phone || "" : "";
+  });
+  // Email is taken from the authenticated user if available
+  const email = user?.email || "";
+  const [error, setError] = useState("");
+
+  // Save donation details in local storage on state change
+  useEffect(() => {
+    const donationData = { customAmount, name, phone };
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(donationData));
+  }, [customAmount, name, phone]);
 
   // Handle custom amount input
   const handleCustomAmount = (e) => {
@@ -30,7 +43,6 @@ const DonateCard = () => {
     }
     setError("");
   };
-
 
   const handlePhone = (e) => {
     const phoneNumber = e.target.value;
@@ -65,23 +77,25 @@ const DonateCard = () => {
       return;
     }
     const donationData = {
-      amount: customAmount || donationAmount,
+      amount: customAmount, 
       name,
       email,
       phone,
     };
-    
-    if (user?.email) {
 
-      navigate("/beneficiaries", { state: donationData  });
+    if (user?.email) {
+      // Clear stored donation details once processed
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      navigate("/beneficiaries", { state: donationData });
     } else {
+      // Save donation details and prompt user to login; the data will be prefilled after login.
       toast.error("Please login to donate");
     }
   };
 
   return (
     <Box
-      className="w-[310px] md:w-[400px]"
+      className="w-[350px] md:w-[400px]"
       sx={{
         padding: 2,
         borderRadius: 2,
@@ -94,8 +108,6 @@ const DonateCard = () => {
       </Typography>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        
-
         {/* Custom Amount Field */}
         <CustomTextField
           label="Amount"
@@ -119,7 +131,6 @@ const DonateCard = () => {
           className="mb-4"
           inputClassName="bg-gray-100"
         />
-
 
         {/* Phone Field */}
         <CustomTextField

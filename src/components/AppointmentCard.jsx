@@ -11,7 +11,9 @@ import dayjs from "dayjs";
 import Loader from "./Loader"; // Importing the Loader component
 
 // A fixed amount for demonstration purposes. In production, amount can be dynamic.
-const APPOINTMENT_AMOUNT = 100; // in INR
+const APPOINTMENT_AMOUNT = 1000; // in INR
+
+const LOCALSTORAGE_KEY = "savedAppointmentDetails";
 
 const AppointmentCard = ({ isStandalone }) => {
   const { user } = useKindeAuth();
@@ -19,19 +21,28 @@ const AppointmentCard = ({ isStandalone }) => {
 
   const [loading, setLoading] = useState(false); // State to manage the loader
 
-  // Removed email input from state. Email is taken from the user object.
-  // We also assume that the appointment id is provided by the fetched slots response (if available).
-  const [appointmentDetails, setAppointmentDetails] = useState({
-    name: "",
-    phone: "",
-    date: null, // using dayjs object for DatePicker
-    slotId: "",
-    // appointmentId can be attached later if provided by the backend response for slots.
-    appointmentId: ""
+  // Initialize appointment details from local storage if present
+  const [appointmentDetails, setAppointmentDetails] = useState(() => {
+    const storedData = localStorage.getItem(LOCALSTORAGE_KEY);
+    return storedData
+      ? { ...JSON.parse(storedData), date: JSON.parse(storedData).date ? dayjs(JSON.parse(storedData).date) : null }
+      : {
+          name: "",
+          phone: "",
+          date: null, // using dayjs object for DatePicker
+          slotId: "",
+          // appointmentId can be attached later if provided by the backend response for slots.
+          appointmentId: ""
+        };
   });
   const [error, setError] = useState("");
   const [availableSlots, setAvailableSlots] = useState([]);
   const [noSlotsMessage, setNoSlotsMessage] = useState("");
+
+  // Save appointmentDetails to local storage on change
+  useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(appointmentDetails));
+  }, [appointmentDetails]);
 
   // Form validation updated to remove email validation
   const validateForm = () => {
@@ -98,6 +109,15 @@ const AppointmentCard = ({ isStandalone }) => {
   // 3. On successful payment, verify the payment by calling /appointment-payments/verify.
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if the user is logged in; if not, store the details and prompt the user to log in.
+    if (!user) {
+      toast.error("Please login to proceed with payment");
+      // Optionally navigate to the login page if needed
+      // navigate("/login");
+      return;
+    }
+
     if (!validateForm()) {
       return;
     }
@@ -168,6 +188,8 @@ const AppointmentCard = ({ isStandalone }) => {
             const verifyData = await verifyResponse.json();
             if (verifyData.success) {
               toast.success(verifyData.message || "Appointment booked successfully");
+              // Clear stored appointment details upon successful booking
+              localStorage.removeItem(LOCALSTORAGE_KEY);
               // Navigate to the thank-you page with details once verification is successful
               navigate("/thank-you", {
                 state: { ...appointmentDetails, bookedSlot: selectedSlot, date: formattedDate }
@@ -220,7 +242,7 @@ const AppointmentCard = ({ isStandalone }) => {
 
   return (
     <Box
-      className="w-[310px] md:w-[400px] mx-auto mt-12"
+      className="w-[350px] md:w-[400px] mx-auto"
       sx={{
         padding: 2,
         borderRadius: 2,
@@ -231,6 +253,17 @@ const AppointmentCard = ({ isStandalone }) => {
       <Typography variant="h6" gutterBottom className="text-center text-primary font-semibold">
         Book Your Appointment
       </Typography>
+      <div className="bg-gray-100 rounded-md p-3 mb-4 flex flex-col justify-center items-center">
+        <Typography variant="body2" className="text-gray-600 mb-1">
+          Professional Consultation
+        </Typography>
+        <Typography variant="h5" className="text-center font-bold text-primary">
+          ₹{APPOINTMENT_AMOUNT}
+        </Typography>
+        <Typography variant="caption" className="text-gray-500 mt-1">
+          One-time payment • Secure checkout
+        </Typography>
+      </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {/* Name Field */}
         <CustomTextField
