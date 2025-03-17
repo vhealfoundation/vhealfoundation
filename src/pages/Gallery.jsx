@@ -3,20 +3,31 @@ import Layout from "../hoc/Layout";
 import GalleryCard from "../components/GalleryCard";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { Tab } from '@headlessui/react';
+import LineSeperator from "../components/LineSeperator";
+
+const CATEGORIES = [
+  "COUNSELLING SERVICES",
+  "ASSESSMENTS",
+  "TRAINING",
+  "COACHING",
+  "REHABILITAION OF PRISONERS",
+  "OTHER"
+];
 
 const Gallery = () => {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [galleryData, setGalleryData] = useState({ categories: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Fetch data from the gallery API
   useEffect(() => {
-    const fetchGalleryImages = async () => {
+    const fetchGalleryData = async () => {
       try {
         setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/gallery`);
-        setImages(response.data.data.images);
-
+        setGalleryData(response.data.data);
       } catch (err) {
         console.error(err);
         setError("Failed to load. Please try again later.");
@@ -25,8 +36,46 @@ const Gallery = () => {
       }
     };
 
-    fetchGalleryImages();
+    fetchGalleryData();
   }, []);
+
+  // Get all images across all categories
+  const getAllImages = () => {
+    let allImages = [];
+    if (galleryData && galleryData.categories) {
+      galleryData.categories.forEach(category => {
+        if (category.images && category.images.length > 0) {
+          // Add category title to each image for filtering
+          const imagesWithCategory = category.images.map(img => ({
+            ...img,
+            categoryTitle: category.title
+          }));
+          allImages = [...allImages, ...imagesWithCategory];
+        }
+      });
+    }
+    return allImages;
+  };
+
+  // Get images for a specific category
+  const getCategoryImages = (categoryTitle) => {
+    if (!galleryData || !galleryData.categories) return [];
+    
+    const category = galleryData.categories.find(cat => cat.title === categoryTitle);
+    return category ? category.images.map(img => ({
+      ...img,
+      categoryTitle: category.title
+    })) : [];
+  };
+
+  // Get images based on selected category
+  const getDisplayImages = () => {
+    if (selectedCategory === "all") {
+      return getAllImages();
+    } else {
+      return getCategoryImages(selectedCategory);
+    }
+  };
 
   if (error) {
     return (
@@ -35,16 +84,64 @@ const Gallery = () => {
       </div>
     );
   }
+
   return (
     <div className="mt-16">
       <div className="flex flex-col items-center gap-4">
         <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
           Our Gallery
         </h2>
-        <div className="w-[120px] rounded-full border-4 border-b border-yellow-400 opacity-90"></div>
-        {loading && <Loader />}
+        <LineSeperator className="mb-4" />
       </div>
-      <GalleryCard images={images} /> {/* Pass the fetched images to GalleryCard */}
+
+      {!loading && (
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <Tab.Group>
+            <Tab.List className="flex flex-wrap justify-center space-x-1 rounded-xl bg-blue-900/10 p-1 mb-8">
+              <Tab
+                key="all"
+                onClick={() => setSelectedCategory("all")}
+                className={({ selected }) =>
+                  `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
+                  ${selected 
+                    ? 'bg-primary text-white shadow' 
+                    : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'
+                  }`
+                }
+              >
+                All
+              </Tab>
+              
+              {CATEGORIES.map((category) => {
+                // Only show categories that have images
+                const hasImages = galleryData.categories?.some(
+                  cat => cat.title === category && cat.images?.length > 0
+                );
+                
+                if (!hasImages) return null;
+                
+                return (
+                  <Tab
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={({ selected }) =>
+                      `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
+                      ${selected 
+                        ? 'bg-primary text-white shadow' 
+                        : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'
+                      }`
+                    }
+                  >
+                    {category}
+                  </Tab>
+                );
+              })}
+            </Tab.List>
+          </Tab.Group>
+
+          <GalleryCard images={getDisplayImages()} />
+        </div>
+      )}
     </div>
   );
 };

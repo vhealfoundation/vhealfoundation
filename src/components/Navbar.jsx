@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import UserButton from "./UserButton";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -38,10 +39,11 @@ const Navbar = () => {
   // Navigation items
   const navItems = [
     { id: 1, text: "Home", link: "/" },
-    { id: 2, text: "About", link: "/aboutus" },
-    { id: 3, text: "Stories", link: "/stories" },
-    { id: 4, text: "Gallery", link: "/gallery" },
-    { id: 5, text: "Contact", link: "/contactus" },
+    { id: 2, text: "About Us", link: "/aboutus" },
+    { id: 3, text: "Happenings", link: "/happenings" },
+
+    { id: 4, text: "Accolades", link: "/accolades" },
+    { id: 5, text: "To Connect", link: "/toconnect" },
   ];
 
   return (
@@ -51,12 +53,16 @@ const Navbar = () => {
         <div onClick={handleNav} className="block md:hidden mt-1">
           {nav ? <AiOutlineClose size={20} className="text-white"/> : <AiOutlineMenu size={20} className="text-white"/>}
         </div>
-        <Link to="/" className="block md:hidden" >
-          <h1 className="text-3xl font-bold text-white">VHeal</h1>
+        <Link to="/" className="flex items-center gap-2 md:hidden" >
+   <img src={logo} alt="Logo" className="w-10 h-10" />
+   <p className="text-white">VHEAL</p>
         </Link>
       </div>
-      <Link to="/" className="hidden md:block" >
-        <h1 className="text-3xl font-bold text-white">VHeal</h1>
+      <Link to="/" className="hidden md:flex items-center gap-4" >
+      <img src={logo} alt="Logo" className="w-12 h-12" />
+   <p className="text-xl md:text-2xl font-bold text-white">VHEAL</p>
+
+
       </Link>
 
       {/* Desktop Navbar */}

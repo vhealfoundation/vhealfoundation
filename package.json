@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@headlessui/react": "^2.2.0",
     "@kinde-oss/kinde-auth-react": "^4.0.4",
     "@mui/material": "^6.2.0",
     "@mui/x-date-pickers": "^7.27.1",

@@ -8,7 +8,7 @@ import DynamicCardStacker from "../components/DynamicCardStacker";
 import Slider from "../components/Slider";
 import ContactCard from "../components/ContactCard";
 import ContactLeft from "../components/ContactLeft";
-import { data, cardData, sections, testimonials } from "../constants/data";
+import { data, aboutData, testimonials } from "../constants/data";
 import StoriesBanner from "../components/StoriesBanner";
 import PopUpCard from "../components/PopUpCard";
 
@@ -29,7 +29,7 @@ const Home = () => {
 
     return (
         <div className="pt-12">
-            {showModal && <PopUpCard onClose={closeModal} />}
+{/*             {showModal && <PopUpCard onClose={closeModal} />} */}
             <div className="">
                 <Banner />
             </div>
@@ -37,7 +37,7 @@ const Home = () => {
                 <StatsCard />
             </div>
             <div className="mt-5">
-                <AboutCard sections={sections} />
+                <AboutCard sections={aboutData} />
             </div>
             <div>
                 <DynamicCardStacker data={data}></DynamicCardStacker>

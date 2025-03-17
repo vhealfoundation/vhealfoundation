@@ -43,3 +43,7 @@ code {
 .card-stacker:hover .card {
   margin-left: 10px;
 }
+
+.text-shadow-lg {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}

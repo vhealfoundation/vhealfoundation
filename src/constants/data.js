@@ -1,170 +1,135 @@
 import Hero from '../assets/hero.jpg'
+import user1 from '../assets/user1.png';
+import user2 from '../assets/user2.png';
+import user3 from '../assets/user3.png';
+
+
+  // Define the 6 new slides with their content
+export const slides = [
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner1_czmjga.png", // Replace with actual image for "V Heal Foundation"
+      title: "V Heal Foundation",
+      subtitle: "Enriching, Empowering & Enduring Lives"
+    },
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png", // Replace with actual image for "Counseling Services"
+      title: "We provide Counseling Services",
+      subtitle: "to facilitate quality of life and transform lives"
+    },
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png", // Replace with actual image for "Psychological Assessments"
+      title: "We administer Psychological Assessments",
+      subtitle: "to ascertain psychological functioning and identify support needs"
+    },
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846665/banner4_odblcx.png", // Replace with actual image for "Training programmes"
+      title: "We impart Training programmes",
+      subtitle: "to build confidence in the abilities of oneself"
+    },
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner5_k4iqoa.png", // Replace with actual image for "Coaching"
+      title: "We offer Coaching",
+      subtitle: "to enrich right skills to be self-reliant individuals"
+    },
+    {
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner6_ibixvg.png", // Replace with actual image for "Rehabilitate Prisoners"
+      title: "We Rehabilitate Prisoners",
+      subtitle: "to rebuild and restore the dignity of prisoners"
+    }
+  ];
 
 
 export const data = [
   {
-    title: "Rehabilitation",
-    subtitle: "Support a Fresh Start",
+    title: "COUNSELLING SERVICES",
+    subtitle: "Providing professional guidance",
     rating: "4.9",
-    backgroundColors: { top: "#6A1B9A", bottom: "#4527A0" }, // Gradient with a sense of hope and dignity
-    image: Hero,
+    backgroundColors: { top: "#8E24AA", bottom: "#5E35B1" }, // Gradient with a sense of support and trust
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741850990/counselling1_s4rptk.png",
   },
   {
-    title: "Skill Development",
-    subtitle: "Empower with New Skills",
+    title: "ASSESSMENTS",
+    subtitle: "Comprehensive evaluations to empower choice",
     rating: "4.8",
-    backgroundColors: { top: "#009688", bottom: "#00796B" }, // Gradient symbolizing growth and stability
-    image: Hero,
+    backgroundColors: { top: "#3949AB", bottom: "#1E88E5" }, // Gradient reflecting clarity and insight
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851155/training9_cxm5jz.jpg",
   },
   {
-    title: "Mental Health",
-    subtitle: "Heal and Rebuild Lives",
+    title: "TRAINING",
+    subtitle: "Hands-on skills development",
+    rating: "4.9",
+    backgroundColors: { top: "#00ACC1", bottom: "#00838F" }, // Gradient symbolizing growth and confidence
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851156/training17_tj6ll8.jpg",
+  },
+  {
+    title: "COACHING",
+    subtitle: "Personalized mentoring for growth",
+    rating: "4.8",
+    backgroundColors: { top: "#43A047", bottom: "#2E7D32" }, // Gradient representing energy and progress
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851263/coaching2_zekzgc.png",
+  },
+  {
+    title: "REHABILITAION OF PRISONERS",
+    subtitle: "Facilitating smooth reintegration",
     rating: "4.7",
-    backgroundColors: { top: "#EF5350", bottom: "#C62828" }, // Gradient with warmth and compassion
-    image: Hero,
-  },
-  {
-    title: "Reintegration",
-    subtitle: "Help Them Belong Again",
-    rating: "4.8",
-    backgroundColors: { top: "#FFCA28", bottom: "#F57F17" }, // Gradient symbolizing a bright future
-    image: Hero,
-  },
-  {
-    title: "Educational Grants",
-    subtitle: "Learn and Grow Together",
-    rating: "4.9",
-    backgroundColors: { top: "#42A5F5", bottom: "#1E88E5" }, // Gradient for opportunities and growth
-    image: Hero,
+    backgroundColors: { top: "#FBC02D", bottom: "#F9A825" }, // Gradient evoking hope and renewal
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851434/image003_dwriht.jpg",
   },
 ];
 
 
 
-export const cardData = [
-  {
-    imageSrc: Hero,
-    title: 'Noteworthy technology acquisitions 2021',
-    description:
-      'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
-    link: 'your_link_here',
-  },
-  {
-    imageSrc: Hero,
-    title: 'The Rise of AI in Everyday Life',
-    description: 'Discover how artificial intelligence is transforming our world in amazing ways.',
-    link: 'your_link_here',
-  },
-  {
-    imageSrc: Hero,
-    title: 'Exploring the Future of Quantum Computing',
-    description: 'Quantum computing is poised to revolutionize industries. Learn how it works.',
-    link: 'your_link_here',
-  },
-];
 
-
-export const sections = [
+export const aboutData = [
   {
-    image: Hero, // Replace with your actual image variable or path
-    alt: "Empowering Released Jailers",
-    heading: "Support Their Second Chance",
-    subheading: "Rebuilding Lives. Restoring Dignity.",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847946/mission_hyapti.png", 
+    alt: "Our Vision",
+    heading: "OUR VISION",
+    subheading: "Transforming Lives Through Mental Well-being",
     description:
-      "Empower former jailers to reintegrate into society, rebuild their lives, and restore hope. Your donation helps provide essential resources and opportunities for a fresh start.",
+      "V Heal Foundation is a charitable trust with a vision to facilitate professional relationship to accomplish mental well-being and to transform the lives of prisoners.",
     features: [
-      "Access to skill development and education",
-      "Comprehensive reintegration programs",
-      "Mental health and counseling support",
+      "Mental Health Support | Professional counseling services for prisoners",
+      "Rehabilitation Programs | Comprehensive support for reintegration",
+      "Transformative Approach | Focusing on holistic well-being and dignity"
     ],
     reverse: false,
   },
   {
-    image: Hero, // Replace with your actual image variable or path
-    alt: "Donation for Jailers",
-    heading: "Break the Cycle of Challenges",
-    subheading: "Empowering Through Opportunities",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847947/vision_hxnv3s.png", // Replace with your actual image variable or path
+    alt: "Our Mission",
+    heading: "OUR MISSION",
+    subheading: "Elevating Emotional and Professional Well-being",
     description:
-      "By donating, you help break the cycle of stigma and unemployment faced by former jailers, creating pathways to stable employment and independence.",
+      "Our mission at V Heal Foundation is to elevate emotional and professional domains of individuals in families and at workplace by way of counseling, training and coaching. Our commitment extends to the prison walls too by facilitating mental wellness among the prisoners through counselling, up-skilling and rehabilitation.",
     features: [
-      "Partnerships with local employers",
-      "Workshops on financial literacy",
-      "Community-driven mentorship initiatives",
+      "Counseling Services | Professional mental health support for individuals and families",
+      "Training Programs | Skill development and professional growth opportunities",
+      "Rehabilitation Support | Comprehensive programs for prisoners' reintegration"
     ],
     reverse: true,
-  },
-  {
-    image: Hero, // Replace with your actual image variable or path
-    alt: "Success Stories",
-    heading: "Celebrate Stories of Success",
-    subheading: "Transforming Lives Together",
-    description:
-      "Every contribution helps write a new story of resilience and hope. Be a part of a community that celebrates the transformation of lives and societies.",
-    features: [
-      "Regular updates on program impact",
-      "Personalized thank-you messages from beneficiaries",
-      "Opportunities to engage with success stories",
-    ],
-    reverse: false,
   },
 ];
 
 
 export const testimonials = [
   {
-    name: "John Doe",
+    name: "Amit Sharma",
     message: "Thanks to your generous donations, I was able to receive proper medical treatment. I'm so grateful for this life-changing support.",
-    image: Hero,
+    image: user3,
     supportType: "Medical Aid",
   },
   {
-    name: "Rahul Gupta",
+    name: "Rohan Mehta",
     message: "The food package we received meant the world to my family during a difficult time. Thank you for your kindness and generosity!",
-    image:Hero, 
+    image: user1, 
     supportType: "Food Donation",
   },
   {
-    name: "Fatima Ali",
+    name: "Priya Singh",
     message: "With your help, I was able to go back to school and pursue my dream of becoming a teacher. Thank you for believing in me!",
-    image: Hero, 
+    image: user2 , 
     supportType: "Education Sponsorship",
   },
 ];
-
-
-export const images = [
-  "https://via.placeholder.com/300",
-  "https://via.placeholder.com/400",
-  "https://via.placeholder.com/500",
-  "https://via.placeholder.com/600",
-  "https://via.placeholder.com/700",
-  "https://via.placeholder.com/800",
-];
-
-
-export const stories = [
-  {
-    image: "https://via.placeholder.com/300x200",
-    title: "A Second Chance at Life",
-    description:
-      "Thanks to our donors, Jane was able to receive life-saving surgery. Read her inspiring journey.",
-    link: "/stories/jane",
-  },
-  {
-    image: "https://via.placeholder.com/300x200",
-    title: "Education for Every Child",
-    description:
-      "Discover how your contributions are helping children like Sam go to school for the first time.",
-    link: "/stories/sam",
-  },
-  {
-    image: "https://via.placeholder.com/300x200",
-    title: "Feeding Families in Need",
-    description:
-      "Your donations provided meals to hundreds of families during challenging times.",
-    link: "/stories/feeding-families",
-  },
-
-];
-
 

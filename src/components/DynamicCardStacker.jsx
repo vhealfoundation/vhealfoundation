@@ -3,6 +3,7 @@ import DynamicCard from './DynamicCard';
 import { motion } from 'framer-motion';
 import { useInView } from "react-intersection-observer";
 import Hero from '../assets/hero.jpg'
+import LineSeperator from './LineSeperator';
 
 // Extracted component to handle motion and inView
 const AnimatedCard = ({ eachData }) => {
@@ -37,13 +38,14 @@ const DynamicCardStacker = ({ data }) => {
       }}
     >
       {/* Overlay for Contrast */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 "></div>
+      <div className="absolute inset-0 bg-black bg-opacity-35"></div>
       {/* Desktop Layout */}
       <div className='flex flex-col items-center gap-4 '>
         <h1 className="mt-8 text-3xl text-center md:text-4xl font-medium italic text-white opacity-90">
           Areas We Help
         </h1>
-        <div className='w-[120px] rounded-full border-4 border-b border-yellow-400 opacity-90'></div>
+        <LineSeperator className="mb-4" />
+
       </div>
 
       <div className="hidden md:flex items-center justify-center card-stacker pt-16 pb-20">

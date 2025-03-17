@@ -1,198 +1,339 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Hero from "../assets/hero.jpg";
-import AppointmentBg from "../assets/hero3.jpg";
-import DonateCard from "./DonateCard";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CustomButton from "./CustomButton";
 import { Link } from "react-scroll";
-import AppointmentCard from "./AppointmentCard";
+import {slides} from "../constants/data";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlide, setPreviousSlide] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 for right-to-left, -1 for left-to-right
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
+  const autoPlayRef = useRef(null);
+  const isFirstRender = useRef(true);
+  const slideTimerRef = useRef(null);
 
-  const slides = [
-    {
-      backgroundImage: Hero,
-      content: (
-        <>
-          <h2>
-            <span className="font-semibold leading-none md:text-[57px] text-[35px]">
-              Join Us in Empowering
-            </span>
-            <br />
-            <span className="font-semibold leading-none md:text-[57px] text-[35px]">
-              Lives for a Better Future
-            </span>
-          </h2>
-          <p className="md:text-[25px] w-full md:w-3/4 text-[16px] font-normal mt-3 md:mt-6">
-            We are a non-profit organization dedicated to helping released
-            jailers reintegrate into society, rebuild their lives, and regain
-            their dignity.
-          </p>
-          <Link
-            to="what-we-do"
-            activeClass="active"
-            spy={true}
-            smooth={true}
-            offset={-60}
-            duration={800}
-          >
-            <CustomButton className="w-[150px] h-12 text-white bg-primary hover:bg-primary-dark">
-              Get Involved
-              <AiOutlineArrowRight size={20} />
-            </CustomButton>
-          </Link>
-        </>
-      ),
-      extraContent: <DonateCard />,
-    },
-    {
-      backgroundImage: AppointmentBg,
-      content: (
-        <>
-        <h2>
-            <span className="font-semibold leading-none md:text-[57px] text-[35px]">
-             Your Mental Health Matters
-            </span>
-            <br />
-            <span className="font-semibold leading-none md:text-[57px] text-[35px]">
-              Don't Wait, Book an Appointment!
-            </span>
-          </h2>
-          
-          <p className="md:text-[25px] w-full md:w-3/4 text-[16px] font-normal mt-3 md:mt-6">
-            Book an appointment with our expert psychiatrists and take the
-            first step toward better mental well-being.
-          </p>
-          <button
-            className="w-[200px] h-12 mt-4 md:mt-6 text-white bg-primary hover:bg-primary-dark rounded-lg flex items-center justify-center gap-2"
-            onClick={() => navigate("/appointments")}
-          >
-            Book Now <AiOutlineArrowRight size={20} />
-          </button>
-        </>
-      ),
-      extraContent: <AppointmentCard isStandalone={false} />
-    },
-  ];
 
+  // Start the sequence for a new slide
+  const startSlideSequence = () => {
+    // Reset states
+    setShowOverlay(false);
+    setShowContent(false);
+
+    // Step 1: Show the overlay after a delay (picture is already visible)
+    setTimeout(() => {
+      setShowOverlay(true);
+
+      // Step 2: Show the content after the overlay transition
+      setTimeout(() => {
+        setShowContent(true);
+      }, 1000);
+    }, 1000);
+  };
+
+  // When a new slide becomes active
+  useEffect(() => {
+    startSlideSequence();
+
+    // Clear any existing timers
+    if (slideTimerRef.current) {
+      clearTimeout(slideTimerRef.current);
+    }
+
+    // Set up auto-advance timer
+    slideTimerRef.current = setTimeout(() => {
+      setPreviousSlide(currentSlide);
+      setDirection(1); // Right to left for auto-advance
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 7000); // Change slide every 7 seconds
+
+    return () => {
+      if (slideTimerRef.current) {
+        clearTimeout(slideTimerRef.current);
+      }
+    };
+  }, [currentSlide, slides.length]);
+
+  // Manual slide change function
+  const handleSlideChange = (index) => {
+    if (index !== currentSlide) {
+      setPreviousSlide(currentSlide);
+      setDirection(index > currentSlide ? 1 : -1);
+      setCurrentSlide(index);
+    }
+  };
+
+  // Variants for slide animations
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 1 // Start fully visible
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 1 // Stay fully visible while exiting
+    })
+  };
+
+  // Variants for overlay animations (right to left)
+  const overlayVariants = {
+    hidden: {
+      width: "0%",
+      right: 0,
+      left: "auto"
+    },
+    visible: {
+      width: "100%",
+      transition: {
+        duration: 1.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  // Variants for content animations
+  const contentVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50
+    },
+    visible: {
+      opacity: 1,
+      y: 150,
+      transition: {
+        duration: 0.8
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -50,
+      transition: {
+        duration: 0.4
+      }
+    }
+  };
+
+
+  const mobilecontentVariants = {
+    hidden: {
+      opacity: 0,
+      y: 0
+    },
+    visible: {
+      opacity: 1,
+      y: 100,
+      transition: {
+        duration: 0.8
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -50,
+      transition: {
+        duration: 0.4
+      }
+    }
+  };
   return (
     <section className="relative h-auto overflow-hidden">
-      {/* Desktop Layout - Cards overlaid on image */}
-      <div className="hidden md:block relative h-[730px]">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-            style={{
-              backgroundImage: `url(${slide.backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+      {/* Desktop Layout */}
+      <div className="hidden md:block relative h-[730px] overflow-hidden">
+        <AnimatePresence initial={false} custom={direction} mode="sync">
+          <motion.div
+            key={currentSlide}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0"
+            onAnimationComplete={() => {
+              if (isFirstRender.current) {
+                isFirstRender.current = false;
+              }
             }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-35"></div>
-            <div className="relative h-full flex flex-row items-center justify-between px-12 pr-40">
-              <div className="mt-20 flex items-center opacity-100">
-                <motion.div
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="flex flex-col gap-4 text-white w-[750px] px-[60px]"
-                >
-                  {slide.content}
-                </motion.div>
-              </div>
-              {slide.extraContent && (
-                <div className="z-20 opacity-100">
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+            >
+              {/* Dark overlay (always present) */}
+
+
+              {/* Lighter overlay with left-to-right animation */}
+              <AnimatePresence>
+                {showOverlay && (
                   <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                  >
-                    {slide.extraContent}
-                  </motion.div>
-                </div>
-              )}
+                    className="absolute inset-0 bg-black bg-opacity-35"
+                    variants={overlayVariants}
+                    initial="hidden"
+                    animate="visible"
+                    key="overlay"
+                  ></motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Content */}
+              <div className="relative h-full flex flex-col items-center justify-center px-12 z-10">
+                <AnimatePresence>
+                  {showContent && (
+                    <motion.div
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      key="content"
+                      className="flex flex-col items-center gap-6 text-white text-center max-w-4xl bg-opacity-100"
+                    >
+                      <h2 className="font-semibold leading-tight md:text-[57px] text-[35px] text-shadow-lg">
+                        {slides[currentSlide].title}
+                      </h2>
+                      <p className="w-4/5 md:text-[25px] text-[18px] font-normal p-2 rounded-lg shadow-xl" style={{ backgroundColor: '#fd8917' }}>
+                        {slides[currentSlide].subtitle}
+                      </p>
+
+                      {currentSlide === 0 && (
+                        <Link
+                          to="what-we-do"
+                          activeClass="active"
+                          spy={true}
+                          smooth={true}
+                          offset={-60}
+                          duration={800}
+                          className="mx-auto mt-4"
+                        >
+                          <CustomButton className="w-[180px] h-12 text-white shadow-lg transform hover:scale-105 transition-transform" style={{ backgroundColor: '#fd8917', borderColor: '#fd8917' }}>
+                            Learn More
+                            <AiOutlineArrowRight size={20} />
+                          </CustomButton>
+                        </Link>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
-          </div>
-        ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Dots for Desktop */}
         <div className="absolute bottom-6 z-30 left-1/2 transform -translate-x-1/2 flex gap-3">
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-4 h-4 rounded-full border-2 border-white ${
-                currentSlide === index ? "bg-white" : "bg-transparent"
+              onClick={() => handleSlideChange(index)}
+              className={`w-4 h-4 rounded-full border-2 border-white transition-all duration-300 ${
+                currentSlide === index
+                  ? "bg-white scale-125"
+                  : "bg-transparent hover:bg-white hover:bg-opacity-50"
               }`}
+              aria-label={`Go to slide ${index + 1}`}
             ></button>
           ))}
         </div>
       </div>
 
-      {/* Mobile Layout - Separate image and cards */}
-      <div className="md:hidden">
-        {/* Image Background Section */}
-        <div className="relative h-[500px]">
-          {slides.map((slide, index) => (
+      {/* Mobile Layout */}
+      <div className="md:hidden relative h-[500px] overflow-hidden">
+        <AnimatePresence initial={false} custom={direction} mode="sync">
+          <motion.div
+            key={currentSlide}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            {/* Background Image */}
             <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-              style={{
-                backgroundImage: `url(${slide.backgroundImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
             >
-              <div className="absolute inset-0 bg-black bg-opacity-35"></div>
-              <div className="relative h-full flex flex-col items-center pb-10">
-                <div className="mt-16 flex items-center opacity-100">
+              {/* Dark overlay (always present) */}
+
+
+              {/* Lighter overlay with left-to-right animation */}
+              <AnimatePresence>
+                {showOverlay && (
                   <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="flex flex-col gap-2 text-white px-4 w-full"
-                  >
-                    {slide.content}
-                  </motion.div>
-                </div>
+                    className="absolute inset-0 bg-black bg-opacity-35"
+                    variants={overlayVariants}
+                    initial="hidden"
+                    animate="visible"
+                    key="overlay"
+                  ></motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Content */}
+              <div className="relative h-full flex flex-col items-center justify-center px-4 z-10">
+                <AnimatePresence>
+                  {showContent && (
+                    <motion.div
+                      variants={mobilecontentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      key="content"
+                      className="flex flex-col items-center gap-4 text-white text-center bg-opacity-100 z-10"
+                    >
+                      <h2 className="font-semibold leading-tight text-[35px] text-shadow-lg">
+                        {slides[currentSlide].title}
+                      </h2>
+                      <p className="w-4/5 text-[16px] font-normal p-2 rounded-lg shadow-xl" style={{ backgroundColor: '#fd8917' }}>
+                        {slides[currentSlide].subtitle}
+                      </p>
+
+                      {currentSlide === 0 && (
+                        <Link
+                          to="what-we-do"
+                          activeClass="active"
+                          spy={true}
+                          smooth={true}
+                          offset={-60}
+                          duration={800}
+                          className="mx-auto mt-4"
+                        >
+                          <CustomButton className="w-[150px] h-12 text-white shadow-lg transform hover:scale-105 transition-transform" style={{ backgroundColor: '#fd8917', borderColor: '#fd8917' }}>
+                            Learn More
+                            <AiOutlineArrowRight size={20} />
+                          </CustomButton>
+                        </Link>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dots for Mobile */}
+        <div className="absolute bottom-4 z-30 left-1/2 transform -translate-x-1/2 flex gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleSlideChange(index)}
+              className={`w-4 h-4 rounded-full border-2 border-white transition-all duration-300 ${
+                currentSlide === index
+                  ? "bg-white scale-125"
+                  : "bg-transparent hover:bg-white hover:bg-opacity-50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
           ))}
-
-          {/* Dots for Mobile */}
-          <div className="absolute bottom-4 z-30 left-1/2 transform -translate-x-1/2 flex gap-3">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-4 h-4 rounded-full border-2 border-white ${
-                  currentSlide === index ? "bg-white" : "bg-transparent"
-                }`}
-              ></button>
-            ))}
-          </div>
-        </div>
-
-        {/* Cards Section - below the image (mobile only) */}
-        <div className="bg-white py-8 px-4">
-          <div className="transition-opacity duration-500 opacity-100">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              {slides[currentSlide].extraContent}
-            </motion.div>
-          </div>
         </div>
       </div>
     </section>
@@ -200,3 +341,12 @@ const Banner = () => {
 };
 
 export default Banner;
+
+
+
+
+
+
+
+
+

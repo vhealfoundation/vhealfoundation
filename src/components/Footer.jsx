@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <h5 className="text-lg font-bold bg-white/10 p-2 rounded-md inline-block">Quick Links</h5>
             <ul className="mt-4">
-              {["Home", "About", "Stories", "Gallery", "Contact"].map((item, index) => (
+              {["Home", "About", "Stories", "Gallery"].map((item, index) => (
                 <li key={index}>
                   <Link
                     to={`/${item.toLowerCase()}`}
@@ -59,7 +59,6 @@ export default function Footer() {
             <h5 className="text-lg font-bold bg-white/10 p-2 rounded-md inline-block">Our Organization</h5>
             <div className="flex gap-4 mt-4">
               {[
-                { icon: FaGlobe, link: "https://www.organization-website.com" },
                 { icon: FaFacebookF, link: "https://www.facebook.com/organization" },
                 { icon: FaTwitter, link: "https://twitter.com/organization" },
                 { icon: FaInstagram, link: "https://instagram.com/organization" },
@@ -101,7 +100,7 @@ export default function Footer() {
 
         {/* Footer Bottom Section */}
         <div className="text-center text-sm border-t border-white/20 pt-4">
-          <p>© 2025 Dymphna And Medals Foundation. All Rights Reserved.</p>
+          <p>© 2025 VHeal Foundation. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

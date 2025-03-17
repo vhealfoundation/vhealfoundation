@@ -6,18 +6,39 @@ import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
 import AboutVideo from "../assets/aboutVideo.mp4";
 import Loader from "../components/Loader";
+import LineSeperator from "../components/LineSeperator";
 
 const AboutUs = () => {
-  const cardAnimation = (direction) => ({
-    hidden: { x: direction === "left" ? -100 : 100, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 1, delay: 0.5 } },
-  });
-
   const [about, setAbout] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  // Animation variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
 
+  const slideIn = (direction) => ({
+    hidden: {
+      x: direction === "left" ? -100 : 100,
+      opacity: 0
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        delay: 0.2
+      }
+    }
+  });
 
   useEffect(() => {
     const fetchAbout = async () => {
@@ -25,7 +46,6 @@ const AboutUs = () => {
         setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/aboutcards`);
         setAbout(response.data.data);
-
       } catch (err) {
         console.error(err);
         setError("Failed to load. Please try again later.");
@@ -45,66 +65,105 @@ const AboutUs = () => {
     );
   }
 
-  return (
-    <div className="mt-16 space-y-8" style={{ backgroundVideo: `url(${AboutVideo})` }}>
+  // Mission items with icons
+  const missionItems = [
+    "Promote psychological-social counseling services to individuals and families.",
+    "Provide psychological counseling and training to individuals at workplace.",
+    "Provide counseling and training programmes for prisoners before and after their release.",
+    "Provide social and psychological reintegration for prisoners after their release.",
+    "Uplift and empower women prisoners.",
+    "Upskill prisoners inside the prison and educate them on job opportunities after their release.",
+    "Identify the skill gaps and provide appropriate training for prisoners to learn new skills inside the prison.",
+    "Establish centers for employment generation for prisoners after their release.",
+    "Provide legal and financial support to economically downtrodden prisoners for legal aid and to secure bail.",
+    "Provide rehabilitation for prisoners who are mentally ill after their release.",
+    "Provide educational, financial and social support to children of economically downtrodden prisoners.",
+    "Provide required relief and assistance to family members of economically downtrodden prisoners who are outside the prison."
+  ];
 
-      <div className="relative flex flex-col items-center gap-4">
+  return (
+    <div className="mt-16 space-y-8">
+      {/* Hero Section with Video Background */}
+      <div className="relative flex flex-col items-center">
         <div className="w-full h-full absolute inset-0 -z-10"></div>
         <video
           autoPlay
           loop
           muted
-          className="w-full h-[800px] object-cover"
+          className="w-full h-[600px] object-cover brightness-[0.7]"
         >
-          <source src={AboutVideo} type="video/mp4" />
+          <source src="https://res.cloudinary.com/dgidetrcl/video/upload/v1741857501/1918465-uhd_3840_2160_24fps_lvau5w.mp4" type="video/mp4" />
         </video>
 
-        <div className="z-10 top-6 md:top-10 absolute flex flex-col items-center gap-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-white">
-            How We Work
-          </h1>
-          <div className="w-[120px] rounded-full border-4 border-b border-yellow-400 opacity-90"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-center mb-4"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            About Us
+          </motion.h1>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ delay: 0.1 }}
+          >
+            <LineSeperator className="mb-6" width="150px" />
+          </motion.div>
+          <motion.p
+            className="text-lg md:text-xl text-center max-w-3xl"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ delay: 0.2 }}
+          >
+            V Heal Foundation (VHF) is a public charitable trust founded by Mrs. Maria Nalini Xavier in the year 2025.
+            It is registered under the Indian Trust Act with registration No: 55/2025.
+          </motion.p>
         </div>
-
-
-        {/* Motion Card for Mission */}
-        <motion.div
-          className="absolute top-[16%] md:top-[30%] flex justify-start"
-          initial="hidden"
-          animate="visible"
-          variants={cardAnimation("left")}
-        >
-          <div className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white p-4 md:p-8 rounded-r-lg shadow-lg w-[90%] md:w-[40%] backdrop-blur-sm bg-opacity-60">
-            <h2 className="text-xl md:text-2xl font-bold">Our Mission</h2>
-            <p className="text-md md:text-lg">
-              To empower former inmates with the tools, resources, and
-              opportunities they need to rebuild their lives, reintegrate into
-              society, and unlock their full potential. We aim to break the
-              cycle of recidivism by fostering dignity, compassion, and second
-              chances.
-            </p>
-          </div>
-        </motion.div>
       </div>
 
-      {/* Vision Section */}
-      <div className="absolute top-[70%] md:top-[60%]">
-        {/* Motion Card for Vision */}
+      {/* About Us Content Section */}
+      <div className="max-w-6xl mx-auto px-4 py-12">
         <motion.div
-          className="relative flex justify-end"
+          className="bg-white rounded-lg shadow-xl overflow-hidden"
           initial="hidden"
           animate="visible"
-          variants={cardAnimation("right")}
+          variants={fadeIn}
         >
-          <div className="bg-gradient-to-r from-green-600 via-green-700 to-green-800 text-white p-4 md:p-8 rounded-l-lg shadow-lg w-[90%] md:w-[40%] backdrop-blur-sm bg-opacity-60">
-            <h2 className="text-xl md:text-2xl  font-bold">Our Vision</h2>
-            <p className="text-md md:text-lg">
-              To create a world where every individual leaving incarceration is
-              met with acceptance, opportunity, and the support they need to
-              thrive. Together, we envision a society that uplifts lives,
-              reduces stigma, and builds stronger communities by investing in
-              rehabilitation and restoration.
-            </p>
+          <div className="p-8 md:p-12">
+            <div className="mb-10">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
+              </p>
+            </div>
+
+            {/* Our Mission Section */}
+            <motion.div
+              className="mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={slideIn("left")}
+            >
+              <h2 className="text-3xl font-bold mb-3" style={{ color: '#fd8917' }}>Our Mission</h2>
+              <LineSeperator className="mb-6" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                {missionItems.map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="mt-1 p-1 rounded-full" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-700">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -112,7 +171,7 @@ const AboutUs = () => {
       {/* Additional Sections */}
       <div>
         {loading && <Loader />}
-        <AboutCard sections={about} />
+        <AboutCard sections={about} isAbout={true} />
       </div>
     </div>
   );

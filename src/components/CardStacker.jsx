@@ -4,6 +4,7 @@ import Card from "./Card";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import Loader from "./Loader";
+import LineSeperator from "./LineSeperator";
 
 // Component to handle motion and inView logic
 const AnimatedCard = ({ card, delay }) => {
@@ -77,7 +78,8 @@ const CardStacker = () => {
         What We Do
       </h1>
       
-      <div className='w-[120px] rounded-full border-4 border-b border-yellow-400'></div>
+      <LineSeperator className="mb-8" />
+
       </div>
       {loading && <Loader />}
 

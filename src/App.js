@@ -9,6 +9,7 @@ import Gallery from "./pages/Gallery";
 import ScrollToTop from "./components/ScrollToTop";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./styles/custom-colors.css";
 import WhatWeDo from "./pages/WhatWeDo";
 import StoryDetail from "./pages/StoryDetail";
 import Beneficiaries from "./pages/Beneficiaries";
@@ -49,17 +50,17 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><WhatWeDo /></motion.div>} />
-          <Route path="/gallery" element={<motion.div
+          <Route path="/happenings" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><Gallery /></motion.div>} />
-          <Route path="/stories" element={<motion.div
+          <Route path="/accolades" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><Stories /></motion.div>} />
-          <Route path="/stories/:id" element={<motion.div
+          <Route path="/accolades/:id" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -69,7 +70,7 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}><Beneficiaries /></motion.div>} />
-          <Route path="/contactus" element={<motion.div
+          <Route path="/toconnect" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

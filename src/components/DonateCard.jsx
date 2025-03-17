@@ -77,15 +77,21 @@ const DonateCard = () => {
       return;
     }
     const donationData = {
-      amount: customAmount, 
+      amount: customAmount,
       name,
       email,
       phone,
     };
 
     if (user?.email) {
-      // Clear stored donation details once processed
-      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      // Store donation details in local storage (don't remove it)
+      // We'll only remove it after a successful payment
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({
+        customAmount,
+        name,
+        phone,
+        email
+      }));
       navigate("/beneficiaries", { state: donationData });
     } else {
       // Save donation details and prompt user to login; the data will be prefilled after login.

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CustomButton from "./CustomButton";
+import LineSeperator from "./LineSeperator";
 
 const Slider = ({ testimonials }) => {
   const [current, setCurrent] = useState(0);
@@ -15,12 +16,16 @@ const Slider = ({ testimonials }) => {
 
   return (
     <div className="bg-gray-900">
-      <h1 className="pt-12 text-4xl font-bold italic text-center text-white mb-4">Testimonials</h1>
+      <h1 className="pt-12 text-4xl font-bold italic text-center text-white mb-3">Testimonials</h1>
+      <div className="flex justify-center mb-8">
+        <LineSeperator />
+      </div>
 
       <div className="relative cflex justify-center items-center h-[500px] md:h-[550px] overflow-hidden">
         {/* Left Arrow */}
         <CustomButton
-          className="absolute bottom-3 md:bottom-[45%] left-28 md:left-8 bg-primary text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+          className="absolute bottom-3 md:bottom-[45%] left-28 md:left-8 text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+          style={{ backgroundColor: '#fd8917' }}
           onClick={handlePrev}
         >
           &#8592;
@@ -37,10 +42,11 @@ const Slider = ({ testimonials }) => {
               <motion.div
                 key={index}
                 className={`absolute w-[90%] sm:w-[80%] max-w-sm h-[350px] sm:h-[400px] p-4 bg-secondary shadow-xl rounded-lg flex flex-col items-center text-center
-          border-t-4 ${isCenter ? "border-primary scale-100 z-30" : "border-transparent scale-75 z-20 opacity-50"
+          border-t-4 ${isCenter ? "scale-100 z-30" : "border-transparent scale-75 z-20 opacity-50"
                   }
           ${isLeft ? "translate-x-[-120%]" : ""}
           ${isRight ? "translate-x-[120%]" : ""}`}
+                style={{ borderColor: isCenter ? '#fd8917' : 'transparent' }}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: isCenter ? 1 : 0.5,
@@ -53,14 +59,15 @@ const Slider = ({ testimonials }) => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className={`w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 shadow-md object-cover ${isCenter ? "border-primary" : "border-gray-300"
+                  className={`w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 shadow-md object-cover ${isCenter ? "" : "border-gray-300"
                     } mb-4`}
+                  style={{ borderColor: isCenter ? '#fd8917' : '' }}
                 />
                 {/* Testimonial Content */}
                 <p className="text-lg sm:text-xl font-bold text-gray-800">{testimonial.name}</p>
                 <p className="text-sm sm:text-base text-gray-600 italic mt-2">"{testimonial.message}"</p>
                 <p className="mt-4 text-xs sm:text-sm text-gray-500">
-                  <span className="font-semibold text-[#00df9a]">Helped through:</span> {testimonial.supportType}
+                  <span className="font-semibold" style={{ color: '#fd8917' }}>Helped through:</span> {testimonial.supportType}
                 </p>
               </motion.div>
             );
@@ -69,7 +76,8 @@ const Slider = ({ testimonials }) => {
 
         {/* Right Arrow */}
         <CustomButton
-          className="absolute bottom-3 md:bottom-[45%] right-28 md:right-8 bg-primary text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+          className="absolute bottom-3 md:bottom-[45%] right-28 md:right-8 text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+          style={{ backgroundColor: '#fd8917' }}
           onClick={handleNext}
         >
           &#8594;
