@@ -53,13 +53,13 @@ const Navbar = () => {
         <div onClick={handleNav} className="block md:hidden mt-1">
           {nav ? <AiOutlineClose size={20} className="text-white"/> : <AiOutlineMenu size={20} className="text-white"/>}
         </div>
-        <Link to="/" className="flex items-center gap-2 md:hidden" >
-   <img src={logo} alt="Logo" className="w-10 h-10" />
+        <Link to="/" className="rounded-full flex items-center gap-2 md:hidden" >
+   <img src={logo} alt="Logo" className="rounded-full w-10 h-10" />
    <p className="text-white">VHEAL</p>
         </Link>
       </div>
-      <Link to="/" className="hidden md:flex items-center gap-4" >
-      <img src={logo} alt="Logo" className="w-12 h-12" />
+      <Link to="/" className="hidden md:flex items-center gap-2 rounded-full" >
+      <img src={logo} alt="Logo" className="w-[52px] h-[52px] rounded-full object-cover" />
    <p className="text-xl md:text-2xl font-bold text-white">VHEAL</p>
 
 

@@ -143,9 +143,9 @@ const Banner = () => {
     }
   };
   return (
-    <section className="relative h-auto overflow-hidden">
+    <section className="relative h-auto overflow-hidden z-0">
       {/* Desktop Layout */}
-      <div className="hidden md:block relative h-[730px] overflow-hidden">
+      <div className="hidden md:block relative h-[730px] overflow-hidden z-0">
         <AnimatePresence initial={false} custom={direction} mode="sync">
           <motion.div
             key={currentSlide}
@@ -244,7 +244,7 @@ const Banner = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden relative h-[500px] overflow-hidden">
+      <div className="md:hidden relative h-[500px] overflow-hidden z-0">
         <AnimatePresence initial={false} custom={direction} mode="sync">
           <motion.div
             key={currentSlide}

@@ -110,7 +110,7 @@ const DonateCard = () => {
       }}
     >
       <Typography variant="h6" gutterBottom className="text-primary text-center">
-        Donate to a Cause
+        Donate to VHEAL Foundation
       </Typography>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

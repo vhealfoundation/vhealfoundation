@@ -24,8 +24,8 @@ const Slider = ({ testimonials }) => {
       <div className="relative cflex justify-center items-center h-[500px] md:h-[550px] overflow-hidden">
         {/* Left Arrow */}
         <CustomButton
-          className="absolute bottom-3 md:bottom-[45%] left-28 md:left-8 text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
-          style={{ backgroundColor: '#fd8917' }}
+          className="border-2 rounded-full absolute bottom-3 md:bottom-[45%] left-28 md:left-8 text-white text-2xl p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+          
           onClick={handlePrev}
         >
           &#8592;
@@ -76,8 +76,8 @@ const Slider = ({ testimonials }) => {
 
         {/* Right Arrow */}
         <CustomButton
-          className="absolute bottom-3 md:bottom-[45%] right-28 md:right-8 text-white p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
-          style={{ backgroundColor: '#fd8917' }}
+          className="border-2 rounded-full absolute bottom-3 md:bottom-[45%] right-28 md:right-8 text-white text-2xl  p-3 rounded-full shadow-lg z-10 hover:scale-110 transition-transform duration-300"
+         
           onClick={handleNext}
         >
           &#8594;

@@ -13,7 +13,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-white pt-10 pb-6 relative overflow-hidden">
+    <footer className="bg-primary text-white pt-10 pb-6 relative overflow-hidden z-10 mt-auto">
       {/* Floating Blur Effects */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-blue-500 opacity-30 blur-3xl rounded-full"></div>
       <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-700 opacity-30 blur-3xl rounded-full"></div>
@@ -25,13 +25,18 @@ export default function Footer() {
           <div>
             <h5 className="text-lg font-bold bg-white/10 p-2 rounded-md inline-block">Quick Links</h5>
             <ul className="mt-4">
-              {["Home", "About", "Stories", "Gallery"].map((item, index) => (
+              {[
+                { name: "Home", path: "/" },
+                { name: "About", path: "/aboutus" },
+                { name: "Gallery", path: "/happenings" },
+                { name: "Accolades", path: "/accolades" }
+              ].map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    to={item.path}
                     className="block mb-2 text-white/80 hover:text-white transition duration-300"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -43,10 +48,10 @@ export default function Footer() {
             <h5 className="text-lg font-bold bg-white/10 p-2 rounded-md inline-block">Contact Us</h5>
             <ul className="mt-4">
               <li className="mb-2">
-                <p>Email: <a href="mailto:info@example.com" className="hover:text-white">info@example.com</a></p>
+                <p>Email: <a href="mailto:vhealfoundation@gmail.com" className="hover:text-white">vhealfoundation@gmail.com</a></p>
               </li>
               <li className="mb-2">
-                <p>Phone: <a href="tel:+1234567890" className="hover:text-white">+123 456 7890</a></p>
+                <p>Phone: <a href="tel:+918056041136" className="hover:text-white">+91 8056041136</a></p>
               </li>
               <li className="mb-2">
                 <p>Address: Old No: 18/A/1, New No: 6/A/1, Zackaria Colony, 2nd Street, Choolaimedu, Chennai, 600 094, </p>

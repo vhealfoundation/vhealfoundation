@@ -26,7 +26,7 @@ const Stories = () => {
         console.error("Error fetching stories:", err);
         setError("Failed to load. Please try again later.");
 
-      } finally{
+      } finally {
         setLoading(false);
       }
     };
@@ -56,23 +56,24 @@ const Stories = () => {
 
   return (
     <div className="mt-16 pb-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <motion.div
-          className="flex flex-col items-center gap-4"
+          <motion.div
+          className="flex flex-col items-center gap-4 bg-gray-100 pb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-            Stories of Hope and Change
+            Accolades & Achievements
           </h2>
           <LineSeperator className="mb-4" />
 
           <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-            Discover how your generosity is transforming lives. These stories are a
-            testament to the power of giving and second chances.
+            Celebrating milestones and honors that recognize dedication, perseverance, and excellence. These accolades highlight the impact of hard work and commitment.
           </p>
+
         </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    
 
         {/* Stories Grid */}
         {loading ? (

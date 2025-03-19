@@ -3,6 +3,7 @@ import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
 import axios from "axios";
 import Loader from "../components/Loader";
+import LineSeperator from "../components/LineSeperator";
 
 const WhatWeDo = () => {
   const [sections, setSections] = useState([]);
@@ -36,7 +37,7 @@ const WhatWeDo = () => {
         <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
           What We Do
         </h2>
-        <div className='w-[120px] rounded-full border-4 border-b border-yellow-400 opacity-90'></div>
+        <LineSeperator className="mb-6" width="150px" />
         <AboutCard sections={sections} /> 
       </div>
     </div>

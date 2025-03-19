@@ -144,8 +144,7 @@ const ContactCard = () => {
 
           <CustomButton
             type="submit"
-            className="text-white w-full hover:bg-orange-dark"
-            style={{ backgroundColor: '#fd8917' }}
+            className="text-white w-full bg-primary hover:bg-gray-700 "
           >
             Submit
           </CustomButton>

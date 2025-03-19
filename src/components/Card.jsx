@@ -5,7 +5,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 const Card = ({ imageSrc, title, description}) => {
   return (
-    <Link to="/what-we-do" className="h-[500px] max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col hover:cursor-pointer">
+    <Link to="/what-we-do" className="h-[460px] max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col hover:cursor-pointer">
      
       <div className="block overflow-hidden rounded-t-lg group">
         <div className="h-[270px]">
@@ -32,7 +32,7 @@ const Card = ({ imageSrc, title, description}) => {
         </p>
 
       
-        <div className="mt-auto">
+        <div className="">
           <CustomButton className="w-[150px] text-white bg-primary hover:bg-primary-dark flex items-center gap-2">
             Get Involved
             <AiOutlineArrowRight size={20} />

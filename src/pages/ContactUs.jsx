@@ -62,6 +62,7 @@ const Contact = () => {
 
   // Define primary color for consistent styling
   const primaryColor = '#fd8917';
+  const primary = '#003153';
 
   // Add the styles to the document head
   useEffect(() => {
@@ -79,7 +80,7 @@ const Contact = () => {
   return (
     <div className="mt-16">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-gray-50 to-gray-100 pb-16">
+      <div className="bg-gray-100 pb-6">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             className="text-center"
@@ -91,11 +92,11 @@ const Contact = () => {
              <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
               Connect With Us
             </h2>
-            <LineSeperator className="mb-4" />
+            <LineSeperator className="mb-8" />
              </div>
               
 
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">
+            <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
               Whether you're looking to volunteer, donate, or seek help, we're here to support your journey. Reach out to us through any of the channels below.
             </p>
           </motion.div>
@@ -103,7 +104,7 @@ const Contact = () => {
       </div>
 
       {/* Map and CTA Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-6 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-10">
             {/* Map Section */}
@@ -114,7 +115,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="flex flex-col items-start gap-4">
-              <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary">Find Us Here</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Find Us Here</h2>
               <LineSeperator className="mb-4" />
               </div>
 
@@ -144,8 +145,10 @@ const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: primaryColor }}>Our Mission</h2>
-              <div className="w-[100px] rounded-full border-2 border-b border-yellow-400 opacity-90 mb-6"></div>
+              <div className='flex flex-col items-start'>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Our Mission</h2>
+              <LineSeperator className="mb-4"/>
+              </div>
               <p className="text-gray-600 mb-8 text-lg">
                 Join us in our mission to provide guidance and resources to individuals rebuilding their lives. Your support makes a significant difference in the lives of those we serve.
               </p>
@@ -186,10 +189,11 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3" style={{ color: primaryColor }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary">
               Get In Touch
             </h2>
-            <div className="w-[120px] mx-auto rounded-full border-4 border-b border-yellow-400 opacity-90 mb-6"></div>
+            <LineSeperator className="mb-4"/>
+
             <p className="text-center text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
               We're here to help you on your journey. Choose the option that best suits your needs.
             </p>
@@ -212,8 +216,10 @@ const Contact = () => {
                     </svg>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-center mb-2" style={{ color: primaryColor }}>FOR CONSULTATION</h3>
-                <div className="w-[80px] mx-auto rounded-full border-2 border-b border-yellow-400 opacity-90 mb-4"></div>
+                <h3 className="text-2xl font-bold text-center mb-2 text-primary">FOR CONSULTATION</h3>
+                <LineSeperator className="mb-4"/>
+
+
                 <p className="text-center text-gray-600 mb-8">To start your Healing Journey...</p>
 
                 <div className="flex items-center justify-center gap-3 mb-6 bg-gray-50 p-3 rounded-lg">
@@ -251,8 +257,10 @@ const Contact = () => {
                     </svg>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-center mb-2" style={{ color: primaryColor }}>FOR CONTRIBUTION</h3>
-                <div className="w-[80px] mx-auto rounded-full border-2 border-b border-yellow-400 opacity-90 mb-4"></div>
+                <h3 className="text-2xl font-bold text-center mb-2 text-primary">FOR CONTRIBUTION</h3>
+                <LineSeperator className="mb-4"/>
+
+
                 <p className="text-center text-gray-600 mb-8">My contribution to support their second chance...</p>
 
                 <div className="flex items-center justify-center gap-3 mb-6 bg-gray-50 p-3 rounded-lg">
@@ -289,10 +297,11 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3" style={{ color: primaryColor }}>
-              Contact Us & Volunteer
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary">
+              Involve With Us
             </h2>
-            <div className="w-[120px] mx-auto rounded-full border-4 border-b border-yellow-400 opacity-90 mb-6"></div>
+            <LineSeperator className="mb-4"/>
+
             <p className="text-center text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
               Reach out to us with your questions or join our team of dedicated volunteers and make a difference in the lives of those who need it most.
             </p>
@@ -300,8 +309,8 @@ const Contact = () => {
 
           {/* Modal Cards for Donate and Appointment */}
           {(showDonateCard || showAppointmentCard) && (
-            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full relative animate-fadeIn">
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+              <div className="w-[350px] md:w-[400px] bg-white rounded-lg shadow-xl relative animate-fadeIn">
                 <div className="absolute -top-3 -right-3">
                   <button
                     onClick={closeCards}
@@ -312,12 +321,7 @@ const Contact = () => {
                     </svg>
                   </button>
                 </div>
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-center" style={{ color: primaryColor }}>
-                    {showDonateCard ? "Make a Donation" : "Book an Appointment"}
-                  </h3>
-                  <div className="w-[80px] mx-auto rounded-full border-2 border-b border-yellow-400 opacity-90 mt-2"></div>
-                </div>
+               
                 {showDonateCard && <DonateCard />}
                 {showAppointmentCard && <AppointmentCard />}
               </div>

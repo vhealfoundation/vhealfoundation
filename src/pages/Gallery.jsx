@@ -18,6 +18,7 @@ const CATEGORIES = [
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState({ categories: [] });
   const [loading, setLoading] = useState(true);
+  const [tabLoading, setTabLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -60,7 +61,7 @@ const Gallery = () => {
   // Get images for a specific category
   const getCategoryImages = (categoryTitle) => {
     if (!galleryData || !galleryData.categories) return [];
-    
+
     const category = galleryData.categories.find(cat => cat.title === categoryTitle);
     return category ? category.images.map(img => ({
       ...img,
@@ -87,11 +88,16 @@ const Gallery = () => {
 
   return (
     <div className="mt-16">
-      <div className="flex flex-col items-center gap-4">
+      <div className="bg-gray-100 pb-6 flex flex-col items-center gap-4">
         <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-          Our Gallery
+          Our Happenings
         </h2>
         <LineSeperator className="mb-4" />
+        <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+          Stay updated with our latest events, milestones, and memorable moments. Explore the stories that shape our journey.
+        </p>
+
+ 
       </div>
 
       {!loading && (
@@ -100,34 +106,44 @@ const Gallery = () => {
             <Tab.List className="flex flex-wrap justify-center space-x-1 rounded-xl bg-blue-900/10 p-1 mb-8">
               <Tab
                 key="all"
-                onClick={() => setSelectedCategory("all")}
+                onClick={() => {
+                  setTabLoading(true);
+                  setSelectedCategory("all");
+                  // Simulate a small delay to show loading state
+                  setTimeout(() => setTabLoading(false), 500);
+                }}
                 className={({ selected }) =>
                   `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
-                  ${selected 
-                    ? 'bg-primary text-white shadow' 
+                  ${selected
+                    ? 'bg-primary text-white shadow'
                     : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'
                   }`
                 }
               >
                 All
               </Tab>
-              
+
               {CATEGORIES.map((category) => {
                 // Only show categories that have images
                 const hasImages = galleryData.categories?.some(
                   cat => cat.title === category && cat.images?.length > 0
                 );
-                
+
                 if (!hasImages) return null;
-                
+
                 return (
                   <Tab
                     key={category}
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => {
+                      setTabLoading(true);
+                      setSelectedCategory(category);
+                      // Simulate a small delay to show loading state
+                      setTimeout(() => setTabLoading(false), 500);
+                    }}
                     className={({ selected }) =>
                       `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
-                      ${selected 
-                        ? 'bg-primary text-white shadow' 
+                      ${selected
+                        ? 'bg-primary text-white shadow'
                         : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'
                       }`
                     }
@@ -139,9 +155,17 @@ const Gallery = () => {
             </Tab.List>
           </Tab.Group>
 
-          <GalleryCard images={getDisplayImages()} />
+          {tabLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <p className="ml-3 text-lg text-primary font-medium">Loading...</p>
+            </div>
+          ) : (
+            <GalleryCard images={getDisplayImages()} />
+          )}
         </div>
       )}
+
+
     </div>
   );
 };

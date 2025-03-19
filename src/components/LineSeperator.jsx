@@ -1,14 +1,14 @@
 import React from 'react';
 
-const LineSeperator = ({ width = "120px", height = "5px", className = "" }) => {
+const LineSeperator = ({ width = "120px", height = "5px", className = "", color }) => {
   return (
     <div className={`flex justify-center ${className}`}>
-      <div 
-        className="rounded-full" 
-        style={{ 
-          width: width, 
+      <div
+        className="rounded-full"
+        style={{
+          width: width,
           height: height,
-          backgroundColor: "#fd8917" 
+          backgroundColor: color || "#fd8917"
         }}
       ></div>
     </div>

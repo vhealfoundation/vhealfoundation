@@ -28,9 +28,9 @@ const Home = () => {
     };
 
     return (
-        <div className="pt-12">
+        <div className="pt-12 relative">
 {/*             {showModal && <PopUpCard onClose={closeModal} />} */}
-            <div className="">
+            <div className="relative z-0">
                 <Banner />
             </div>
             <div className="mt-5">

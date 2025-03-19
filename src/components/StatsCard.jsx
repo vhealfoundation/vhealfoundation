@@ -151,8 +151,8 @@ const StatsCard = () => {
             Your support helps us provide mental health services and rehabilitation programs for those who need it most.
           </p>
           <Link to="/toconnect">
-          <button className="mt-4 px-6 py-3 text-white font-medium rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-            style={{ backgroundColor: '#fd8917' }}>
+          <button className="bg-primary mt-4 px-6 py-3 text-white font-medium rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+           >
             Make a Difference Today
           </button></Link>
          
