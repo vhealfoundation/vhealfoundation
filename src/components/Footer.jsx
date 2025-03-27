@@ -28,8 +28,10 @@ export default function Footer() {
               {[
                 { name: "Home", path: "/" },
                 { name: "About", path: "/aboutus" },
-                { name: "Gallery", path: "/happenings" },
-                { name: "Accolades", path: "/accolades" }
+                { name: "Happenings", path: "/happenings" },
+                { name: "Accolades", path: "/accolades" },
+                { name: "Testimonials", path: "/testimonials" }
+
               ].map((item, index) => (
                 <li key={index}>
                   <Link
@@ -51,7 +53,7 @@ export default function Footer() {
                 <p>Email: <a href="mailto:vhealfoundation@gmail.com" className="hover:text-white">vhealfoundation@gmail.com</a></p>
               </li>
               <li className="mb-2">
-                <p>Phone: <a href="tel:+918056041136" className="hover:text-white">+91 8056041136</a></p>
+                <p>Phone: <a href="tel:+919840050175" className="hover:text-white">+91 9840050175</a></p>
               </li>
               <li className="mb-2">
                 <p>Address: Old No: 18/A/1, New No: 6/A/1, Zackaria Colony, 2nd Street, Choolaimedu, Chennai, 600 094, </p>
@@ -105,7 +107,7 @@ export default function Footer() {
 
         {/* Footer Bottom Section */}
         <div className="text-center text-sm border-t border-white/20 pt-4">
-          <p>© 2025 VHeal Foundation. All Rights Reserved.</p>
+          <p>© 2025 V Heal Foundation. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

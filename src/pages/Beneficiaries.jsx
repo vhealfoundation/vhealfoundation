@@ -123,7 +123,7 @@ const Beneficiaries = () => {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: orderDetails.amount,
         currency: "INR",
-        name: "VHeal Foundation",
+        name: "V Heal Foundation",
         description: "Donation Payment",
         order_id: orderDetails.orderId,
         handler: async (response) => {

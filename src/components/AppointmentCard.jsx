@@ -163,7 +163,7 @@ const AppointmentCard = ({ isStandalone }) => {
         key: process.env.REACT_APP_RAZORPAY_KEY, // Razorpay key from env variable
         amount: orderData.amount, // Amount in currency subunit
         currency: orderData.currency,
-        name: "VHeal Rehabilitation",
+        name: "V Heal Rehabilitation",
         description: "Appointment Booking Payment",
         order_id: orderData.orderId,
         handler: async function (response) {

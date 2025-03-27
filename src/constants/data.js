@@ -23,7 +23,7 @@ export const slides = [
     },
     {
       backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846665/banner4_odblcx.png", // Replace with actual image for "Training programmes"
-      title: "We impart Training programmes",
+      title: "We impart Training Programmes",
       subtitle: "to build confidence in the abilities of oneself"
     },
     {
@@ -32,7 +32,7 @@ export const slides = [
       subtitle: "to enrich right skills to be self-reliant individuals"
     },
     {
-      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner6_ibixvg.png", // Replace with actual image for "Rehabilitate Prisoners"
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365516/qy1amuveqwvmpkp65zql.png", // Replace with actual image for "Rehabilitate Prisoners"
       title: "We Rehabilitate Prisoners",
       subtitle: "to rebuild and restore the dignity of prisoners"
     }
@@ -45,14 +45,14 @@ export const data = [
     subtitle: "Providing professional guidance",
     rating: "4.9",
     backgroundColors: { top: "#8E24AA", bottom: "#5E35B1" }, // Gradient with a sense of support and trust
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741850990/counselling1_s4rptk.png",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743097252/t01qji4jszfssfgvalib.jpg",
   },
   {
     title: "ASSESSMENTS",
     subtitle: "Comprehensive evaluations to empower choice",
     rating: "4.8",
     backgroundColors: { top: "#3949AB", bottom: "#1E88E5" }, // Gradient reflecting clarity and insight
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851155/training9_cxm5jz.jpg",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png",
   },
   {
     title: "TRAINING",
@@ -96,7 +96,7 @@ export const aboutData = [
     reverse: false,
   },
   {
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847947/vision_hxnv3s.png", // Replace with your actual image variable or path
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365090/frcycmn7mo7yc5pqbrxw.png", // Replace with your actual image variable or path
     alt: "Our Mission",
     heading: "OUR MISSION",
     subheading: "Elevating Emotional and Professional Well-being",

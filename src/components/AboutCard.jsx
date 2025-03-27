@@ -137,12 +137,14 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
 
   return (
     <section
-      className="px-4 pt-4 pb-12 md:px-48 relative overflow-hidden bg-gradient-to-b from-white to-gray-50"
+      className="px-4  pb-12 md:px-48 relative overflow-hidden bg-gradient-to-b from-white to-gray-50"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="max-w-3xl mx-auto text-center">
+     
+
+{/*      <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,7 +160,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-3 text-2xl font-bold text-primary"
         >
-          V Heal Foundation: Promoting Mental Wellbeing
+          V Heal Foundation
         </motion.div>
         <LineSeperator className="mb-4" />
         <motion.div
@@ -167,15 +169,13 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl text-gray-400"
         >
-          A charitable trust founded by Mrs. Maria Nalini Xavier in 2025, bringing together Mental Health and Social Work professionals to promote wellbeing through counselling and rehabilitation services for the underprivileged.
+          A charitable trust founded by Maria Nalini Xavier, bringing together Mental Health and Social Work professionals to promote wellbeing through counselling and rehabilitation services for the underprivileged.
         </motion.div>
       </div>
-
-     
-
+ */}
       {/* Core Pillars heading - only shown when isAbout is true */}
       {isAbout && (
-        <div className="text-center mt-8">
+        <div className="text-center">
           <h2 className="text-3xl font-bold mb-3">Core Pillars</h2>
           <LineSeperator className="mb-8" />
         </div>
@@ -240,13 +240,13 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
                 >
 
                   <h3 className="h3 mb-3 text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
-                  <div className="architects-daughter-regular text-xl text-primary mb-2">
+                  <div className="architects-daughter-regular  text-xl text-[#fd8917] mb-2">
                     {sections[currentIndex]?.subheading}
                   </div>
-                  <p className="text-xl text-gray-400 mb-4 text-justify">
+                  <p className="text-xl text-primary mb-4 text-justify">
                     {sections[currentIndex]?.description}
                   </p>
-                  <div className="text-lg text-gray-400 -mb-2">
+                  <div className="text-lg text-primary -mb-2">
                     {sections[currentIndex]?.features?.map((feature, featureIndex) => {
                       // Split the feature by the "|" character
                       const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);

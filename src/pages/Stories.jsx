@@ -63,12 +63,12 @@ const Stories = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-            Accolades & Achievements
+            Accolades
           </h2>
           <LineSeperator className="mb-4" />
 
           <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-            Celebrating milestones and honors that recognize dedication, perseverance, and excellence. These accolades highlight the impact of hard work and commitment.
+          The Commendations of “THE GIANTS IN THE FIELD"
           </p>
 
         </motion.div>

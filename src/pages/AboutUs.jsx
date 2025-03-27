@@ -92,7 +92,7 @@ const AboutUs = () => {
           muted
           className="w-full h-[600px] object-cover brightness-[0.7]"
         >
-          <source src="https://res.cloudinary.com/dgidetrcl/video/upload/v1741857501/1918465-uhd_3840_2160_24fps_lvau5w.mp4" type="video/mp4" />
+          <source src={AboutVideo} type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
@@ -119,8 +119,7 @@ const AboutUs = () => {
             variants={fadeIn}
             transition={{ delay: 0.2 }}
           >
-            V Heal Foundation (VHF) is a public charitable trust founded by Mrs. Maria Nalini Xavier in the year 2025.
-            It is registered under the Indian Trust Act with registration No: 55/2025.
+            V Heal Foundation (VHF) is a public charitable trust founded by Maria Nalini Xavier under the Indian Trust Act.
           </motion.p>
         </div>
       </div>
@@ -134,8 +133,8 @@ const AboutUs = () => {
           variants={fadeIn}
         >
           <div className="p-8 md:p-12">
-            <div className="mb-10">
-              <p className="text-lg text-gray-700 leading-relaxed">
+          <div className="mb-10">
+              <p className="text-lg text-gray-700 leading-relaxed text-justify tracking-wide">
                 V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
               </p>
             </div>
@@ -159,7 +158,7 @@ const AboutUs = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-gray-700">{item}</p>
+                    <p className="text-justify text-gray-700">{item}</p>
                   </div>
                 ))}
               </div>

@@ -43,7 +43,9 @@ const Navbar = () => {
     { id: 3, text: "Happenings", link: "/happenings" },
 
     { id: 4, text: "Accolades", link: "/accolades" },
-    { id: 5, text: "To Connect", link: "/toconnect" },
+    { id: 5, text: "Testimonials", link: "/testimonials" },
+    { id: 6, text: "To Connect", link: "/toconnect" },
+
   ];
 
   return (
@@ -55,12 +57,12 @@ const Navbar = () => {
         </div>
         <Link to="/" className="rounded-full flex items-center gap-2 md:hidden" >
    <img src={logo} alt="Logo" className="rounded-full w-10 h-10" />
-   <p className="text-white">VHEAL</p>
+   <p className="text-white">V HEAL</p>
         </Link>
       </div>
       <Link to="/" className="hidden md:flex items-center gap-2 rounded-full" >
       <img src={logo} alt="Logo" className="w-[52px] h-[52px] rounded-full object-cover" />
-   <p className="text-xl md:text-2xl font-bold text-white">VHEAL</p>
+   <p className="text-xl md:text-2xl font-bold text-white">V HEAL</p>
 
 
       </Link>

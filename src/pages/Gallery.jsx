@@ -90,11 +90,11 @@ const Gallery = () => {
     <div className="mt-16">
       <div className="bg-gray-100 pb-6 flex flex-col items-center gap-4">
         <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-          Our Happenings
+          Happenings
         </h2>
         <LineSeperator className="mb-4" />
         <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-          Stay updated with our latest events, milestones, and memorable moments. Explore the stories that shape our journey.
+        Take a look at our events, experiences and endeavours chiselling minds and lives
         </p>
 
  
@@ -125,11 +125,11 @@ const Gallery = () => {
 
               {CATEGORIES.map((category) => {
                 // Only show categories that have images
-                const hasImages = galleryData.categories?.some(
+                /* const hasImages = galleryData.categories?.some(
                   cat => cat.title === category && cat.images?.length > 0
                 );
 
-                if (!hasImages) return null;
+                if (!hasImages) return null; */
 
                 return (
                   <Tab

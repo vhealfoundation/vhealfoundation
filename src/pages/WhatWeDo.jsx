@@ -35,7 +35,7 @@ const WhatWeDo = () => {
       {loading && <Loader />}
       <div className='flex flex-col items-center gap-4 '>
         <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-          What We Do
+          Mission
         </h2>
         <LineSeperator className="mb-6" width="150px" />
         <AboutCard sections={sections} /> 

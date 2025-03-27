@@ -11,6 +11,8 @@ import ContactLeft from "../components/ContactLeft";
 import { data, aboutData, testimonials } from "../constants/data";
 import StoriesBanner from "../components/StoriesBanner";
 import PopUpCard from "../components/PopUpCard";
+import { motion } from "framer-motion";
+import LineSeperator from "../components/LineSeperator";
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
@@ -37,6 +39,34 @@ const Home = () => {
                 <StatsCard />
             </div>
             <div className="mt-5">
+                 <div className="max-w-3xl mx-auto text-center">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6 }}
+                          className="inline-flex text-sm font-semibold py-1 px-3 m-2 rounded-full mb-4"
+                          style={{ color: '#fd8917', backgroundColor: 'rgba(253, 137, 23, 0.15)' }}
+                        >
+                          Mental Health • Counseling • Rehabilitation
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 }}
+                          className="mb-3 text-2xl font-bold text-primary"
+                        >
+                          V Heal Foundation
+                        </motion.div>
+                        <LineSeperator className="mb-4" />
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                          className="text-xl text-gray-400"
+                        >
+                          A charitable trust founded by Maria Nalini Xavier, bringing together Mental Health and Social Work professionals to promote wellbeing through counselling and rehabilitation services for the underprivileged.
+                        </motion.div>
+                      </div>
                 <AboutCard sections={aboutData} />
             </div>
             <div>
@@ -45,9 +75,9 @@ const Home = () => {
             <section className="" id='what-we-do'>
                 <CardStacker />
             </section>
-            <div className="mt-5">
+           {/*  <div className="mt-5">
                 <Slider testimonials={testimonials} />
-            </div>
+            </div> */}
             <div className="">
                 <StoriesBanner />
             </div>

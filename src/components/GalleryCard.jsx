@@ -20,7 +20,7 @@ const GalleryCard = ({ images }) => {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
   };
-
+console.log(images);
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <motion.div

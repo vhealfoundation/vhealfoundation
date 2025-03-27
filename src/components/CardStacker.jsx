@@ -75,7 +75,7 @@ const CardStacker = () => {
      
       <div className='flex flex-col items-center justify-center gap-4'>
       <h1 className="mt-12 text-3xl text-center md:text-4xl font-bold italic text-primary">
-        What We Do
+        Mission
       </h1>
       
       <LineSeperator className="mb-8" />
