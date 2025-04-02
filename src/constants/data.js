@@ -13,21 +13,21 @@ export const slides = [
     },
     {
       backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png", // Replace with actual image for "Counseling Services"
-      title: "We provide Counseling Services",
+      title: "We provide\nCounselling Services",
       subtitle: "to facilitate quality of life and transform lives"
     },
     {
       backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png", // Replace with actual image for "Psychological Assessments"
-      title: "We administer Psychological Assessments",
+      title: "We administer\nPsychological Assessments",
       subtitle: "to ascertain psychological functioning and identify support needs"
     },
     {
       backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846665/banner4_odblcx.png", // Replace with actual image for "Training programmes"
-      title: "We impart Training Programmes",
+      title: "We impart\nTraining Programmes",
       subtitle: "to build confidence in the abilities of oneself"
     },
     {
-      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner5_k4iqoa.png", // Replace with actual image for "Coaching"
+      backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365494/vstp8qbmbpxjq1szktcq.png", // Replace with actual image for "Coaching"
       title: "We offer Coaching",
       subtitle: "to enrich right skills to be self-reliant individuals"
     },
@@ -45,35 +45,35 @@ export const data = [
     subtitle: "Providing professional guidance",
     rating: "4.9",
     backgroundColors: { top: "#8E24AA", bottom: "#5E35B1" }, // Gradient with a sense of support and trust
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743097252/t01qji4jszfssfgvalib.jpg",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365090/frcycmn7mo7yc5pqbrxw.png",
   },
   {
     title: "ASSESSMENTS",
     subtitle: "Comprehensive evaluations to empower choice",
     rating: "4.8",
     backgroundColors: { top: "#3949AB", bottom: "#1E88E5" }, // Gradient reflecting clarity and insight
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743097252/t01qji4jszfssfgvalib.jpg",
   },
   {
     title: "TRAINING",
     subtitle: "Hands-on skills development",
     rating: "4.9",
     backgroundColors: { top: "#00ACC1", bottom: "#00838F" }, // Gradient symbolizing growth and confidence
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851156/training17_tj6ll8.jpg",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743401589/training27_tkvf7p.png",
   },
   {
     title: "COACHING",
     subtitle: "Personalized mentoring for growth",
     rating: "4.8",
     backgroundColors: { top: "#43A047", bottom: "#2E7D32" }, // Gradient representing energy and progress
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851263/coaching2_zekzgc.png",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365494/vstp8qbmbpxjq1szktcq.png",
   },
   {
     title: "REHABILITAION OF PRISONERS",
     subtitle: "Facilitating smooth reintegration",
     rating: "4.7",
     backgroundColors: { top: "#FBC02D", bottom: "#F9A825" }, // Gradient evoking hope and renewal
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741851434/image003_dwriht.jpg",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743585351/xwcapolkxzovyyvp224r.jpg",
   },
 ];
 
@@ -89,8 +89,8 @@ export const aboutData = [
     description:
       "V Heal Foundation is a charitable trust with a vision to facilitate professional relationship to accomplish mental well-being and to transform the lives of prisoners.",
     features: [
-      "Mental Health Support | Professional counseling services for prisoners",
-      "Rehabilitation Programs | Comprehensive support for reintegration",
+      "Mental Health Support | Professional counselling services for prisoners",
+      "Rehabilitation Programmes | Comprehensive support for reintegration",
       "Transformative Approach | Focusing on holistic well-being and dignity"
     ],
     reverse: false,
@@ -101,11 +101,11 @@ export const aboutData = [
     heading: "OUR MISSION",
     subheading: "Elevating Emotional and Professional Well-being",
     description:
-      "Our mission at V Heal Foundation is to elevate emotional and professional domains of individuals in families and at workplace by way of counseling, training and coaching. Our commitment extends to the prison walls too by facilitating mental wellness among the prisoners through counselling, up-skilling and rehabilitation.",
+      "Our mission at V Heal Foundation is to elevate emotional and professional domains of individuals in families and at workplace by way of counselling, training and coaching. Our commitment extends to the prison walls too by facilitating mental wellness among the prisoners through counselling, up-skilling and rehabilitation.",
     features: [
       "Counseling Services | Professional mental health support for individuals and families",
-      "Training Programs | Skill development and professional growth opportunities",
-      "Rehabilitation Support | Comprehensive programs for prisoners' reintegration"
+      "Training Programmes | Skill development and professional growth opportunities",
+      "Rehabilitation Support | Comprehensive programmes for prisoners' reintegration"
     ],
     reverse: true,
   },

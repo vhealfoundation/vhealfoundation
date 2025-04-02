@@ -84,7 +84,7 @@ const CardStacker = () => {
       {loading && <Loader />}
 
       
-      <div className="hidden md:flex items-center justify-center gap-4 py-10">
+      <div className="hidden md:flex items-center justify-center gap-4 py-10 px-20">
         {data.map((card, index) => (
           <motion.div
             key={index}

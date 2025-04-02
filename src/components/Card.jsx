@@ -21,20 +21,20 @@ const Card = ({ imageSrc, title, description}) => {
       <div className="flex flex-col flex-1 p-4 overflow-hidden">
    
    
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+{/*           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
-          </h5>
+          </h5> */}
    
 
     
-        <p className="flex-1 mt-2 mb-4 font-normal text-gray-700 dark:text-gray-400 overflow-hidden overflow-ellipsis">
+        <p className="flex-1 mb-4 font-normal text-gray-700 dark:text-gray-400 overflow-hidden overflow-ellipsis">
           {description}
         </p>
 
       
         <div className="">
           <CustomButton className="w-[150px] text-white bg-primary hover:bg-primary-dark flex items-center gap-2">
-            Get Involved
+            To Engage
             <AiOutlineArrowRight size={20} />
           </CustomButton>
         </div>

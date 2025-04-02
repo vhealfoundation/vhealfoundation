@@ -176,7 +176,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
       {/* Core Pillars heading - only shown when isAbout is true */}
       {isAbout && (
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-3">Core Pillars</h2>
+          <h2 className="text-primary text-3xl font-bold mb-3">Core Pillars</h2>
           <LineSeperator className="mb-8" />
         </div>
       )}
@@ -214,87 +214,203 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
               variants={sectionVariants}
               className="min-h-[500px] flex items-center"
             >
-              <div
-                className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full`}
-              >
-                <motion.div
-                  ref={ref}
-                  className="w-full md:w-1/2 md:mb-0"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <img
-                    className="rounded-lg shadow-lg w-full h-auto object-cover object-top max-h-[350px] md:max-h-[500px]"
-                    src={sections[currentIndex]?.image}
-                    alt={sections[currentIndex]?.alt || "Image"}
-                  />
-                </motion.div>
+              {isAbout ? (
+                // Modified layout for isAbout=true to fill the space below the image
+                <div className="w-full">
+                  <div className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full`}>
+                    {/* Left column with image and features below */}
+                    <div className="w-full md:w-1/2 flex flex-col">
+                      <motion.div
+                        ref={ref}
+                        className="w-full mb-6"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <img
+                          className="rounded-lg shadow-lg w-full h-auto object-cover object-top max-h-[350px] md:max-h-[600px]"
+                          src={sections[currentIndex]?.image}
+                          alt={sections[currentIndex]?.alt || "Image"}
+                        />
+                      </motion.div>
 
-                <motion.div
-                  ref={ref}
-                  className="w-full flex flex-col pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
-                  transition={{ duration: 0.6 }}
-                >
+                      {/* Features section below the image */}
+                      {sections[currentIndex]?.features && sections[currentIndex]?.features.length > 0 && (
+                        <motion.div
+                          className="text-lg text-primary mt-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                          {sections[currentIndex]?.features?.slice(0, Math.ceil(sections[currentIndex]?.features.length / 2)).map((feature, featureIndex) => {
+                            const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+                            if (featureParts.length === 0) return null;
 
-                  <h3 className="h3 mb-3 text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
-                  <div className="architects-daughter-regular  text-xl text-[#fd8917] mb-2">
-                    {sections[currentIndex]?.subheading}
-                  </div>
-                  <p className="text-xl text-primary mb-4 text-justify">
-                    {sections[currentIndex]?.description}
-                  </p>
-                  <div className="text-lg text-primary -mb-2">
-                    {sections[currentIndex]?.features?.map((feature, featureIndex) => {
-                      // Split the feature by the "|" character
-                      const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+                            const heading = featureParts[0];
+                            const bulletPoints = featureParts.slice(1);
 
-                      // If there are no parts, return null
-                      if (featureParts.length === 0) return null;
+                            return (
+                              <div key={featureIndex} className="mb-4">
+                                <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                                {bulletPoints.length > 0 && (
+                                  <ul className="ml-4">
+                                    {bulletPoints.map((point, pointIndex) => (
+                                      <li
+                                        key={`${featureIndex}-${pointIndex}`}
+                                        className="flex items-center mb-2"
+                                      >
+                                        <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                          </svg>
+                                        </div>
+                                        <span>{point}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </div>
 
-                      // Get the first part as the heading
-                      const heading = featureParts[0];
-                      // Get the rest of the parts as bullet points
-                      const bulletPoints = featureParts.slice(1);
+                    {/* Right column with heading, subheading, description and remaining features */}
+                    <motion.div
+                      ref={ref}
+                      className="w-full flex flex-col pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <h3 className="h3 mb-3 text-primary text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
+                      <div className="architects-daughter-regular text-xl text-[#fd8917] mb-2">
+                        {sections[currentIndex]?.subheading}
+                      </div>
+                      <p className="text-xl text-primary mb-4 text-justify">
+                        {sections[currentIndex]?.description}
+                      </p>
 
-                      return (
-                        <div key={featureIndex} className="mb-4">
-                          {/* Render the heading */}
-                          <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                      {/* Second half of features */}
+                      {sections[currentIndex]?.features && sections[currentIndex]?.features.length > 0 && (
+                        <div className="text-lg text-primary -mb-2">
+                          {sections[currentIndex]?.features?.slice(Math.ceil(sections[currentIndex]?.features.length / 2)).map((feature, featureIndex) => {
+                            const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+                            if (featureParts.length === 0) return null;
 
-                          {/* Render the bullet points */}
-                          {bulletPoints.length > 0 && (
-                            <ul className="ml-4">
-                              {bulletPoints.map((point, pointIndex) => (
-                                <li
-                                  key={`${featureIndex}-${pointIndex}`}
-                                  className="flex items-center mb-2"
-                                >
-                                  <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                  </div>
-                                  <span>{point}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
+                            const heading = featureParts[0];
+                            const bulletPoints = featureParts.slice(1);
+
+                            return (
+                              <div key={featureIndex} className="mb-4">
+                                <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                                {bulletPoints.length > 0 && (
+                                  <ul className="ml-4">
+                                    {bulletPoints.map((point, pointIndex) => (
+                                      <li
+                                        key={`${featureIndex}-${pointIndex}`}
+                                        className="flex items-center mb-2"
+                                      >
+                                        <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                          </svg>
+                                        </div>
+                                        <span>{point}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
-                      );
-                    })}
+                      )}
+                    </motion.div>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              ) : (
+                // Original layout for non-about pages
+                <div className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full`}>
+                  <motion.div
+                    ref={ref}
+                    className="w-full md:w-1/2 md:mb-0"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <img
+                      className="rounded-lg shadow-lg w-full h-auto object-cover object-top max-h-[350px] md:max-h-[500px]"
+                      src={sections[currentIndex]?.image}
+                      alt={sections[currentIndex]?.alt || "Image"}
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    ref={ref}
+                    className="w-full flex flex-col pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h3 className="h3 mb-3 text-primary text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
+                    <div className="architects-daughter-regular  text-xl text-[#fd8917] mb-2">
+                      {sections[currentIndex]?.subheading}
+                    </div>
+                    <p className="text-xl text-primary mb-4 text-justify">
+                      {sections[currentIndex]?.description}
+                    </p>
+                    <div className="text-lg text-primary -mb-2">
+                      {sections[currentIndex]?.features?.map((feature, featureIndex) => {
+                        // Split the feature by the "|" character
+                        const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+
+                        // If there are no parts, return null
+                        if (featureParts.length === 0) return null;
+
+                        // Get the first part as the heading
+                        const heading = featureParts[0];
+                        // Get the rest of the parts as bullet points
+                        const bulletPoints = featureParts.slice(1);
+
+                        return (
+                          <div key={featureIndex} className="mb-4">
+                            {/* Render the heading */}
+                            <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+
+                            {/* Render the bullet points */}
+                            {bulletPoints.length > 0 && (
+                              <ul className="ml-4">
+                                {bulletPoints.map((point, pointIndex) => (
+                                  <li
+                                    key={`${featureIndex}-${pointIndex}`}
+                                    className="flex items-center mb-2"
+                                  >
+                                    <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    </div>
+                                    <span>{point}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Navigation arrows - now at top right */}
         {sections && sections.length > 1 && (
-          <div className="absolute right-4 top-0 flex gap-2 z-10 hidden md:flex">
+          <div className="-right-6 absolute top-0 flex gap-2 z-10 hidden md:flex">
             <motion.button
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import LineSeperator from "./LineSeperator";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const useCounter = (start, end, duration, resetTrigger) => {
   const [count, setCount] = useState(start);
@@ -116,7 +117,7 @@ const StatsCard = () => {
               <p className="text-center text-4xl font-bold" style={{ color: '#fd8917' }}>
                 ₹{raisedCount.toLocaleString()}+
               </p>
-              <p className="text-center text-gray-500 text-sm mt-2">For rehabilitation programs</p>
+              <p className="text-center text-gray-500 text-sm mt-2">For rehabilitation programmes</p>
             </div>
             <div className="h-2" style={{ backgroundColor: '#fd8917' }}></div>
           </motion.div>
@@ -146,14 +147,18 @@ const StatsCard = () => {
           </motion.div>
         </div>
 
-        <div className="text-center mt-8">
-         
-          <Link to="/toconnect">
-          <button className="bg-primary mt-4 px-6 py-3 text-white font-medium rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-           >
-           In giving that you will receive
-          </button></Link>
-         
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
+          <div className="md:col-start-2 flex justify-center">
+            <Link to="/toconnect">
+              <button className="bg-primary px-6 py-3 text-white font-medium rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2">
+                In giving that you will receive
+                <AiOutlineArrowRight
+                  size={24}
+                  className="text-white group-hover:translate-x-1 transition-transform"
+                />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>

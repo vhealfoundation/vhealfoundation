@@ -19,7 +19,7 @@ const Testimonials = () => {
     const fetchTestimonials = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/testimonials`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/stories`);
         setTestimonials(response.data.data);
 
       } catch (err) {
@@ -67,7 +67,7 @@ const Testimonials = () => {
           </h2>
           <LineSeperator className="mb-4" />
 
-          <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+          <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 py-2 bg-yellow-100 rounded shadow-md">
           Words speak out our vision and mission
           </p>
 
@@ -93,7 +93,6 @@ const Testimonials = () => {
                 image={testimonial.coverimage}
                 title={testimonial.title}
                 description={testimonial.description}
-                isTestimonial={true}
               />
             ))}
           </motion.div>

@@ -53,16 +53,16 @@ const Navbar = () => {
       {/* Mobile Navigation Toggle */}
       <div className="flex items-center space-x-2">
         <div onClick={handleNav} className="block md:hidden mt-1">
-          {nav ? <AiOutlineClose size={20} className="text-white"/> : <AiOutlineMenu size={20} className="text-white"/>}
+          {nav ? <AiOutlineClose size={20} className="text-white" /> : <AiOutlineMenu size={20} className="text-white" />}
         </div>
-        <Link to="/" className="rounded-full flex items-center gap-2 md:hidden" >
-   <img src={logo} alt="Logo" className="rounded-full w-10 h-10" />
-   <p className="text-white">V HEAL</p>
+        <Link to="/" className="flex items-center gap-2 md:hidden" >
+          <img src={logo} alt="Logo" className="w-10 h-10" />
+          <p className="text-white">V HEAL</p>
         </Link>
       </div>
       <Link to="/" className="hidden md:flex items-center gap-2 rounded-full" >
-      <img src={logo} alt="Logo" className="w-[52px] h-[52px] rounded-full object-cover" />
-   <p className="text-xl md:text-2xl font-bold text-white">V HEAL</p>
+        <img src={logo} alt="Logo" className="w-[52px] h-[52px] object-cover" />
+        <p className="text-xl md:text-2xl font-bold text-white">V HEAL</p>
 
 
       </Link>
@@ -130,7 +130,7 @@ const Navbar = () => {
       <div
         ref={navRef}
         className={`${nav ? "left-0" : "left-[-100%]"} mt-16 fixed top-0 left-0 w-[70%] h-full bg-[#000300] z-50 border-r border-gray-900 transition-all duration-500`}
-      > 
+      >
         <ul className="flex flex-col items-start p-4">
           {navItems.map((item) => (
             <Link to={item.link} key={item.id}>

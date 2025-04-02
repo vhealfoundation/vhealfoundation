@@ -50,9 +50,9 @@ const PopUpCard = ({ onClose }) => {
                     <div className="bg-green-50 p-4 rounded-lg shadow-inner mb-6 w-full">
                         <p className="text-gray-700 italic">
                             "I never thought I could feel this free and supported. 
-                            This program gave me a new life." 
+                            This programme gave me a new life." 
                             <br />
-                            — <span className="font-semibold">Jane D., Program Beneficiary</span>
+                            — <span className="font-semibold">Jane D., Programme Beneficiary</span>
                         </p>
                     </div>
 

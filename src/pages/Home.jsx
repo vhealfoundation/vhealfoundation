@@ -35,7 +35,7 @@ const Home = () => {
             <div className="relative z-0">
                 <Banner />
             </div>
-            <div className="mt-5">
+            <div className="">
                 <StatsCard />
             </div>
             <div className="mt-5">
@@ -47,7 +47,7 @@ const Home = () => {
                           className="inline-flex text-sm font-semibold py-1 px-3 m-2 rounded-full mb-4"
                           style={{ color: '#fd8917', backgroundColor: 'rgba(253, 137, 23, 0.15)' }}
                         >
-                          Mental Health • Counseling • Rehabilitation
+                          Mental Health • Counselling • Rehabilitation
                         </motion.div>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}

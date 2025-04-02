@@ -19,7 +19,7 @@ const Stories = () => {
     const fetchStories = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/stories`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/testimonials`);
         setStories(response.data.data);
 
       } catch (err) {
@@ -67,9 +67,9 @@ const Stories = () => {
           </h2>
           <LineSeperator className="mb-4" />
 
-          <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-          The Commendations of “THE GIANTS IN THE FIELD"
-          </p>
+          <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 py-2 bg-yellow-100 rounded shadow-md">
+              Commendations from the Champions
+            </p>
 
         </motion.div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -94,6 +94,7 @@ const Stories = () => {
                 image={story.coverimage}
                 title={story.title}
                 description={story.description}
+                isTestimonial={true}
               />
             ))}
           </motion.div>

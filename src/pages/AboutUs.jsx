@@ -67,9 +67,9 @@ const AboutUs = () => {
 
   // Mission items with icons
   const missionItems = [
-    "Promote psychological-social counseling services to individuals and families.",
-    "Provide psychological counseling and training to individuals at workplace.",
-    "Provide counseling and training programmes for prisoners before and after their release.",
+    "Promote psychological-social counselling services to individuals and families.",
+    "Provide psychological counselling and training to individuals at workplace.",
+    "Provide counselling and training programmes for prisoners before and after their release.",
     "Provide social and psychological reintegration for prisoners after their release.",
     "Uplift and empower women prisoners.",
     "Upskill prisoners inside the prison and educate them on job opportunities after their release.",
@@ -112,7 +112,7 @@ const AboutUs = () => {
           >
             <LineSeperator className="mb-6" width="150px" />
           </motion.div>
-          <motion.p
+         {/*  <motion.p
             className="text-lg md:text-xl text-center max-w-3xl"
             initial="hidden"
             animate="visible"
@@ -120,12 +120,12 @@ const AboutUs = () => {
             transition={{ delay: 0.2 }}
           >
             V Heal Foundation (VHF) is a public charitable trust founded by Maria Nalini Xavier under the Indian Trust Act.
-          </motion.p>
+          </motion.p> */}
         </div>
       </div>
 
       {/* About Us Content Section */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 pb-12">
         <motion.div
           className="bg-white rounded-lg shadow-xl overflow-hidden"
           initial="hidden"

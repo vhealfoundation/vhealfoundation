@@ -20,7 +20,9 @@ const GalleryCard = ({ images }) => {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
   };
-console.log(images);
+
+  console.log(images);
+
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <motion.div
@@ -42,21 +44,14 @@ console.log(images);
               alt={image.caption || `Gallery Image ${index + 1}`}
               className="w-full h-64 object-cover group-hover:opacity-90 transition-opacity duration-300"
             />
-            
-            {/* Category Badge (if available) */}
-            {image.categoryTitle && (
-              <div className="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
-                {image.categoryTitle}
-              </div>
-            )}
-            
+
             {/* Caption (if exists) */}
             {image.caption && (
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-sm">
                 {image.caption}
               </div>
             )}
-            
+
             <motion.div
               className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               initial={{ opacity: 0 }}
@@ -71,36 +66,51 @@ console.log(images);
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 md:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)} // Close modal on backdrop click
           >
             <motion.div
-              className="relative p-2 max-w-4xl w-full mx-4"
-              initial={{ scale: 0.8 }}
+              className="relative flex items-center justify-center h-[90vh] w-[90vw] max-w-[1400px]"
+              initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+              exit={{ scale: 0.95 }}
+              transition={{ type: "spring", damping: 25 }}
               onClick={(e) => e.stopPropagation()} // Prevent modal close on inside click
             >
-              <img
-                src={selectedImage.url}
-                alt={selectedImage.caption || "Selected Image"}
-                className="max-w-full max-h-[80vh] rounded-lg shadow-lg mx-auto"
-              />
-              
-              {/* Display caption in modal if available */}
-              {selectedImage.caption && (
-                <div className="bg-white p-4 rounded-b-lg mt-2">
-                  <p className="text-center text-gray-800">{selectedImage.caption}</p>
+              <div className="relative flex items-center justify-center h-full w-full">
+                <div className="relative bg-transparent rounded-lg overflow-hidden">
+                  <img
+                    src={selectedImage.url}
+                    alt={selectedImage.caption || "Selected Image"}
+                    className="max-h-[85vh] max-w-[85vw] object-contain"
+                    style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)' }}
+                  />
+
+                  {/* Floating caption display */}
+                  {selectedImage.caption && (
+                    <div className="absolute bottom-4 left-0 right-0 mx-auto bg-black bg-opacity-60 backdrop-filter backdrop-blur-sm p-3 md:p-4 w-fit max-w-[90%] rounded-lg mx-auto text-center">
+                      <p className="text-white text-sm md:text-base">{selectedImage.caption}</p>
+                    </div>
+                  )}
                 </div>
-              )}
-              
-              <AiFillCloseCircle
-                className="absolute top-4 right-4 text-white text-3xl cursor-pointer hover:text-gray-300 transition-colors"
+              </div>
+
+              {/* Improved close button */}
+              <button
+                className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-all duration-200 hover:rotate-90 focus:outline-none z-10"
                 onClick={() => setSelectedImage(null)}
-              />
+                aria-label="Close modal"
+              >
+                <AiFillCloseCircle className="text-3xl" />
+              </button>
+
+              {/* Navigation hint */}
+              <div className="absolute bottom-2 right-4 text-white text-xs opacity-60">
+                <p>Click outside to close</p>
+              </div>
             </motion.div>
           </motion.div>
         )}

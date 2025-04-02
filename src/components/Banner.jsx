@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CustomButton from "./CustomButton";
 import { Link } from "react-scroll";
-import {slides} from "../constants/data";
+import { slides } from "../constants/data";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -103,11 +103,11 @@ const Banner = () => {
   const contentVariants = {
     hidden: {
       opacity: 0,
-      y: 50
+      y: 100
     },
     visible: {
       opacity: 1,
-      y: 0,
+      y: 50,
       transition: {
         duration: 0.8
       }
@@ -124,11 +124,11 @@ const Banner = () => {
   const mobilecontentVariants = {
     hidden: {
       opacity: 0,
-      y: 30
+      y: 80
     },
     visible: {
       opacity: 1,
-      y: 0,
+      y: 30,
       transition: {
         duration: 0.8
       }
@@ -138,6 +138,19 @@ const Banner = () => {
       y: -30,
       transition: {
         duration: 0.4
+      }
+    }
+  };
+
+  const backgroundVariants = {
+    initial: {
+      scale: 1
+    },
+    animate: {
+      scale: 1.2,
+      transition: {
+        duration: 7,
+        ease: "linear"
       }
     }
   };
@@ -166,6 +179,13 @@ const Banner = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
             >
+              <motion.div
+                variants={backgroundVariants}
+                initial="initial"
+                animate="animate"
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+              />
               {/* Dark overlay (always present) */}
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
@@ -192,26 +212,36 @@ const Banner = () => {
                       animate="visible"
                       exit="exit"
                       key="content"
-                      className="flex flex-col items-center gap-8 text-white text-center max-w-4xl"
+                      className="flex flex-col items-center  text-white text-center max-w-4xl"
                     >
                       {/* Title with decorative elements */}
                       <div className="relative">
                         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-white rounded-full opacity-70"></div>
-                        <h2 className="font-bold leading-tight md:text-[60px] text-[40px] text-shadow-lg tracking-wide">
+                        <h2 className="font-bold leading-tight md:text-[50px] text-[30px] text-shadow-lg tracking-wide whitespace-pre-line">
                           {slides[currentSlide].title}
                         </h2>
                         <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-white rounded-full opacity-70"></div>
                       </div>
 
+                      {/* Subtitle with dramatic highlight */}
+                      <div className="mt-20 relative bg-black/50 backdrop-blur-sm rounded-full pb-4  px-8 ">
+                        <div className="flex justify-between -mb-8">
+                          <div className="text-orange-500 text-6xl opacity-60 translate-y-4">"</div>
+                          <div className="text-orange-500 text-6xl opacity-60 translate-y-4">"</div>
+                        </div>
+                        <p className="md:text-[28px] text-[20px] text-orange-500 font-medium leading-tight italic px-8">
+                          {slides[currentSlide].subtitle}
+                        </p>
+                      </div>
                       {/* Subtitle with new styling */}
-                      <div className="relative mt-4 max-w-3xl">
+                      {/*  <div className="relative mt-4 max-w-3xl">
                         <p className="italic md:text-[28px] text-[20px] font-light tracking-wide text-shadow-md">
                           {slides[currentSlide].subtitle}
                         </p>
-                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 rounded-full" style={{ backgroundColor: '#fd8917' }}></div>
-                      </div>
+                        
+                      </div> */}
 
-                      {currentSlide === 0 && (
+                      {/*   {currentSlide === 0 && (
                         <Link
                           to="what-we-do"
                           activeClass="active"
@@ -233,6 +263,41 @@ const Banner = () => {
                             <AiOutlineArrowRight size={22} />
                           </CustomButton>
                         </Link>
+                      )} */}
+
+
+
+
+
+
+
+                      {currentSlide === 0 && (
+                        <Link
+                          to="what-we-do"
+                          activeClass="active"
+                          spy={true}
+                          smooth={true}
+                          offset={-60}
+                          duration={800}
+                          className="mx-auto mt-8"
+                        >
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative group"
+                          >
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
+                            <div className="relative flex items-center gap-2 px-8 py-4 bg-black rounded-full border border-orange-500">
+                              <span className="text-xl font-semibold text-white group-hover:text-orange-200 transition-colors">
+                                Learn More
+                              </span>
+                              <AiOutlineArrowRight
+                                size={24}
+                                className="text-orange-500 group-hover:translate-x-1 transition-transform"
+                              />
+                            </div>
+                          </motion.button>
+                        </Link>
                       )}
                     </motion.div>
                   )}
@@ -248,11 +313,10 @@ const Banner = () => {
             <button
               key={index}
               onClick={() => handleSlideChange(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === index
-                  ? "bg-white scale-125 w-8"
-                  : "bg-white/50 hover:bg-white/70"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
+                ? "bg-white scale-125 w-8"
+                : "bg-white/50 hover:bg-white/70"
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             ></button>
           ))}
@@ -277,6 +341,13 @@ const Banner = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
             >
+              <motion.div
+                variants={backgroundVariants}
+                initial="initial"
+                animate="animate"
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+              />
               {/* Dark overlay (always present) */}
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
@@ -305,23 +376,25 @@ const Banner = () => {
                       key="content"
                       className="flex flex-col items-center gap-6 text-white text-center z-10 mt-4"
                     >
-                      {/* Title with decorative elements */}
-                      <div className="relative">
-                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white rounded-full opacity-70"></div>
-                        <h2 className="font-bold leading-tight text-[36px] text-shadow-lg tracking-wide px-2">
+                        {/* Title with decorative elements */}
+                        <div className="relative">
+                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-white rounded-full opacity-70"></div>
+                        <h2 className="font-bold leading-tight md:text-[50px] text-[30px] text-shadow-lg tracking-wide whitespace-pre-line">
                           {slides[currentSlide].title}
                         </h2>
-                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white rounded-full opacity-70"></div>
+                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-white rounded-full opacity-70"></div>
                       </div>
 
-                      {/* Subtitle with new styling */}
-                      <div className="relative mt-4 max-w-xs">
-                        <p className="italic text-[18px] font-light tracking-wide text-shadow-md px-2">
+                      {/* Subtitle with dramatic highlight */}
+                      <div className="mt-4 relative bg-black/50 backdrop-blur-sm rounded-full pb-4 px-3">
+                        <div className="flex justify-between -mb-4">
+                          <div className="text-orange-500 text-3xl opacity-60 translate-y-4">"</div>
+                          <div className="text-orange-500 text-3xl opacity-60 translate-y-4">"</div>
+                        </div>
+                        <p className="text-[18px] text-orange-500 font-medium leading-tight italic px-2">
                           {slides[currentSlide].subtitle}
                         </p>
-                        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full" style={{ backgroundColor: '#fd8917' }}></div>
                       </div>
-
                       {currentSlide === 0 && (
                         <Link
                           to="what-we-do"
@@ -330,19 +403,24 @@ const Banner = () => {
                           smooth={true}
                           offset={-60}
                           duration={800}
-                          className="mx-auto mt-10"
+                          className="mx-auto mt-2"
                         >
-                          <CustomButton
-                            className="w-[160px] h-12 text-white shadow-xl transform hover:scale-105 transition-transform text-base font-medium"
-                            style={{
-                              backgroundColor: '#fd8917',
-                              borderColor: '#fd8917',
-                              boxShadow: '0 4px 14px rgba(253, 137, 23, 0.5)'
-                            }}
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative group"
                           >
-                            Learn More
-                            <AiOutlineArrowRight size={18} />
-                          </CustomButton>
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
+                            <div className="relative flex items-center gap-2 px-8 py-4 bg-black rounded-full border border-orange-500">
+                              <span className="text-md font-semibold text-white group-hover:text-orange-200 transition-colors">
+                                Learn More
+                              </span>
+                              <AiOutlineArrowRight
+                                size={18}
+                                className="text-orange-500 group-hover:translate-x-1 transition-transform"
+                              />
+                            </div>
+                          </motion.button>
                         </Link>
                       )}
                     </motion.div>
@@ -359,11 +437,10 @@ const Banner = () => {
             <button
               key={index}
               onClick={() => handleSlideChange(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                currentSlide === index
-                  ? "bg-white scale-125 w-6"
-                  : "bg-white/50 hover:bg-white/70"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentSlide === index
+                ? "bg-white scale-125 w-6"
+                : "bg-white/50 hover:bg-white/70"
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             ></button>
           ))}
