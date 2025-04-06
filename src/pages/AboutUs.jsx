@@ -134,7 +134,7 @@ const AboutUs = () => {
         >
           <div className="p-8 md:p-12">
           <div className="mb-10">
-              <p className="text-lg text-gray-700 leading-relaxed text-justify tracking-wide">
+              <p className="text-lg text-primary leading-relaxed text-justify tracking-wide">
                 V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
               </p>
             </div>
@@ -158,7 +158,7 @@ const AboutUs = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-justify text-gray-700">{item}</p>
+                    <p className="text-justify text-primary">{item}</p>
                   </div>
                 ))}
               </div>

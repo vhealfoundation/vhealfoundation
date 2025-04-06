@@ -93,7 +93,7 @@ const Gallery = () => {
           Happenings
         </h2>
         <LineSeperator className="mb-4" />
-        <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+        <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 py-2 bg-yellow-100 rounded shadow-md">
         Take a look at our events, experiences and endeavours chiselling minds and lives
         </p>
 

@@ -11,6 +11,7 @@ const AnimatedCard = ({ card, delay }) => {
   const { ref, inView } = useInView({
     rootMargin: window.innerWidth <= 768 ? "-30px" : "100px",
     threshold: 0.2,
+    triggerOnce: true
   });
 
   return (
@@ -18,11 +19,11 @@ const AnimatedCard = ({ card, delay }) => {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8 }}
-      className="w-full md:w-auto mb-4"
+      transition={{ duration: 0.8, delay: delay || 0 }}
+      className="w-full max-w-sm mb-4"
     >
       <Card
-        imageSrc={card.imageSrc}
+        imageSrc={card.image}
         title={card.title}
         description={card.description}
         link={card.link}
@@ -48,7 +49,7 @@ const CardStacker = () => {
       try {
         setLoading(true);
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
-        setData(response.data.data); 
+        setData(response.data.data);
       } catch (err) {
         setError("Failed to load. Please try again later.");
         setLoading(false);
@@ -59,7 +60,7 @@ const CardStacker = () => {
     };
 
     fetchSections();
-  }, []); 
+  }, []);
 
   if (error) {
     return (
@@ -72,43 +73,51 @@ const CardStacker = () => {
 
   return (
     <div>
-     
+
       <div className='flex flex-col items-center justify-center gap-4'>
       <h1 className="mt-12 text-3xl text-center md:text-4xl font-bold italic text-primary">
         Mission
       </h1>
-      
+
       <LineSeperator className="mb-8" />
 
       </div>
       {loading && <Loader />}
 
-      
-      <div className="hidden md:flex items-center justify-center gap-4 py-10 px-20">
-        {data.map((card, index) => (
-          <motion.div
-            key={index}
-            ref={ref}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: index * 0.5 }}
 
-          >
-            <Card
-              imageSrc={card.image}
-              title={card.title}
-              description={card.description}
-              link={card.link}
-            />
-          </motion.div>
-        ))}
+      <div className="hidden md:flex items-center justify-center gap-6 py-10 px-4 lg:px-20">
+        {data && data.length > 0 ? (
+          data.map((card, index) => (
+            <motion.div
+              key={index}
+              ref={ref}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: index * 0.5 }}
+              className="max-w-sm"
+            >
+              <Card
+                imageSrc={card.image}
+                title={card.title}
+                description={card.description}
+                link={card.link}
+              />
+            </motion.div>
+          ))
+        ) : !loading ? (
+          <p className="text-center text-gray-500">No data available</p>
+        ) : null}
       </div>
 
       {/* Mobile Layout */}
-      <div className="px-4 flex flex-col gap-4 items-center justify-center pt-8 pb-2 md:hidden">
-        {data.map((card, index) => (
-          <AnimatedCard key={index} card={card} delay={index * 0.3} />
-        ))}
+      <div className="px-4 flex flex-col gap-6 items-center justify-center pt-8 pb-8 md:hidden">
+        {data && data.length > 0 ? (
+          data.map((card, index) => (
+            <AnimatedCard key={index} card={card} delay={index * 0.3} />
+          ))
+        ) : !loading ? (
+          <p className="text-center text-gray-500">No data available</p>
+        ) : null}
       </div>
     </div>
   );

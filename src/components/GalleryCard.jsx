@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { FaTimes } from "react-icons/fa";
 
 const GalleryCard = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -21,6 +21,28 @@ const GalleryCard = ({ images }) => {
     visible: { opacity: 1, scale: 1 },
   };
 
+  const lightboxVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, transition: { duration: 0.3 } }
+  };
+
+  const imageVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.4 } },
+    exit: { scale: 0.8, opacity: 0, transition: { duration: 0.3 } }
+  };
+
+  const openLightbox = (image) => {
+    setSelectedImage(image);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'auto';
+  };
+
   console.log(images);
 
   return (
@@ -37,7 +59,7 @@ const GalleryCard = ({ images }) => {
             className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer group"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
-            onClick={() => setSelectedImage(image)} // Pass the entire image object to modal
+            onClick={() => openLightbox(image)} // Pass the entire image object to modal
           >
             <motion.img
               src={image.url} // Use the `url` property from the image object
@@ -66,50 +88,36 @@ const GalleryCard = ({ images }) => {
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 md:p-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)} // Close modal on backdrop click
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            variants={lightboxVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onClick={closeLightbox}
           >
             <motion.div
-              className="relative flex items-center justify-center h-[90vh] w-[90vw] max-w-[1400px]"
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              transition={{ type: "spring", damping: 25 }}
-              onClick={(e) => e.stopPropagation()} // Prevent modal close on inside click
+              className="relative max-w-4xl max-h-[90vh] w-full"
+              variants={imageVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative flex items-center justify-center h-full w-full">
-                <div className="relative bg-transparent rounded-lg overflow-hidden">
-                  <img
-                    src={selectedImage.url}
-                    alt={selectedImage.caption || "Selected Image"}
-                    className="max-h-[85vh] max-w-[85vw] object-contain"
-                    style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)' }}
-                  />
-
-                  {/* Floating caption display */}
-                  {selectedImage.caption && (
-                    <div className="absolute bottom-4 left-0 right-0 mx-auto bg-black bg-opacity-60 backdrop-filter backdrop-blur-sm p-3 md:p-4 w-fit max-w-[90%] rounded-lg mx-auto text-center">
-                      <p className="text-white text-sm md:text-base">{selectedImage.caption}</p>
-                    </div>
-                  )}
-                </div>
+              <img
+                src={selectedImage.url}
+                alt={selectedImage.caption || "Selected Image"}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+              <div className="absolute top-0 right-0 m-4">
+                <button
+                  onClick={closeLightbox}
+                  className="bg-white/20 hover:bg-white/40 rounded-full p-2 text-white transition-colors"
+                >
+                  <FaTimes size={24} />
+                </button>
               </div>
-
-              {/* Improved close button */}
-              <button
-                className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-all duration-200 hover:rotate-90 focus:outline-none z-10"
-                onClick={() => setSelectedImage(null)}
-                aria-label="Close modal"
-              >
-                <AiFillCloseCircle className="text-3xl" />
-              </button>
-
-              {/* Navigation hint */}
-              <div className="absolute bottom-2 right-4 text-white text-xs opacity-60">
-                <p>Click outside to close</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-b-lg p-4 mt-2">
+                <h3 className="text-xl font-bold text-white text-center">{selectedImage.caption}</h3>
               </div>
             </motion.div>
           </motion.div>

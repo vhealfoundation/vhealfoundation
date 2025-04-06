@@ -335,7 +335,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gray-50 rounded-lg shadow-lg p-6"
+              className=""
             >
               <ContactLeft />
             </motion.div>

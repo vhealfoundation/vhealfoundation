@@ -251,7 +251,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
 
                             return (
                               <div key={featureIndex} className="mb-4">
-                                <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                                <h4 className="font-bold text-primary mb-2">{heading}</h4>
                                 {bulletPoints.length > 0 && (
                                   <ul className="ml-4">
                                     {bulletPoints.map((point, pointIndex) => (
@@ -304,7 +304,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
 
                             return (
                               <div key={featureIndex} className="mb-4">
-                                <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                                <h4 className="font-bold text-primary mb-2">{heading}</h4>
                                 {bulletPoints.length > 0 && (
                                   <ul className="ml-4">
                                     {bulletPoints.map((point, pointIndex) => (
@@ -377,7 +377,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
                         return (
                           <div key={featureIndex} className="mb-4">
                             {/* Render the heading */}
-                            <h4 className="font-bold text-gray-700 mb-2">{heading}</h4>
+                            <h4 className="font-bold text-primary mb-2">{heading}</h4>
 
                             {/* Render the bullet points */}
                             {bulletPoints.length > 0 && (
@@ -452,7 +452,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
               onClick={prevSection}
               disabled={currentIndex === 0}
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-300 ${currentIndex === 0
-                  ? 'text-gray-400 cursor-not-allowed bg-gray-100'
+                  ? 'text-primary cursor-not-allowed bg-gray-100'
                   : 'bg-white shadow-md hover:shadow-lg'
                 }`}
               style={{
@@ -470,7 +470,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
               onClick={nextSection}
               disabled={currentIndex === sections.length - 1}
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-300 ${currentIndex === sections.length - 1
-                  ? 'text-gray-400 cursor-not-allowed bg-gray-100'
+                  ? 'text-primary cursor-not-allowed bg-gray-100'
                   : 'bg-white shadow-md hover:shadow-lg'
                 }`}
               style={{

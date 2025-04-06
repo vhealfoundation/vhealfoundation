@@ -62,7 +62,7 @@ const Home = () => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
-                          className="text-xl text-gray-400"
+                          className="text-xl text-primary"
                         >
                           A charitable trust founded by Maria Nalini Xavier, bringing together Mental Health and Social Work professionals to promote wellbeing through counselling and rehabilitation services for the underprivileged.
                         </motion.div>

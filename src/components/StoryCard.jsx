@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import LineSeperator from "./LineSeperator";
 
 const StoryCard = ({ id, image, title, description, isTestimonial = false }) => {
   // Determine the target route based on isTestimonial prop
@@ -9,55 +8,75 @@ const StoryCard = ({ id, image, title, description, isTestimonial = false }) => 
 
   return (
     // Entire card wrapped in Link for navigation
-    <Link to={targetRoute} className="group block">
+    <Link to={targetRoute} className="group block h-full">
       <motion.div
-        className="bg-gradient-to-b from-white to-gray-50 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full border border-gray-100"
+        className="relative h-full overflow-hidden rounded-xl shadow-xl transition-all duration-300 flex flex-col"
         whileHover={{
           scale: 1.02,
-          transition: { duration: 0.2, ease: "easeOut" }
+          transition: { duration: 0.3, ease: "easeOut" }
         }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        {/* Image Container */}
+        {/* Decorative corner accent */}
+        <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden z-10">
+          <div className="absolute transform rotate-45 bg-orange-500 text-white shadow-lg w-24 h-24 -top-12 -right-12"></div>
+        </div>
+
+        {/* Image Container with enhanced styling */}
         <div className="relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
             alt={title}
             className="w-full h-full object-contain"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          {/* Left badge */}
+          {!isTestimonial ? (
+        <div className="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-md z-10">
+            <span className="text-white text-sm font-medium">
+             Prisoner
+            </span>
+          </div> ) : null}
 
           {/* Category Badge */}
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm">
-            <span className="text-primary text-sm font-semibold">
+     {/*      <div className="absolute top-4 right-12 bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-md z-10">
+            <span className="text-white text-sm font-medium">
               {isTestimonial ? "Accolade" : "Testimonial"}
             </span>
-          </div>
+          </div> */}
         </div>
 
-        {/* Content */}
-        <div className="p-6 flex flex-col flex-grow space-y-3 bg-white">
-          <div className="flex flex-col items-start gap-3">
+        {/* Content with modern styling */}
+        <div className="p-6 flex flex-col flex-grow space-y-4 bg-white">
+          {/* Title with accent line */}
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-6 h-0.5 bg-orange-300"></div>
+              <div className="w-12 h-1 bg-orange-500"></div>
+            </div>
             <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
               {title}
             </h3>
-            <LineSeperator width={80} />
           </div>
 
-          <p className="text-gray-700 text-sm md:text-base line-clamp-3">
+          {/* Description with better typography */}
+          <p className="text-gray-700 text-sm md:text-base line-clamp-3 leading-relaxed">
             {description}
           </p>
 
           {/* Spacer to push button to bottom */}
           <div className="flex-grow"></div>
 
-          {/* Read More Button Styled Element */}
-          <div className="inline-flex items-center justify-center mt-3 w-full bg-white border-2 border-primary text-primary rounded-lg px-5 py-2 font-semibold transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+          {/* Modern Read More Button */}
+          <div className="inline-flex items-center justify-center mt-4 w-full bg-white border-2 border-primary text-primary rounded-full px-6 py-2.5 font-medium transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:shadow-lg transform group-hover:-translate-y-1">
             <span>Read More</span>
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
