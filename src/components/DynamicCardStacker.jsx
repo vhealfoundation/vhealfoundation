@@ -31,7 +31,7 @@ const AnimatedCard = ({ eachData }) => {
 const DynamicCardStacker = ({ data }) => {
   return (
     <div
-      className="relative bg-fixed bg-cover bg-center text-white py-8 rounded-lg shadow-xl overflow-hidden"
+      className="relative bg-fixed bg-cover bg-center text-white py-8 shadow-xl overflow-hidden"
       style={{
         backgroundImage: `url(${Hero})`,
       }}

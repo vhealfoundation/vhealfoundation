@@ -7,7 +7,7 @@ const Layout = (Component) => {
     return (
       <div className="flex flex-col min-h-screen relative">
         <Navbar className="z-50" />
-        <main className="flex-grow relative z-10">
+        <main className="flex-grow relative">
           <Component {...props} />
         </main>
         <Footer className="relative z-10" />

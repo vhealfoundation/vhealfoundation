@@ -6,7 +6,7 @@ import Layout from "../hoc/Layout";
 import AboutCard from "../components/AboutCard";
 import AboutVideo from "../assets/aboutVideo.mp4";
 import Loader from "../components/Loader";
-import LineSeperator from "../components/LineSeperator";
+import { FaCheckCircle } from "react-icons/fa";
 
 const AboutUs = () => {
   const [about, setAbout] = useState([]);
@@ -85,42 +85,38 @@ const AboutUs = () => {
     <div className="mt-16 space-y-8">
       {/* Hero Section with Video Background */}
       <div className="relative flex flex-col items-center">
-        <div className="w-full h-full absolute inset-0 -z-10"></div>
+        <div className="w-full h-full absolute inset-0 bg-gradient-to-br from-primary/50 via-primary/40 to-orange-500/40 mix-blend-multiply z-10"></div>
         <video
           autoPlay
           loop
           muted
-          className="w-full h-[600px] object-cover brightness-[0.7]"
+          className="w-full h-[600px] object-cover"
         >
           <source src={AboutVideo} type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 z-20">
           <motion.h1
-            className="text-4xl md:text-5xl font-bold text-center mb-4"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center drop-shadow-md"
             initial="hidden"
             animate="visible"
             variants={fadeIn}
           >
             About Us
           </motion.h1>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.1 }}
+          <div className="flex items-center justify-center space-x-2 my-4">
+            <div className="w-12 h-0.5 bg-white/60"></div>
+            <div className="w-24 h-1 bg-orange-500"></div>
+            <div className="w-12 h-0.5 bg-white/60"></div>
+          </div>
+          <motion.p
+            className="text-white text-lg md:text-xl max-w-3xl mx-auto font-medium italic backdrop-blur-sm bg-white/5 py-4 px-8 rounded-xl inline-block mt-4 border border-white/10 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <LineSeperator className="mb-6" width="150px" />
-          </motion.div>
-         {/*  <motion.p
-            className="text-lg md:text-xl text-center max-w-3xl"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.2 }}
-          >
-            V Heal Foundation (VHF) is a public charitable trust founded by Maria Nalini Xavier under the Indian Trust Act.
-          </motion.p> */}
+            V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
+          </motion.p>
         </div>
       </div>
 
@@ -133,11 +129,11 @@ const AboutUs = () => {
           variants={fadeIn}
         >
           <div className="p-8 md:p-12">
-          <div className="mb-10">
+         {/*  <div className="mb-10">
               <p className="text-lg text-primary leading-relaxed text-justify tracking-wide">
-                V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
+                Our foundation brings together experienced professionals dedicated to improving mental health outcomes through evidence-based approaches and compassionate care. We work with individuals, families, and communities to build resilience and foster positive change.
               </p>
-            </div>
+            </div> */}
 
             {/* Our Mission Section */}
             <motion.div
@@ -147,17 +143,18 @@ const AboutUs = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={slideIn("left")}
             >
-              <h2 className="text-3xl font-bold mb-3" style={{ color: '#fd8917' }}>Our Mission</h2>
-              <LineSeperator className="mb-6" />
+              <h2 className="text-3xl font-bold mb-3 text-primary">Our Mission</h2>
+              <div className="flex items-center space-x-2 mb-6">
+                <div className="w-8 h-0.5 bg-orange-300"></div>
+                <div className="w-16 h-1 bg-orange-500"></div>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 {missionItems.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1 p-1 rounded-full" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
+                    <span className="text-orange-500 flex-shrink-0 mt-1">
+                      <FaCheckCircle size={18} />
+                    </span>
                     <p className="text-justify text-primary">{item}</p>
                   </div>
                 ))}

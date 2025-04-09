@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../hoc/Layout";
 import StoryDetailCard from "../components/StoryDetailCard";
 import axios from "axios";
+import Loader from "../components/Loader";
 
 const TestimonialDetail = () => {
   const { id } = useParams();
@@ -37,16 +38,11 @@ const TestimonialDetail = () => {
     );
   }
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl">Loading...</p>
-      </div>
-    );
-  }
+
 
   return (
     <div className="mt-16">
+      {loading && <Loader />}
       <div className="flex flex-col items-center gap-4">
       </div>
       <StoryDetailCard 

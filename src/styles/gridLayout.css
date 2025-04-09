@@ -1,0 +1,30 @@
+/* Flexbox Layout Styles for Image Gallery */
+
+/* Responsive card sizing */
+@media (max-width: 640px) {
+  .flex-wrap > * {
+    width: calc(50% - 1rem) !important;
+    max-width: 160px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .flex-wrap > * {
+    width: calc(50% - 1rem) !important;
+    max-width: 280px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .flex-wrap > * {
+    width: calc(33.333% - 1rem) !important;
+    max-width: 280px !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .flex-wrap > * {
+    width: calc(25% - 1rem) !important;
+    max-width: 280px !important;
+  }
+}

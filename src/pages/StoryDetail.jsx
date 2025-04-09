@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../hoc/Layout";
 import StoryDetailCard from "../components/StoryDetailCard";
 import axios from "axios";
+import Loader from "../components/Loader";
 
 const StoryDetail = () => {
   const { id } = useParams();
@@ -42,6 +43,7 @@ const StoryDetail = () => {
 
   return (
     <div className="mt-16">
+      {loading && <Loader />}
       <div className="flex flex-col items-center gap-4">
       </div>
       <StoryDetailCard  coverImage={stories.coverimage} title={stories.title} description={stories.description} content={stories.content} />

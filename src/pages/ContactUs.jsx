@@ -80,26 +80,29 @@ const Contact = () => {
   return (
     <div className="mt-16">
       {/* Hero Section */}
-      <div className="bg-gray-100 pb-6">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            className="text-center"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
+      <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <motion.h1
+            className="text-3xl md:text-5xl font-bold text-white text-center drop-shadow-md"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-             <div className="flex flex-col items-center gap-4">
-             <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
-              Connect With Us
-            </h2>
-            <LineSeperator className="mb-8" />
-             </div>
-              
-
-            <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-              Whether you're looking to volunteer, donate, or seek help, we're here to support your journey. Reach out to us through any of the channels below.
-            </p>
-          </motion.div>
+            Connect With Us
+          </motion.h1>
+          <div className="flex items-center justify-center space-x-2 my-4">
+            <div className="w-12 h-0.5 bg-white/60"></div>
+            <div className="w-24 h-1 bg-orange-500"></div>
+            <div className="w-12 h-0.5 bg-white/60"></div>
+          </div>
+          <motion.p
+            className="text-white text-lg md:text-xl max-w-3xl mx-auto font-medium italic backdrop-blur-sm bg-white/5 py-3 px-6 rounded-full inline-block mt-4 border border-white/10 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Whether you're looking to volunteer, donate, or seek help, we're here to support your journey.
+          </motion.p>
         </div>
       </div>
 
@@ -321,7 +324,7 @@ const Contact = () => {
                     </svg>
                   </button>
                 </div>
-               
+
                 {showDonateCard && <DonateCard />}
                 {showAppointmentCard && <AppointmentCard />}
               </div>

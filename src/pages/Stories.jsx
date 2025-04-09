@@ -4,15 +4,13 @@ import StoryCard from "../components/StoryCard";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { motion } from "framer-motion";
-import LineSeperator from '../components/LineSeperator';
 
 const Stories = () => {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // Define primary color to match theme
-  const primaryColor = '#fd8917';
+  // Animation configuration
 
   // Fetch stories from the API
   useEffect(() => {
@@ -56,24 +54,33 @@ const Stories = () => {
 
   return (
     <div className="mt-16 pb-12 bg-gray-50">
-          <motion.div
-          className="flex flex-col items-center gap-4 bg-gray-100 pb-6"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl pt-6 md:text-4xl font-bold text-primary text-center">
+      <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <motion.h1
+            className="text-3xl md:text-5xl font-bold text-white text-center drop-shadow-md"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Accolades
-          </h2>
-          <LineSeperator className="mb-4" />
-
-          <p className="text-center text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 py-2 bg-yellow-100 rounded shadow-md">
-              Commendations from the Champions
-            </p>
-
-        </motion.div>
+          </motion.h1>
+          <div className="flex items-center justify-center space-x-2 my-4">
+            <div className="w-12 h-0.5 bg-white/60"></div>
+            <div className="w-24 h-1 bg-orange-500"></div>
+            <div className="w-12 h-0.5 bg-white/60"></div>
+          </div>
+          <motion.p
+            className="text-white text-lg md:text-xl max-w-3xl mx-auto font-medium italic backdrop-blur-sm bg-white/5 py-3 px-6 rounded-full inline-block mt-4 border border-white/10 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Commendations from the Champions
+          </motion.p>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-    
+
 
         {/* Stories Grid */}
         {loading ? (

@@ -50,7 +50,12 @@ const StoryDetailCard = ({ coverImage, title, description, content }) => {
             variants={itemVariants}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-md">
-              {title}
+              {title?.split(',').map((part, index) => (
+                <React.Fragment key={index}>
+                  {index > 0 && <br />}
+                  <span className="inline-block">{part.trim()}</span>
+                </React.Fragment>
+              ))}
             </h1>
             <div className="flex items-center justify-center space-x-2">
               <div className="w-12 h-0.5 bg-white/60"></div>
@@ -94,7 +99,7 @@ const StoryDetailCard = ({ coverImage, title, description, content }) => {
                     <div className="absolute transform rotate-45 bg-orange-500 text-white shadow-lg w-24 h-24 -top-12 -right-12"></div>
                   </div>
 
-                  
+
                 </div>
               </div>
 
@@ -106,7 +111,12 @@ const StoryDetailCard = ({ coverImage, title, description, content }) => {
                     <div className="w-16 h-1 bg-orange-500"></div>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                    {section.title}
+                    {section.title?.split(',').map((part, index) => (
+                      <React.Fragment key={index}>
+                        {index > 0 && <br />}
+                        <span className="inline-block">{part.trim()}</span>
+                      </React.Fragment>
+                    ))}
                   </h2>
                 </div>
                 <p className="text-gray-700 text-justify leading-relaxed">

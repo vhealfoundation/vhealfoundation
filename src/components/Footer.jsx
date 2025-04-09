@@ -19,7 +19,7 @@ export default function Footer() {
               <img src={logo} alt="V Heal Logo" className="w-12 h-12" />
               <h3 className="text-xl font-bold">V Heal Foundation</h3>
             </div>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/80 text-sm leading-relaxed text-justify">
             V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
             </p>
             <div className="flex gap-4 pt-2">
