@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import Hero from '../assets/we-minister-2.png';
 
 // Extracted component to handle motion and inView
-const AnimatedCard = ({ eachData }) => {
+const AnimatedCard = ({ eachData, id }) => {
   const { ref, inView } = useInView({ rootMargin: "-120px", threshold: 0.1 });
 
   return (
@@ -17,6 +17,7 @@ const AnimatedCard = ({ eachData }) => {
       className='mb-4'
     >
       <DynamicCard
+        id={id}
         title={eachData.title}
         subtitle={eachData.subtitle}
         rating={eachData.rating}
@@ -76,7 +77,7 @@ const DynamicCardStacker = ({ data }) => {
       {/* Mobile Layout */}
       <div className="flex flex-col gap-2 items-center justify-center py-10 md:hidden relative z-20">
         {data.map((eachData, index) => (
-          <AnimatedCard key={index} eachData={eachData} />
+          <AnimatedCard key={index} eachData={eachData} id={index} />
         ))}
       </div>
     </div>

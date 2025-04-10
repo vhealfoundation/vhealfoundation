@@ -9,32 +9,38 @@ export const slides = [
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner1_czmjga.png", // Replace with actual image for "V Heal Foundation"
     title: "V Heal Foundation",
-    subtitle: "Enriching, Empowering & Enduring Lives"
+    subtitle: "Enriching, Empowering & Enduring Lives",
+    backgroundPosition: "center top" // Default position
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png", // Replace with actual image for "Counseling Services"
     title: "We provide\nCounselling Services",
-    subtitle: "to facilitate quality of life and transform lives"
+    subtitle: "to facilitate quality of life and transform lives",
+    backgroundPosition: "center -50px" // Adjusted position with pixel value
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png", // Replace with actual image for "Psychological Assessments"
     title: "We administer\nPsychological Assessments",
-    subtitle: "to ascertain psychological functioning and identify support needs"
+    subtitle: "to ascertain psychological functioning and identify support needs",
+    backgroundPosition: "center -20px" // Adjusted position with pixel value
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846665/banner4_odblcx.png", // Replace with actual image for "Training programmes"
     title: "We impart\nTraining Programmes",
-    subtitle: "to build confidence in the abilities of oneself"
+    subtitle: "to build confidence in the abilities of oneself",
+    backgroundPosition: "center -250px" // Default position
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365494/vstp8qbmbpxjq1szktcq.png", // Replace with actual image for "Coaching"
     title: "We offer Coaching",
-    subtitle: "to enrich right skills to be self-reliant individuals"
+    subtitle: "to enrich right skills to be self-reliant individuals",
+    backgroundPosition: "center -50px" // Adjusted position with pixel value
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365516/qy1amuveqwvmpkp65zql.png", // Replace with actual image for "Rehabilitate Prisoners"
     title: "We Rehabilitate Prisoners",
-    subtitle: "to rebuild and restore the dignity of prisoners"
+    subtitle: "to rebuild and restore the dignity of prisoners",
+    backgroundPosition: "center -350px" // Adjusted position with pixel value
   }
 ];
 
@@ -95,7 +101,7 @@ export const relatedImagesData = {
         images: [
           {
             id: 9,
-            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743914327/anxiety_emoji_c6zzlu.jpg",
+            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278584/anxiety_emoji_aveccc.jpg",
             caption: "ANXIETY"
           },
           {
@@ -250,7 +256,7 @@ export const relatedImagesData = {
           },
           {
             id: 40,
-            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848709/work_life_balance_ka9v0i.jpg",
+            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278672/work_life_balance_puk4kq.jpg",
             caption: "WORK-LIFE BALANCE"
           },
           {
@@ -265,7 +271,7 @@ export const relatedImagesData = {
           },
           {
             id: 43,
-            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743914459/empty_nest_syndrome_mn8p0f.jpg",
+            url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278739/empty_nest_syndrome_aoz0jj.jpg",
             caption: "EMPTY NEST SYNDROME"
           },
           {
@@ -308,7 +314,7 @@ export const relatedImagesData = {
       },
       {
         id: 3,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849078/NEURO_PSYCHOLOGICAL_ASSESSMENTS_cxiy7b.png",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278813/NEURO_PSYCHOLOGICAL_ASSESSMENTS_enh5sf.png",
         caption: "NEURO PSYCHOLOGICAL ASSESSMENTS"
       }
     ]
@@ -319,7 +325,7 @@ export const relatedImagesData = {
     images: [
       {
         id: 1,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849145/TRAINING_FOR_CHILDREN_ahjvqp.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278925/TRAINING_FOR_CHILDREN_eqbepb.jpg",
         caption: "TRAINING FOR CHILDREN"
       },
       {
@@ -330,7 +336,7 @@ export const relatedImagesData = {
       },
       {
         id: 3,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849146/TRAINING_FOR_MARRIED_COUPLES_vriqec.webp",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278924/TRAINING_FOR_MARRIED_COUPLES_xu58ua.jpg",
         caption: "TRAINING FOR MARRIED COUPLES"
       },
       {
@@ -385,7 +391,7 @@ export const relatedImagesData = {
       },
       {
         id: 2,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/PROVIDE_EDUCATIONSL_FINACIAL_AND_SOCIAL_SUPPORT_FOR_RELEASED_PRISONERS_wjog7a.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744282235/PROVIDE_FINANCIAL_HELP_JOB_ASSISTANCE_AND_TRAINING_PROGRAMMES_TO_HELP_WITH_SOCIAL_AND_PSYCHOLOGICAL_REINTEGRATION_FOR_PRISONERS_AFTER_THEI_dzndbs.jpg",
         caption: "PROVIDE FINANCIAL HELP, JOB ASSISTANCE, AND TRAINING PROGRAMMES TO HELP WITH SOCIAL AND PSYCHOLOGICAL REINTEGRATION FOR PRISONERS AFTER THEIR RELEASE"
       },
       {
@@ -400,17 +406,17 @@ export const relatedImagesData = {
       },
       {
         id: 5,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848398/UPSKILLING_RELASED_PRISONERS_bqruyy.png",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281997/PROVIDE_APPROPRIATE_TRAINING_FOR_THE_PRISONERS_TO_LEARN_NEW_SKILLS_INSIDE_THE_PRISON_ewkxjh.jpg",
         caption: "PROVIDE APPROPRIATE TRAINING FOR THE PRISONERS TO LEARN NEW SKILLS INSIDE THE PRISON"
       },
       {
         id: 6,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/PROVIDE_EDUCATIONSL_FINACIAL_AND_SOCIAL_SUPPORT_FOR_RELEASED_PRISONERS_wjog7a.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281997/ESTABLISH_CENTRES_FOR_EMPLOYMENT_GENERATION_FOR_PRISONERS_AFTER_THEIR_RELEASE_oo9kyj.jpg",
         caption: "ESTABLISH CENTRES FOR EMPLOYMENT GENERATION FOR PRISONERS AFTER THEIR RELEASE"
       },
       {
         id: 7,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/COUNSELLING_FOR_PRISONERS_lsqgrl.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281996/PROVIDE_LEGAL_AND_FINANCIAL_SUPPORT_TO_ECONOMICALLY_DOWNTRODDEN_PRISONERS_FOR_LEGAL_AID_AND_TO_SECURE_BAIL_pineoe.jpg",
         caption: "PROVIDE LEGAL AND FINANCIAL SUPPORT TO ECONOMICALLY DOWNTRODDEN PRISONERS FOR LEGAL AID AND TO SECURE BAIL"
       },
       {
@@ -425,7 +431,7 @@ export const relatedImagesData = {
       },
       {
         id: 10,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/Provide_educational_financial_and_social_support_to_prisoners_children_mrqmfi.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281999/PROVIDE_REQUIRED_RELIEF_AND_ASSISTANCE_TO_FAMILY_MEMBERS_OF_ECONOMICALLY_DOWNTRODDEN_PRISONERS_WHO_ARE_OUTSIDE_THE_PRISON_zw9rtw.jpg",
         caption: "PROVIDE REQUIRED RELIEF AND ASSISTANCE TO FAMILY MEMBERS OF ECONOMICALLY DOWNTRODDEN PRISONERS WHO ARE OUTSIDE THE PRISON"
       }
     ]
@@ -524,5 +530,59 @@ export const testimonials = [
     image: user2,
     supportType: "Education Sponsorship",
   },
+];
+
+
+
+// Sample review data - replace with actual data later
+export const reviewsData = [
+  {
+    id: 1,
+    name: "Priya Sharma",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743510729/yogcn1iuh5y2vxfhxkph.jpg",
+    role: "Student",
+    rating: 5,
+    review: "The counseling sessions at V Heal Foundation completely transformed my approach to managing anxiety. The therapist was incredibly supportive and provided practical techniques that I use daily."
+  },
+  {
+    id: 2,
+    name: "Rahul Verma",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743097252/t01qji4jszfssfgvalib.jpg",
+    role: "IT Professional",
+    rating: 5,
+    review: "After struggling with work-related stress for years, the counselors at V Heal helped me develop healthy coping mechanisms. Their holistic approach addressed both my mental and emotional wellbeing."
+  },
+  {
+    id: 3,
+    name: "Ananya Patel",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365090/frcycmn7mo7yc5pqbrxw.png",
+    role: "Homemaker",
+    rating: 5,
+    review: "The family counseling services helped us navigate a difficult period in our marriage. The counselor was patient, unbiased, and gave us practical tools to improve our communication."
+  },
+  {
+    id: 4,
+    name: "Vikram Singh",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner1_czmjga.png",
+    role: "Former Inmate",
+    rating: 5,
+    review: "V Heal's rehabilitation program gave me hope and direction when I needed it most. Their counselors helped me rebuild my self-esteem and prepare for life after incarceration."
+  },
+  {
+    id: 5,
+    name: "Meera Kapoor",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png",
+    role: "Teacher",
+    rating: 4,
+    review: "The stress management workshops were incredibly insightful. I learned techniques that not only helped me personally but also enabled me to better support my students."
+  },
+  {
+    id: 6,
+    name: "Arjun Malhotra",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743510729/yogcn1iuh5y2vxfhxkph.jpg",
+    role: "Business Owner",
+    rating: 5,
+    review: "The executive coaching program helped me navigate leadership challenges with confidence. The personalized approach and actionable strategies made a significant difference in my professional life."
+  }
 ];
 

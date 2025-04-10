@@ -4,6 +4,7 @@ import StoryCard from "../components/StoryCard";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -54,6 +55,14 @@ const Testimonials = () => {
 
   return (
     <div className="mt-16 pb-12 bg-gray-50">
+      <SEO
+        title="Testimonials"
+        description="Words speak out our vision and mission. Read testimonials from individuals who have experienced the impact of V Heal Foundation's services."
+        keywords={[
+          'V Heal Foundation', 'testimonials', 'client stories', 'mental health testimonials',
+          'counselling feedback', 'training testimonials', 'coaching success stories'
+        ]}
+      />
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <motion.h1

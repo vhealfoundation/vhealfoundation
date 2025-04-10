@@ -146,7 +146,7 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
 
   return (
     <section
-      className="px-4 pb-12 md:px-48 relative overflow-hidden bg-gradient-to-b from-white to-gray-50"
+      className="px-4 pb-12 md:px-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}

@@ -103,7 +103,7 @@ const ImageGallery = () => {
           {galleryData.sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className="mb-16">
               {/* Section Title */}
-              <div className="mb-8">
+              <div className="mb-8 pl-2 md:pl-10 ">
                 <div className="flex items-center space-x-2 mb-2">
                   <div className="w-8 h-0.5 bg-orange-300"></div>
                   <div className="w-16 h-1 bg-orange-500"></div>

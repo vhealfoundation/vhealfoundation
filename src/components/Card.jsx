@@ -7,7 +7,7 @@ const Card = ({ imageSrc, title, description}) => {
   return (
     <Link to="/what-we-do" className="group block h-full">
       <motion.div
-        className="relative h-[460px] w-full max-w-sm overflow-hidden rounded-xl shadow-lg transition-all duration-300 flex flex-col bg-white"
+        className="relative h-[460px] md:h-[490px] w-full max-w-sm overflow-hidden rounded-xl shadow-lg transition-all duration-300 flex flex-col bg-white"
         whileHover={{
           scale: 1.02,
           transition: { duration: 0.3, ease: "easeOut" }
@@ -37,7 +37,7 @@ const Card = ({ imageSrc, title, description}) => {
         </div>
 
         {/* Content with modern styling */}
-        <div className="flex flex-col flex-1 p-6 overflow-hidden">
+        <div className="flex flex-col flex-1 p-3 overflow-hidden">
           {/* Title with accent line */}
           <div className="space-y-3 mb-4">
             <div className="flex items-center space-x-2">

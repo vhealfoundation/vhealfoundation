@@ -41,15 +41,13 @@ const Navbar = () => {
     { id: 1, text: "Home", link: "/" },
     { id: 2, text: "About Us", link: "/aboutus" },
     { id: 3, text: "Happenings", link: "/happenings" },
-
     { id: 4, text: "Accolades", link: "/accolades" },
     { id: 5, text: "Testimonials", link: "/testimonials" },
     { id: 6, text: "To Connect", link: "/toconnect" },
-
   ];
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-primary flex justify-between md:justify-center space-x-0 md:space-x-32 items-center h-16 px-4  z-50">
+    <div className="fixed top-0 left-0 w-full bg-primary flex justify-between md:justify-center space-x-0 md:space-x-2 lg:space-x-8 xl:space-x-16 items-center h-16 px-4 z-50">
       {/* Mobile Navigation Toggle */}
       <div className="flex items-center space-x-2">
         <div onClick={handleNav} className="block md:hidden mt-1">
@@ -61,15 +59,13 @@ const Navbar = () => {
         </Link>
       </div>
       <Link to="/" className="hidden md:flex items-center gap-2 rounded-full" >
-        <img src={logo} alt="Logo" className="w-[52px] h-[52px] object-cover" />
-        <p className="text-xl md:text-2xl font-bold text-white">V HEAL</p>
-
-
+        <img src={logo} alt="Logo" className="w-[40px] h-[40px] lg:w-[52px] lg:h-[52px] object-cover" />
+        <p className="text-lg md:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">V HEAL</p>
       </Link>
 
       {/* Desktop Navbar */}
       <div className="hidden md:flex relative">
-        <ul className="flex space-x-4 relative">
+        <ul className="flex md:space-x-6 relative">
           {navItems.map((item) => (
             <div
               key={item.id}
@@ -79,9 +75,9 @@ const Navbar = () => {
             >
               <Link to={item.link}>
                 <li
-                  className={`p-4 cursor-pointer relative ${activeNav === item.link
+                  className={` cursor-pointer relative ${activeNav === item.link
                     ? "text-white"
-                    : "text-white hover:text-gray-300"
+                    : "text-white hover:text-gray-300 w-full"
                     }`}
                   onClick={() => setActiveNav(item.link)}
                 >

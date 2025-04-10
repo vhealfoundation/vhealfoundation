@@ -10,6 +10,7 @@ import LineSeperator from '../components/LineSeperator';
 import { motion } from 'framer-motion';
 import DonateCard from '../components/DonateCard';
 import AppointmentCard from '../components/AppointmentCard';
+import SEO from "../components/SEO";
 
 // Add CSS for animations
 const styles = `
@@ -79,6 +80,14 @@ const Contact = () => {
 
   return (
     <div className="mt-16">
+      <SEO
+        title="Connect With Us"
+        description="Whether you're looking to volunteer, donate, or seek help, we're here to support your journey. Reach out to us through any of the channels below."
+        keywords={[
+          'V Heal Foundation', 'contact us', 'volunteer', 'donate', 'seek help',
+          'mental health support', 'counselling services', 'get in touch'
+        ]}
+      />
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">

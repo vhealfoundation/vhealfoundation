@@ -10,9 +10,11 @@ import ContactCard from "../components/ContactCard";
 import ContactLeft from "../components/ContactLeft";
 import { data, aboutData, testimonials } from "../constants/data";
 import StoriesBanner from "../components/StoriesBanner";
+import Reviews from "../components/Reviews";
 import PopUpCard from "../components/PopUpCard";
 import { motion } from "framer-motion";
 import LineSeperator from "../components/LineSeperator";
+import SEO from "../components/SEO";
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
@@ -31,6 +33,14 @@ const Home = () => {
 
     return (
         <div className="pt-12 relative">
+            <SEO
+                title="Home"
+                description="V Heal Foundation - Enriching, Empowering & Enduring Lives through counseling services, psychological assessments, training programmes, coaching, and prisoner rehabilitation."
+                keywords={[
+                    'V Heal Foundation', 'mental health', 'counseling services', 'psychological assessments',
+                    'training programmes', 'coaching', 'prisoner rehabilitation', 'mental wellbeing'
+                ]}
+            />
 {/*             {showModal && <PopUpCard onClose={closeModal} />} */}
             <div className="relative z-0">
                 <Banner />
@@ -80,6 +90,9 @@ const Home = () => {
             </div> */}
             <div className="">
                 <StoriesBanner />
+            </div>
+            <div className="">
+                <Reviews />
             </div>
             <div className="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="">

@@ -5,7 +5,7 @@ import logo from "../assets/logo.png"; // Make sure to import your logo
 
 export default function Footer() {
   return (
-    <footer className="md:px-48 bg-primary text-white pt-10 pb-6 relative overflow-hidden z-10 mt-auto">
+    <footer className="md:px-20 bg-primary text-white pt-10 pb-6 relative overflow-hidden z-10 mt-auto">
       {/* Floating Blur Effects */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-blue-500 opacity-30 blur-3xl rounded-full"></div>
       <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-700 opacity-30 blur-3xl rounded-full"></div>

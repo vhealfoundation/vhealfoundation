@@ -8,7 +8,7 @@ const CustomButton = ({
 }) => {
   return (
     <button
-      className={`mt-4 flex items-center justify-center gap-2 px-4 py-2  rounded-md ${className} hover:scale-105 transition-all duration-300`}
+      className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md ${className} hover:scale-105 transition-all duration-300`}
       onClick={onClick}
       {...props}
     >

@@ -5,6 +5,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import { Tab } from '@headlessui/react';
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 const CATEGORIES = [
   "COUNSELLING SERVICES",
@@ -12,7 +13,7 @@ const CATEGORIES = [
   "TRAINING",
   "COACHING",
   "REHABILITATION OF PRISONERS",
-  "OTHER"
+  "LATEST BLOGS"
 ];
 
 const Gallery = () => {
@@ -88,6 +89,14 @@ const Gallery = () => {
 
   return (
     <div className="mt-16">
+      <SEO
+        title="Happenings"
+        description="Take a look at our events, experiences and endeavours chiselling minds and lives. Explore our gallery of counselling services, assessments, training, coaching, and rehabilitation programs."
+        keywords={[
+          'V Heal Foundation', 'happenings', 'gallery', 'events', 'counselling services',
+          'assessments', 'training', 'coaching', 'rehabilitation of prisoners'
+        ]}
+      />
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <motion.h1

@@ -176,15 +176,20 @@ const Banner = () => {
           >
             {/* Background Image */}
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+              className="absolute inset-0 bg-cover"
+              style={{
+                backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
+              }}
             >
               <motion.div
                 variants={backgroundVariants}
                 initial="initial"
                 animate="animate"
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+                className="absolute inset-0 bg-cover"
+                style={{
+                  backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+                  backgroundPosition: slides[currentSlide].backgroundPosition || 'center top'
+                }}
               />
               {/* Dark overlay (always present) */}
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -238,7 +243,7 @@ const Banner = () => {
                         <p className="italic md:text-[28px] text-[20px] font-light tracking-wide text-shadow-md">
                           {slides[currentSlide].subtitle}
                         </p>
-                        
+
                       </div> */}
 
                       {/*   {currentSlide === 0 && (
@@ -338,15 +343,21 @@ const Banner = () => {
           >
             {/* Background Image */}
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+              className="absolute inset-0 bg-cover"
+              style={{
+                backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+                backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
+              }}
             >
               <motion.div
                 variants={backgroundVariants}
                 initial="initial"
                 animate="animate"
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
+                className="absolute inset-0 bg-cover"
+                style={{
+                  backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+                  backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
+                }}
               />
               {/* Dark overlay (always present) */}
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>

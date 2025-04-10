@@ -7,6 +7,7 @@ import AboutCard from "../components/AboutCard";
 import AboutVideo from "../assets/aboutVideo.mp4";
 import Loader from "../components/Loader";
 import { FaCheckCircle } from "react-icons/fa";
+import SEO from "../components/SEO";
 
 const AboutUs = () => {
   const [about, setAbout] = useState([]);
@@ -83,6 +84,14 @@ const AboutUs = () => {
 
   return (
     <div className="mt-16 space-y-8">
+      <SEO
+        title="About Us"
+        description="V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching."
+        keywords={[
+          'V Heal Foundation', 'about us', 'mental health professionals', 'social work',
+          'counselling', 'training', 'coaching', 'prisoner rehabilitation'
+        ]}
+      />
       {/* Hero Section with Video Background */}
       <div className="relative flex flex-col items-center">
         <div className="w-full h-full absolute inset-0 bg-gradient-to-br from-primary/50 via-primary/40 to-orange-500/40 mix-blend-multiply z-10"></div>

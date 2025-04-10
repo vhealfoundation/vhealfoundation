@@ -120,7 +120,7 @@ export default function UserButton() {
             ) : (
                 <CustomButton
                     onClick={login}
-                    className="mb-4 bg-gray-200 text-tertiary font-semibold hover:bg-gray-300"
+                    className="md:mb-0 bg-gray-200 text-tertiary font-semibold hover:bg-gray-300 text-sm md:text-base"
                 >
                     Sign In
                 </CustomButton>
