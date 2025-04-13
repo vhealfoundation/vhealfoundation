@@ -137,7 +137,7 @@ const Gallery = () => {
                   setTimeout(() => setTabLoading(false), 500);
                 }}
                 className={({ selected }) =>
-                  `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
+                  `rounded-lg py-2 px-4 text-sm font-bold leading-5 transition-colors
                   ${selected
                     ? 'bg-primary text-white shadow'
                     : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'
@@ -165,7 +165,7 @@ const Gallery = () => {
                       setTimeout(() => setTabLoading(false), 500);
                     }}
                     className={({ selected }) =>
-                      `rounded-lg py-2 px-4 text-sm font-medium leading-5 transition-colors
+                      `rounded-lg py-2 px-4 text-sm font-bold leading-5 transition-colors
                       ${selected
                         ? 'bg-primary text-white shadow'
                         : 'text-gray-700 hover:bg-white/[0.12] hover:text-primary'

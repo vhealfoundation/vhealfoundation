@@ -4,6 +4,9 @@ import AboutCard from "../components/AboutCard";
 import axios from "axios";
 import Loader from "../components/Loader";
 import LineSeperator from "../components/LineSeperator";
+import ContactCard from "../components/ContactCard";
+import ContactLeft from "../components/ContactLeft";
+
 
 const WhatWeDo = () => {
   const [sections, setSections] = useState([]);
@@ -39,6 +42,14 @@ const WhatWeDo = () => {
         <LineSeperator className="mb-6" width="150px" />
         <AboutCard sections={sections} /> 
       </div>
+      <div className="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="">
+                    <ContactLeft />
+                </div>
+                <div className="bg-white rounded-lg shadow-lg">
+                    <ContactCard />
+                </div>
+            </div>
     </div>
   );
 };

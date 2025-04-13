@@ -5,6 +5,7 @@ import { relatedImagesData } from '../constants/data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSearch, FaTimes, FaVideo, FaPhoneAlt, FaComments } from 'react-icons/fa';
 import '../styles/gridLayout.css';
+import ServicesSidebar from '../components/ServicesSidebar';
 
 const ImageGallery = () => {
   const { id } = useParams();
@@ -69,7 +70,7 @@ const ImageGallery = () => {
   };
 
   return (
-    <div className="mt-12 pb-16">
+    <div className="mt-12 pb-16 relative">
       {/* Header Section */}
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -97,9 +98,16 @@ const ImageGallery = () => {
         </div>
       </div>
 
-      {/* Sections */}
-      {galleryData.sections ? (
-        <div className="max-w-6xl mx-auto px-4 py-12">
+      {/* Main Content with Sidebar */}
+      <div className="flex flex-col lg:flex-row">
+        {/* Services Sidebar */}
+        <ServicesSidebar />
+
+        {/* Main Content */}
+        <div className="flex-grow lg:ml-4 transition-all duration-300">
+          {/* Sections */}
+          {galleryData.sections ? (
+            <div className="max-w-6xl mx-auto px-4 py-8 lg:py-12">
           {galleryData.sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className="mb-16">
               {/* Section Title */}
@@ -223,7 +231,7 @@ const ImageGallery = () => {
                         </div>
                       </div>
                       <div className="p-4 bg-white rounded-b-xl flex-grow flex flex-col justify-center border-t border-gray-100">
-                        <h3 className="text-xs sm:text-sm md:text-base font-semibold text-primary text-center line-clamp-2">{image.caption}</h3>
+                        <h3 className="text-xs sm:text-sm md:text-base font-bold text-primary text-center line-clamp-2">{image.caption}</h3>
                       </div>
                     </motion.div>
                   ))}
@@ -232,9 +240,9 @@ const ImageGallery = () => {
               )}
             </div>
           ))}
-        </div>
-      ) : (
-        <div className="max-w-6xl mx-auto px-4 py-12">
+            </div>
+          ) : (
+            <div className="max-w-6xl mx-auto px-4 py-8 lg:py-12">
           <motion.div
             className="w-full"
             variants={containerVariants}
@@ -270,14 +278,16 @@ const ImageGallery = () => {
                   </div>
                 </div>
                 <div className="p-4 bg-white rounded-b-xl flex-grow flex flex-col justify-center border-t border-gray-100">
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-primary text-center line-clamp-2">{image.caption}</h3>
+                  <h3 className="text-xs sm:text-sm md:text-base font-bold text-primary text-center line-clamp-2">{image.caption}</h3>
                 </div>
               </motion.div>
             ))}
             </div>
           </motion.div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Lightbox */}
       <AnimatePresence>

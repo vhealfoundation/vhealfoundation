@@ -107,11 +107,11 @@ const Reviews = () => {
   return (
     <div
       ref={ref}
-      className="py-16 px-4 md:px-8 bg-gradient-to-b from-white to-gray-50"
+      className="py-16 px-4 bg-gradient-to-b from-white to-gray-50"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -120,11 +120,11 @@ const Reviews = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3">
-            Client Testimonials
+          Clients Reviews on our Counselling Services
           </h2>
           <LineSeperator className="mb-4" />
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Hear from those who have experienced transformation through our counseling services
+            Hear from those who have experienced transformation through our counselling services
           </p>
         </motion.div>
 
@@ -143,7 +143,7 @@ const Reviews = () => {
 
           {/* Cards Container */}
           <div className="overflow-hidden px-4 md:px-10">
-            <div className="flex gap-6 transition-all duration-500 ease-in-out">
+            <div className="flex gap-2 transition-all duration-500 ease-in-out">
               <AnimatePresence mode="wait">
                 {visibleCards.map((review, index) => (
                   <motion.div
@@ -174,7 +174,7 @@ const Reviews = () => {
                       <div className="z-10 flex flex-col h-full">
                         {/* Review Text */}
                         <div className="flex-grow mb-4">
-                          <p className="text-gray-600 italic relative z-10 text-base">
+                          <p className="text-gray-600 italic relative z-10 text-base text-justify">
                             "{review.review}"
                           </p>
                         </div>
@@ -183,7 +183,14 @@ const Reviews = () => {
                         <div className="mt-auto pt-4 border-t border-gray-100">
                           <div className="flex justify-between items-center">
                             <div>
-                              <h3 className="font-bold text-lg text-primary">{review.name}</h3>
+                              <h3 className="font-bold text-lg text-primary">
+                                {review.name.split('\n').map((namePart, i) => (
+                                  <React.Fragment key={i}>
+                                    {i > 0 && <br />}
+                                    {namePart}
+                                  </React.Fragment>
+                                ))}
+                              </h3>
                               <p className="text-gray-500 text-sm">{review.role}</p>
                             </div>
                             <div className="flex">

@@ -1,0 +1,77 @@
+/* Sidebar Styles */
+.services-sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure sidebar scrolls independently on desktop */
+@media (min-width: 1024px) {
+  .services-sidebar {
+    height: calc(100vh - 5rem);
+    position: sticky;
+    top: 5rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    width: 240px; /* Reduced width */
+  }
+
+  .services-sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .services-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .services-sidebar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .services-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+/* Mobile sidebar adjustments */
+@media (max-width: 1023px) {
+  .services-sidebar {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    height: calc(100vh - 4rem);
+    z-index: 40;
+    width: 250px;
+    transform: translateX(-100%);
+  }
+
+  .services-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+    display: none;
+  }
+
+  .sidebar-overlay.visible {
+    display: block;
+  }
+}
+
+/* Active service item styling */
+.service-item.active {
+  background-color: rgba(142, 36, 170, 0.1);
+  color: #8E24AA;
+  font-weight: 500;
+}
+
+.service-item.active .service-icon {
+  box-shadow: 0 0 0 2px #8E24AA;
+}
+
+.service-item.active .service-arrow {
+  color: #8E24AA;
+}

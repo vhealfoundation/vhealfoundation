@@ -110,7 +110,7 @@ const StoryDetailCard = ({ coverImage, title, description, content }) => {
                     <div className="w-8 h-0.5 bg-orange-300"></div>
                     <div className="w-16 h-1 bg-orange-500"></div>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                  <h2 className="text-xl md:text-2xl font-bold text-primary">
                     {section.title?.split(',').map((part, index) => (
                       <React.Fragment key={index}>
                         {index > 0 && <br />}

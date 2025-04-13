@@ -22,7 +22,7 @@ export const slides = [
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner3_tpzg20.png", // Replace with actual image for "Psychological Assessments"
     title: "We administer\nPsychological Assessments",
     subtitle: "to ascertain psychological functioning and identify support needs",
-    backgroundPosition: "center -20px" // Adjusted position with pixel value
+    backgroundPosition: "center 20px" // Adjusted position with pixel value
   },
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846665/banner4_odblcx.png", // Replace with actual image for "Training programmes"
@@ -401,12 +401,12 @@ export const relatedImagesData = {
       },
       {
         id: 4,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848398/UPSKILLING_RELASED_PRISONERS_bqruyy.png",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/providing_help_for_prisoners_family_members_jxlxdq.jpg",
         caption: "UPSKILL PRISONERS INSIDE THE PRISON AND EDUCATE THEM ON JOB OPPORTUNITIES AFTER THEIR RELEASE"
       },
       {
         id: 5,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281997/PROVIDE_APPROPRIATE_TRAINING_FOR_THE_PRISONERS_TO_LEARN_NEW_SKILLS_INSIDE_THE_PRISON_ewkxjh.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/PROVIDE_TRAINING_FOR_PRISONERS_ceuosc.jpg",
         caption: "PROVIDE APPROPRIATE TRAINING FOR THE PRISONERS TO LEARN NEW SKILLS INSIDE THE PRISON"
       },
       {
@@ -416,7 +416,7 @@ export const relatedImagesData = {
       },
       {
         id: 7,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281996/PROVIDE_LEGAL_AND_FINANCIAL_SUPPORT_TO_ECONOMICALLY_DOWNTRODDEN_PRISONERS_FOR_LEGAL_AID_AND_TO_SECURE_BAIL_pineoe.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/provide_legal_assistance_for_prisoners_guibzz.jpg",
         caption: "PROVIDE LEGAL AND FINANCIAL SUPPORT TO ECONOMICALLY DOWNTRODDEN PRISONERS FOR LEGAL AID AND TO SECURE BAIL"
       },
       {
@@ -431,7 +431,7 @@ export const relatedImagesData = {
       },
       {
         id: 10,
-        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281999/PROVIDE_REQUIRED_RELIEF_AND_ASSISTANCE_TO_FAMILY_MEMBERS_OF_ECONOMICALLY_DOWNTRODDEN_PRISONERS_WHO_ARE_OUTSIDE_THE_PRISON_zw9rtw.jpg",
+        url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/provide_counselling_and_training_for_prisoners_thgm1w.jpg",
         caption: "PROVIDE REQUIRED RELIEF AND ASSISTANCE TO FAMILY MEMBERS OF ECONOMICALLY DOWNTRODDEN PRISONERS WHO ARE OUTSIDE THE PRISON"
       }
     ]
@@ -534,55 +534,28 @@ export const testimonials = [
 
 
 
-// Sample review data - replace with actual data later
+
 export const reviewsData = [
   {
     id: 1,
-    name: "Priya Sharma",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743510729/yogcn1iuh5y2vxfhxkph.jpg",
-    role: "Student",
+    name: "Mrs. Beena and \nMr. Diwakar",
+    role: "Couples - Marital Counselling",
     rating: 5,
-    review: "The counseling sessions at V Heal Foundation completely transformed my approach to managing anxiety. The therapist was incredibly supportive and provided practical techniques that I use daily."
+    review: "We've found the sessions with Dr. Maria to be incredibly valuable. She created a safe and non-judgmental space for us to discuss challenges, and we appreciate her calm yet direct approach to guiding our conversations. After two sessions, myself and my husband felt like we have made significant progress in understanding each other better and learning new communication skills, which has led to a noticeable improvement in our relationship."
   },
   {
     id: 2,
-    name: "Rahul Verma",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743097252/t01qji4jszfssfgvalib.jpg",
-    role: "IT Professional",
+    name: "Nishanth",
+    role: "Student – Relationship Counselling",
     rating: 5,
-    review: "After struggling with work-related stress for years, the counselors at V Heal helped me develop healthy coping mechanisms. Their holistic approach addressed both my mental and emotional wellbeing."
+    review: "I'm incredibly grateful for the counselling I received to address my relationship issues. The sessions provided a safe and supportive space to explore my feelings and communication patterns with my partner. Dr. Maria active listening and guidance helped me gain a better understanding of my own needs and how to communicate them more effectively. I felt empowered to navigate future challenges with more confidence and self-awareness."
   },
   {
     id: 3,
-    name: "Ananya Patel",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365090/frcycmn7mo7yc5pqbrxw.png",
-    role: "Homemaker",
+    name: "Mathesh",
+    role: "Student – Counselling on Addiction",
     rating: 5,
-    review: "The family counseling services helped us navigate a difficult period in our marriage. The counselor was patient, unbiased, and gave us practical tools to improve our communication."
-  },
-  {
-    id: 4,
-    name: "Vikram Singh",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741846666/banner1_czmjga.png",
-    role: "Former Inmate",
-    rating: 5,
-    review: "V Heal's rehabilitation program gave me hope and direction when I needed it most. Their counselors helped me rebuild my self-esteem and prepare for life after incarceration."
-  },
-  {
-    id: 5,
-    name: "Meera Kapoor",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png",
-    role: "Teacher",
-    rating: 4,
-    review: "The stress management workshops were incredibly insightful. I learned techniques that not only helped me personally but also enabled me to better support my students."
-  },
-  {
-    id: 6,
-    name: "Arjun Malhotra",
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743510729/yogcn1iuh5y2vxfhxkph.jpg",
-    role: "Business Owner",
-    rating: 5,
-    review: "The executive coaching program helped me navigate leadership challenges with confidence. The personalized approach and actionable strategies made a significant difference in my professional life."
+    review: "I appreciate the non-judgmental environment and the way Dr. Maria actively listened without interruption. It made me feel safe to share my struggles. She was able to identify my triggers and suggested helpful coping mechanisms, which has been incredibly helpful in maintaining my sobriety. Her empathy and understanding helped me gain a deeper understanding of my addiction and the underlying issues contributing to it."
   }
 ];
 

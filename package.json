@@ -1,7 +1,6 @@
 {
   "name": "dm-foundation",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -35,7 +34,7 @@
   },
   "scripts": {
     "start": "cross-env BROWSER=none react-scripts start",
-    "build": "node scripts/build.js",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate-sitemap": "node scripts/generateSitemap.js",
@@ -64,6 +63,5 @@
     "cross-env": "^7.0.3",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }

@@ -49,7 +49,7 @@ const Banner = () => {
       setPreviousSlide(currentSlide);
       setDirection(1); // Right to left for auto-advance
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 7000); // Change slide every 7 seconds
+    }, 10000); // Change slide every 7 seconds
 
     return () => {
       if (slideTimerRef.current) {
@@ -166,7 +166,7 @@ const Banner = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 1, ease: "easeInOut" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
             className="absolute inset-0"
             onAnimationComplete={() => {
               if (isFirstRender.current) {
@@ -177,9 +177,6 @@ const Banner = () => {
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover"
-              style={{
-                backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
-              }}
             >
               <motion.div
                 variants={backgroundVariants}
@@ -343,20 +340,16 @@ const Banner = () => {
           >
             {/* Background Image */}
             <div
-              className="absolute inset-0 bg-cover"
-              style={{
-                backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
-                backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
-              }}
+              className="absolute inset-0 bg-cover bg-center"
+             
             >
               <motion.div
                 variants={backgroundVariants}
                 initial="initial"
                 animate="animate"
-                className="absolute inset-0 bg-cover"
+                className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
-                  backgroundPosition: slides[currentSlide].backgroundPosition || 'center center'
                 }}
               />
               {/* Dark overlay (always present) */}
@@ -397,7 +390,7 @@ const Banner = () => {
                       </div>
 
                       {/* Subtitle with dramatic highlight */}
-                      <div className="mt-4 relative bg-black/50 backdrop-blur-sm rounded-full pb-4 px-3">
+                      <div className="mt-4 relative bg-black/50 backdrop-blur-sm rounded-full pb-4 px-12">
                         <div className="flex justify-between -mb-4">
                           <div className="text-orange-500 text-3xl opacity-60 translate-y-4">"</div>
                           <div className="text-orange-500 text-3xl opacity-60 translate-y-4">"</div>

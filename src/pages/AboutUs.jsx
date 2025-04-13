@@ -130,7 +130,7 @@ const AboutUs = () => {
       </div>
 
       {/* About Us Content Section */}
-      <div className="max-w-6xl mx-auto px-4 pb-12">
+      <div className="mx-auto px-4 md:px-20 pb-12">
         <motion.div
           className="bg-white rounded-lg shadow-xl overflow-hidden"
           initial="hidden"
