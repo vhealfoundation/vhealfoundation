@@ -57,42 +57,50 @@ export const relatedImagesData = {
           {
             id: 1,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848875/INDIVIDUAL_COUNSELLING_tqlnvo.avif",
-            caption: "INDIVIDUAL COUNSELLING"
+            caption: "INDIVIDUAL COUNSELLING",
+            description: "One-on-one counselling sessions focused on personal issues, mental health concerns, and individual growth. Our therapists provide a safe, confidential space to explore thoughts, feelings, and behaviors."
           },
           {
             id: 2,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848870/CHILD_AND_ADOLESCENT_COUNSELLING_onygfw.avif",
-            caption: "CHILD AND ADOLESCENT COUNSELLING"
+            caption: "CHILD AND ADOLESCENT COUNSELLING",
+            description: "Specialized counselling for children and teenagers facing developmental challenges, behavioral issues, academic stress, or emotional difficulties. Age-appropriate techniques help young people navigate their unique life stages."
           },
           {
             id: 3,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848875/RELATIOSHIP_AND_MARITAL_COUNSELLING_npp2qc.avif",
-            caption: "RELATIONSHIP AND MARITAL COUNSELLING"
+            caption: "RELATIONSHIP AND MARITAL COUNSELLING",
+            description: "Support for couples experiencing relationship challenges, communication issues, or life transitions. Our counsellors help partners improve understanding, resolve conflicts, and strengthen their bond."
           },
           {
             id: 4,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848871/COUPLE_COUNSELLING_edawpw.avif",
-            caption: "COUPLE COUNSELLING"
+            caption: "COUPLE COUNSELLING",
+            description: "Therapeutic support for couples at any relationship stage, addressing intimacy concerns, trust issues, or preparing for major life changes. We provide tools to enhance connection and mutual understanding."
           },
           {
             id: 5,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848871/FAMILY_COUNSELLING_b8zobz.avif",
-            caption: "FAMILY COUNSELLING"
+            caption: "FAMILY COUNSELLING",
+            description: "Counselling for entire family units dealing with conflict, communication breakdowns, or adjusting to significant changes. Our approach helps improve family dynamics and strengthen relationships between all members."
           },
           {
             id: 6,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848874/GEDIATRIC_COUNSELLING_rinwc6.avif",
-            caption: "GERIATRIC COUNSELLING"
+            caption: "GERIATRIC COUNSELLING",
+            description: "Specialized support for older adults facing age-related challenges, life transitions, health concerns, or emotional difficulties. Our counsellors help seniors maintain mental well-being and quality of life."
           },
           {
             id: 7,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848710/work_life_stress_iacqts.jpg",
-            caption: "WORKPLACE COUNSELLING"
+            caption: "WORKPLACE COUNSELLING",
+            description: "Professional support for work-related stress, burnout, career transitions, or workplace conflicts. Our counsellors help individuals navigate professional challenges while maintaining mental health and productivity."
           },
           {
             id: 8,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848875/REHABILITATION_COUNSELLING_hyyjya.avif",
-            caption: "REHABILITATION COUNSELLING"
+            caption: "REHABILITATION COUNSELLING",
+            description: "Specialized counselling for individuals recovering from illness, injury, addiction, or major life disruptions. Our rehabilitation counsellors provide support for rebuilding life skills and regaining independence."
           }
         ]
       },

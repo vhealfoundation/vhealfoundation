@@ -120,7 +120,7 @@ const Beneficiaries = () => {
       });
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        key: process.env.REACT_APP_DONATION_RAZORPAY_KEY_ID,
         amount: orderDetails.amount,
         currency: "INR",
         name: "V Heal Foundation",

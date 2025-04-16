@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { FaArrowCircleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import CustomButton from "./CustomButton";
 import CustomTextField from "./CustomTextField";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
@@ -11,15 +12,18 @@ import dayjs from "dayjs";
 import Loader from "./Loader"; // Importing the Loader component
 
 // A fixed amount for demonstration purposes. In production, amount can be dynamic.
-const APPOINTMENT_AMOUNT = 1000; // in INR
+const APPOINTMENT_AMOUNT = process.env.REACT_APP_APPOINTMENT_AMOUNT;
 
 const LOCALSTORAGE_KEY = "savedAppointmentDetails";
 
 const AppointmentCard = ({ isStandalone }) => {
   const { user } = useKindeAuth();
   const navigate = useNavigate();
+  const scrollContainerRef = useRef(null);
 
   const [loading, setLoading] = useState(false); // State to manage the loader
+  const [availableDates, setAvailableDates] = useState([]); // State to store available dates
+  const [fetchingSlots, setFetchingSlots] = useState(false); // State to manage slot fetching status
 
   // Initialize appointment details from local storage if present
   const [appointmentDetails, setAppointmentDetails] = useState(() => {
@@ -67,6 +71,43 @@ const AppointmentCard = ({ isStandalone }) => {
     return true;
   };
 
+  // Fetch available dates when component mounts
+  useEffect(() => {
+    const fetchAvailableDates = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/appointments/dates`
+        );
+        const data = await response.json();
+        console.log('Available dates response:', data);
+
+        // Handle the response format: {"success":true,"data":["2025-03-21","2025-03-31"]}
+        if (data.success && Array.isArray(data.data)) {
+          // Convert string dates to dayjs objects and log for debugging
+          const dates = data.data.map(dateStr => {
+            try {
+              const date = dayjs(dateStr);
+              console.log('Converted date:', dateStr, 'to dayjs:', date.format('YYYY-MM-DD'));
+              return date;
+            } catch (e) {
+              console.error('Error converting date:', dateStr, e);
+              return null;
+            }
+          }).filter(date => date !== null); // Remove any failed conversions
+
+          setAvailableDates(dates);
+          console.log('Set available dates:', dates.length);
+        } else {
+          console.warn('Invalid response format from /appointments/dates:', data);
+        }
+      } catch (err) {
+        console.error("Error fetching available dates:", err);
+      }
+    };
+
+    fetchAvailableDates();
+  }, []);
+
   // Fetch available slots when appointment date changes.
   // We also save the appointmentId from the response if available.
   useEffect(() => {
@@ -74,6 +115,7 @@ const AppointmentCard = ({ isStandalone }) => {
       setAvailableSlots([]);
       setNoSlotsMessage("");
       if (appointmentDetails.date) {
+        setFetchingSlots(true); // Set fetching status to true
         const formattedDate = dayjs(appointmentDetails.date).format("YYYY-MM-DD");
         try {
           const response = await fetch(
@@ -96,6 +138,8 @@ const AppointmentCard = ({ isStandalone }) => {
         } catch (err) {
           console.error(err);
           setNoSlotsMessage("Error fetching slots");
+        } finally {
+          setFetchingSlots(false); // Set fetching status to false when done
         }
       }
     };
@@ -160,7 +204,7 @@ const AppointmentCard = ({ isStandalone }) => {
 
       // Launch Razorpay Checkout
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY, // Razorpay key from env variable
+        key: process.env.REACT_APP_APPOINTMENT_RAZORPAY_KEY, // Razorpay key from env variable
         amount: orderData.amount, // Amount in currency subunit
         currency: orderData.currency,
         name: "V Heal Rehabilitation",
@@ -296,15 +340,39 @@ const AppointmentCard = ({ isStandalone }) => {
               setAppointmentDetails((prev) => ({ ...prev, date: newValue, slotId: "" }));
               setError("");
             }}
-            renderInput={(params) => (
-              <CustomTextField
-                {...params}
-                name="date"
-                className="mb-4"
-                inputClassName="bg-gray-100"
-                labelClassName="font-bold"
-              />
-            )}
+            slotProps={{
+              day: (ownerState) => {
+                try {
+                  // Make sure ownerState and ownerState.day exist and have format method
+                  if (!ownerState || !ownerState.day || typeof ownerState.day.format !== 'function') {
+                    return {};
+                  }
+
+                  // Check if this date is in our available dates
+                  const dateStr = ownerState.day.format("YYYY-MM-DD");
+                  const isAvailable = availableDates.some(date => {
+                    return date && typeof date.format === 'function' && date.format("YYYY-MM-DD") === dateStr;
+                  });
+
+                  // Return custom styling for available dates
+                  return {
+                    sx: isAvailable ? {
+                      backgroundColor: 'rgba(76, 175, 80, 0.1)', // Light green background
+                      borderRadius: '50%',
+                      border: '2px solid #4caf50', // Green border
+                      color: '#1e1e1e', // Keep text dark for readability
+                      fontWeight: 'bold',
+                      '&:hover': {
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)', // Slightly darker on hover
+                      }
+                    } : {}
+                  };
+                } catch (error) {
+                  console.error('Error in day slot props:', error);
+                  return {};
+                }
+              }
+            }}
           />
         </LocalizationProvider>
         {/* Display available slots if any */}
@@ -313,22 +381,149 @@ const AppointmentCard = ({ isStandalone }) => {
             <Typography variant="subtitle1" className="font-bold">
               Available Slots:
             </Typography>
-            {availableSlots.length > 0 ? (
-              <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mt: 1 }}>
-                {availableSlots.map((slot) => {
-                  const slotIdentifier = slot._id || slot.id;
-                  return (
-                    <Button
-                      key={slotIdentifier}
-                      variant={appointmentDetails.slotId === slotIdentifier ? "contained" : "outlined"}
-                      onClick={() =>
-                        setAppointmentDetails((prev) => ({ ...prev, slotId: slotIdentifier }))
-                      }
+            {fetchingSlots ? (
+              <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                Fetching available slots...
+              </Typography>
+            ) : availableSlots.length > 0 ? (
+              <Box sx={{ mt: 1, position: 'relative' }}>
+                {/* Desktop navigation header with title and arrows */}
+                <Box sx={{
+                  display: { xs: 'none', sm: 'flex' },
+                  alignItems: 'center',
+                  mb: 1.5,
+                  justifyContent: 'space-between'
+                }}>
+                  <Typography variant="caption" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
+                    Navigate through available slots
+                  </Typography>
+
+                  {/* Navigation arrows in top right */}
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    <IconButton
+                      onClick={() => {
+                        const container = scrollContainerRef.current;
+                        if (container) {
+                          // Smoother scrolling with smaller increment
+                          const targetScroll = container.scrollLeft - 150;
+                          container.scrollTo({
+                            left: targetScroll,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      sx={{
+                        backgroundColor: 'rgba(255,255,255,0.95)',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.15)',
+                        width: '28px',
+                        height: '28px',
+                        border: '1px solid rgba(76, 175, 80, 0.5)',
+                        padding: '4px',
+                        '&:hover': { backgroundColor: 'rgba(76, 175, 80, 0.1)' }
+                      }}
+                      size="small"
                     >
-                      {slot.time}
-                    </Button>
-                  );
-                })}
+                      <FaChevronLeft size={14} color="#4caf50" />
+                    </IconButton>
+
+                    <IconButton
+                      onClick={() => {
+                        const container = scrollContainerRef.current;
+                        if (container) {
+                          // Smoother scrolling with smaller increment
+                          const targetScroll = container.scrollLeft + 150;
+                          container.scrollTo({
+                            left: targetScroll,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      sx={{
+                        backgroundColor: 'rgba(255,255,255,0.95)',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.15)',
+                        width: '28px',
+                        height: '28px',
+                        border: '1px solid rgba(76, 175, 80, 0.5)',
+                        padding: '4px',
+                        '&:hover': { backgroundColor: 'rgba(76, 175, 80, 0.1)' }
+                      }}
+                      size="small"
+                    >
+                      <FaChevronRight size={14} color="#4caf50" />
+                    </IconButton>
+                  </Box>
+                </Box>
+
+                {/* Mobile hint */}
+                <Box sx={{ display: { xs: 'flex', sm: 'none' }, alignItems: 'center', mb: 0.5, gap: 0.5, justifyContent: 'center' }}>
+                  <Typography variant="caption" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
+                    Swipe to see more slots
+                  </Typography>
+                  <FaArrowCircleRight size={16} color="#4caf50" style={{ marginLeft: '4px' }} />
+                </Box>
+
+                {/* Slot container without absolute positioned arrows */}
+                <Box sx={{ width: '100%', my: 1 }}>
+
+                  {/* Scrollable container */}
+                  <Box
+                    ref={scrollContainerRef}
+                    sx={{
+                      display: "flex",
+                      gap: 2,
+                      overflowX: "auto",
+                      pb: 1,
+                      position: 'relative',
+                      px: { xs: 1, sm: 2 }, // Less padding needed now that arrows are in the header
+                      scrollBehavior: 'smooth', // Smooth scrolling
+                      WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
+                      scrollSnapType: { xs: 'x mandatory', sm: 'none' }, // Snap on mobile for better experience
+                      '&::-webkit-scrollbar': {
+                        height: '6px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: 'rgba(0,0,0,0.2)',
+                        borderRadius: '6px',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: 'rgba(0,0,0,0.05)',
+                      },
+                    }}
+                  >
+
+                  {availableSlots.map((slot) => {
+                    const slotIdentifier = slot._id || slot.id;
+                    return (
+                      <Button
+                        key={slotIdentifier}
+                        variant={appointmentDetails.slotId === slotIdentifier ? "contained" : "outlined"}
+                        onClick={() =>
+                          setAppointmentDetails((prev) => ({ ...prev, slotId: slotIdentifier }))
+                        }
+                        sx={{
+                          minWidth: '90px',
+                          mx: 0.5, // Add a bit of margin to prevent buttons from being too close to arrows
+                          flexShrink: 0,
+                          borderRadius: '20px',
+                          borderColor: appointmentDetails.slotId === slotIdentifier ? '#4caf50' : 'rgba(0, 0, 0, 0.23)',
+                          backgroundColor: appointmentDetails.slotId === slotIdentifier ? '#4caf50' : 'transparent',
+                          color: appointmentDetails.slotId === slotIdentifier ? 'white' : 'inherit',
+                          fontWeight: 'medium',
+                          scrollSnapAlign: 'center', // For mobile snap scrolling
+                          '&:hover': {
+                            borderColor: '#4caf50',
+                            backgroundColor: appointmentDetails.slotId === slotIdentifier ? '#4caf50' : 'rgba(76, 175, 80, 0.08)',
+                          }
+                        }}
+                      >
+                        {slot.time}
+                      </Button>
+                    );
+                  })}
+                  </Box>
+
+                  {/* No right arrow here anymore - moved to header */}
+                </Box>
               </Box>
             ) : (
               <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>

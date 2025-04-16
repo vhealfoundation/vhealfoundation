@@ -301,28 +301,35 @@ const ImageGallery = () => {
             onClick={closeLightbox}
           >
             <motion.div
-              className="relative max-w-4xl max-h-[90vh] w-full"
+              className="relative max-w-4xl w-full flex flex-col max-h-[90vh] overflow-y-auto"
               variants={imageVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={selectedImage.url}
-                alt={selectedImage.caption}
-                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-              />
-              <div className="absolute top-0 right-0 m-4">
-                <button
-                  onClick={closeLightbox}
-                  className="bg-white/20 hover:bg-white/40 rounded-full p-2 text-white transition-colors"
-                >
-                  <FaTimes size={24} />
-                </button>
+              <div className="relative">
+                <img
+                  src={selectedImage.url}
+                  alt={selectedImage.caption}
+                  className="w-full h-auto max-h-[60vh] object-contain rounded-t-lg"
+                />
+                <div className="absolute top-0 right-0 m-4">
+                  <button
+                    onClick={closeLightbox}
+                    className="bg-white/20 hover:bg-white/40 rounded-full p-2 text-white transition-colors"
+                  >
+                    <FaTimes size={24} />
+                  </button>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-b-lg p-4 mt-2">
+              <div className="bg-white/10 backdrop-blur-sm rounded-b-lg p-6">
                 <h3 className="text-xl font-bold text-white text-center">{selectedImage.caption}</h3>
+                {selectedImage.description && (
+                  <p className="text-white/90 text-center mt-3 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                    {selectedImage.description}
+                  </p>
+                )}
               </div>
             </motion.div>
           </motion.div>
