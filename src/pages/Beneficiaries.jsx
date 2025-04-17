@@ -110,6 +110,10 @@ const Beneficiaries = () => {
       toast.error("Please select a beneficiary and enter donation amount.");
       return;
     }
+
+    // Show loader immediately when payment button is clicked
+    setPaymentLoading(true);
+
     try {
       const orderDetails = await createRazorpayOrder({
         amount: donationDetails.amount || donationDetails.customAmount,
@@ -127,8 +131,7 @@ const Beneficiaries = () => {
         description: "Donation Payment",
         order_id: orderDetails.orderId,
         handler: async (response) => {
-          // Show loader immediately when payment is made
-          setPaymentLoading(true);
+          // Keep loader showing during payment verification
           try {
             const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
             // Send both payment ID and order ID to the backend for verification
@@ -158,6 +161,12 @@ const Beneficiaries = () => {
         theme: {
           color: primaryColor,
         },
+        modal: {
+          ondismiss: function() {
+            // Hide loader if Razorpay modal is dismissed
+            setPaymentLoading(false);
+          }
+        }
       };
 
       const razorpay = new window.Razorpay(options);
@@ -165,6 +174,7 @@ const Beneficiaries = () => {
     } catch (error) {
       console.error("Error processing payment:", error);
       toast.error("Unable to initiate payment. Please try again later.");
+      setPaymentLoading(false); // Hide loader on error
     }
   };
 
@@ -206,7 +216,7 @@ const Beneficiaries = () => {
             Choose a beneficiary to make a donation to support their cause and help transform lives.
           </p>
 
-         
+
         </motion.div>
 
         {/* Display selected beneficiary and donation button */}
@@ -245,10 +255,18 @@ const Beneficiaries = () => {
 
             <button
               onClick={handlePayment}
-              className="w-full py-4 rounded-lg text-white font-medium text-lg shadow-md hover:shadow-lg transition-all duration-300"
+              className="w-full py-4 rounded-lg text-white font-medium text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center"
               style={{ backgroundColor: primaryColor }}
+              disabled={paymentLoading}
             >
-              Proceed to Payment
+              {paymentLoading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Processing...
+                </>
+              ) : (
+                "Proceed to Payment"
+              )}
             </button>
           </motion.div>
         )}

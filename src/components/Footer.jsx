@@ -5,20 +5,27 @@ import logo from "../assets/logo.png"; // Make sure to import your logo
 
 export default function Footer() {
   return (
-    <footer className="md:px-20 bg-primary text-white pt-10 pb-6 relative overflow-hidden z-10 mt-auto">
+    <footer className="bg-primary text-white pt-10 pb-6 relative overflow-hidden z-10 mt-auto">
       {/* Floating Blur Effects */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-blue-500 opacity-30 blur-3xl rounded-full"></div>
       <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-700 opacity-30 blur-3xl rounded-full"></div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <div className=" mx-auto px-6 md:px-24 relative z-10">
         {/* Footer Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo and About Section */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="V Heal Logo" className="w-12 h-12" />
-              <h3 className="text-xl font-bold">V Heal Foundation</h3>
+          <Link to="/" className="flex items-center gap-2" >
+          <img src={logo} alt="Logo" className="w-10 h-10 md:w-[52px] md:h-[52px]" />
+          <div>
+            <p className="font-bold text-white text-lg md:text-xl whitespace-nowrap">V HEAL FOUNDATION</p>
+            <div className="flex items-center gap-1">
+              <span className="w-4 h-[1px] bg-white/80"></span>
+              <p className="text-white/80 text-[8.5px] md:text-[9px] italic">Enriching, Empowering & Enduring Lives</p>
+              <span className="w-4 h-[1px] bg-white/80"></span>
             </div>
+          </div>
+        </Link>
             <p className="text-white/80 text-sm leading-relaxed text-justify">
             V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
             </p>

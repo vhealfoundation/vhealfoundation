@@ -29,7 +29,7 @@ const StoryDetail = () => {
     fetchStory();
   }, [id]);
 
-  console.log(stories);
+
 
 
   if (error) {

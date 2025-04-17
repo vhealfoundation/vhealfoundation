@@ -4,7 +4,7 @@
 @media (max-width: 640px) {
   .flex-wrap > * {
     width: calc(50% - 1rem) !important;
-    max-width: 160px !important;
+    max-width: 140px !important;
   }
 }
 

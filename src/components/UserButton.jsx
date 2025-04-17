@@ -10,10 +10,23 @@ export default function UserButton() {
     const dropdownRef = useRef(null); // Reference to the dropdown container
 
     useEffect(() => {
-        // Once user data is available, stop loading
+        // Check if authentication state is available
         if (isAuthenticated !== undefined) {
             setIsLoading(false);
         }
+
+        // Add event listener for Kinde auth state changes
+        const handleAuthChange = () => {
+            // Force a re-render when auth state changes in another tab/window
+            setIsLoading(true);
+            setTimeout(() => setIsLoading(false), 100);
+        };
+
+        window.addEventListener('storage', handleAuthChange);
+
+        return () => {
+            window.removeEventListener('storage', handleAuthChange);
+        };
     }, [isAuthenticated]); // Re-run this when `isAuthenticated` changes
 
     useEffect(() => {
@@ -30,7 +43,12 @@ export default function UserButton() {
     }, []);
 
     if (isLoading) {
-        return null;
+        // Show a minimal loading indicator instead of nothing
+        return (
+            <div className="flex items-center justify-center w-10 h-10">
+                <div className="w-5 h-5 border-2 border-gray-300 border-t-primary rounded-full animate-spin"></div>
+            </div>
+        );
     }
 
     return (

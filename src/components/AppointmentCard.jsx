@@ -79,7 +79,7 @@ const AppointmentCard = ({ isStandalone }) => {
           `${process.env.REACT_APP_BACKEND_URL}/appointments/dates`
         );
         const data = await response.json();
-        console.log('Available dates response:', data);
+
 
         // Handle the response format: {"success":true,"data":["2025-03-21","2025-03-31"]}
         if (data.success && Array.isArray(data.data)) {
@@ -87,7 +87,7 @@ const AppointmentCard = ({ isStandalone }) => {
           const dates = data.data.map(dateStr => {
             try {
               const date = dayjs(dateStr);
-              console.log('Converted date:', dateStr, 'to dayjs:', date.format('YYYY-MM-DD'));
+
               return date;
             } catch (e) {
               console.error('Error converting date:', dateStr, e);
@@ -96,7 +96,7 @@ const AppointmentCard = ({ isStandalone }) => {
           }).filter(date => date !== null); // Remove any failed conversions
 
           setAvailableDates(dates);
-          console.log('Set available dates:', dates.length);
+
         } else {
           console.warn('Invalid response format from /appointments/dates:', data);
         }
@@ -128,7 +128,14 @@ const AppointmentCard = ({ isStandalone }) => {
               setAppointmentDetails((prev) => ({ ...prev, appointmentId: data.slot._id }));
             }
             if (data.slot.slots && data.slot.slots.length > 0) {
-              setAvailableSlots(data.slot.slots);
+              // Filter out slots that are already booked
+              const unbookedSlots = data.slot.slots.filter(slot => !slot.booked);
+
+              if (unbookedSlots.length > 0) {
+                setAvailableSlots(unbookedSlots);
+              } else {
+                setNoSlotsMessage("All slots are booked for this date");
+              }
             } else {
               setNoSlotsMessage(data.slot.message || "No slots available");
             }
@@ -166,6 +173,9 @@ const AppointmentCard = ({ isStandalone }) => {
       return;
     }
 
+    // Show loader immediately when payment button is clicked
+    setLoading(true);
+
     const formattedDate = dayjs(appointmentDetails.date).format("YYYY-MM-DD");
     // Ensure we have an appointmentId and slot time for the selected slot.
     const selectedSlot = availableSlots.find(
@@ -173,6 +183,7 @@ const AppointmentCard = ({ isStandalone }) => {
     );
     if (!selectedSlot) {
       setError("Selected slot not found.");
+      setLoading(false); // Hide loader on error
       return;
     }
 
@@ -199,6 +210,7 @@ const AppointmentCard = ({ isStandalone }) => {
       if (!orderData.success) {
         setError(orderData.message || "Failed to create order");
         toast.error(orderData.message || "Failed to create order");
+        setLoading(false); // Hide loader on error
         return;
       }
 
@@ -211,8 +223,7 @@ const AppointmentCard = ({ isStandalone }) => {
         description: "Appointment Booking Payment",
         order_id: orderData.orderId,
         handler: async function (response) {
-          // Show loader immediately once the payment is made
-          setLoading(true);
+          // Keep loader showing during payment verification
           // Prepare payload for verifying payment
           const verifyPayload = {
             razorpayPaymentId: response.razorpay_payment_id,
@@ -257,6 +268,12 @@ const AppointmentCard = ({ isStandalone }) => {
         },
         theme: {
           color: "#3399cc"
+        },
+        modal: {
+          ondismiss: function() {
+            // Hide loader if Razorpay modal is dismissed
+            setLoading(false);
+          }
         }
       };
 
@@ -266,6 +283,7 @@ const AppointmentCard = ({ isStandalone }) => {
       console.error(err);
       setError("Booking failed. Please try again.");
       toast.error("Booking failed. Please try again.");
+      setLoading(false); // Hide loader on error
     }
   };
 
@@ -540,10 +558,18 @@ const AppointmentCard = ({ isStandalone }) => {
         )}
         {/* Submit Button */}
         <CustomButton
-          className="px-6 py-3 text-white bg-primary hover:bg-tertiary rounded-lg"
+          className="px-6 py-3 text-white bg-primary hover:bg-tertiary rounded-lg flex items-center justify-center"
           type="submit"
+          disabled={loading}
         >
-          Proceed to Payment
+          {loading ? (
+            <>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+              Processing...
+            </>
+          ) : (
+            "Proceed to Payment"
+          )}
         </CustomButton>
       </form>
     </Box>

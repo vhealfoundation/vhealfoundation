@@ -20,6 +20,7 @@ root.render(
         clientId={authConfig.clientId}
         redirectUri={authConfig.redirectUri}
         logoutRedirectUri={authConfig.logoutRedirectUri}
+        isDangerouslyUseLocalStorage={true}
       >
         <App />
         <Toaster

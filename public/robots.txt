@@ -1,10 +1,41 @@
+# V Heal Foundation Robots.txt
 # https://www.robotstxt.org/robotstxt.html
+
+# Allow all web crawlers to access all content
 User-agent: *
 Allow: /
 
-# Disallow admin or private areas if needed
-# Disallow: /admin/
-# Disallow: /private/
+# Disallow specific areas that shouldn't be indexed
+Disallow: /login/
+Disallow: /logout/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /thank-you/
+Disallow: /error/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
 
-# Sitemap location
+# Specific rules for major search engines
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /login/
+Disallow: /logout/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /login/
+Disallow: /logout/
+
+# Crawl delay for specific bots (in seconds)
+User-agent: Slurp
+Crawl-delay: 10
+
+# Sitemap locations
 Sitemap: https://vhealfoundation.org/sitemap.xml
+
+# Host directive to specify preferred domain
+Host: https://vhealfoundation.org

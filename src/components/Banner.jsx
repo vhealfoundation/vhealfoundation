@@ -154,6 +154,9 @@ const Banner = () => {
       }
     }
   };
+
+  // We'll use a different approach with Framer Motion's key prop
+  // to ensure animations restart properly
   return (
     <section className="relative h-auto overflow-hidden z-0">
       {/* Desktop Layout */}
@@ -182,6 +185,7 @@ const Banner = () => {
                 variants={backgroundVariants}
                 initial="initial"
                 animate="animate"
+                key={`zoom-${currentSlide}-${Date.now()}`}
                 className="absolute inset-0 bg-cover"
                 style={{
                   backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
@@ -341,12 +345,13 @@ const Banner = () => {
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center"
-             
+
             >
               <motion.div
                 variants={backgroundVariants}
                 initial="initial"
                 animate="animate"
+                key={`zoom-mobile-${currentSlide}-${Date.now()}`}
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
