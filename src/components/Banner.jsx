@@ -193,7 +193,7 @@ const Banner = () => {
                 }}
               />
               {/* Dark overlay (always present) */}
-              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+              <div className="absolute inset-0 "></div>
 
               {/* Lighter overlay with left-to-right animation */}
               <AnimatePresence>

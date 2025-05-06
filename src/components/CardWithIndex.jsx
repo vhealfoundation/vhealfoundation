@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
-const Card = ({ imageSrc, title, description}) => {
+const CardWithIndex = ({ imageSrc, title, description, index }) => {
   return (
-    <Link to="/what-we-do" className="group block h-full">
+    <Link to={`/what-we-do?index=${index}`} className="group block h-full">
       <motion.div
         className="relative h-[460px] md:h-[490px] w-full max-w-sm overflow-hidden rounded-xl shadow-lg transition-all duration-300 flex flex-col bg-white"
         whileHover={{
@@ -69,4 +69,4 @@ const Card = ({ imageSrc, title, description}) => {
   );
 };
 
-export default Card;
+export default CardWithIndex;

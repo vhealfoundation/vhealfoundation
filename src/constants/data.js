@@ -15,7 +15,7 @@ export const slides = [
   {
     backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1741847654/banner2_sdkoqj.png", // Replace with actual image for "Counseling Services"
     title: "We provide\nCounselling Services",
-    subtitle: "to facilitate quality of life and transform lives",
+    subtitle: "to facilitate quality of life and to transform lives",
     backgroundPosition: "center -50px" // Adjusted position with pixel value
   },
   {
@@ -64,7 +64,7 @@ export const relatedImagesData = {
             id: 2,
             url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848870/CHILD_AND_ADOLESCENT_COUNSELLING_onygfw.avif",
             caption: "CHILD AND ADOLESCENT COUNSELLING",
-            description: "Child and Adolescent Counselling facilitates mental well-being among children and the young  to share their challenges and concerns, explore ways to resolve them and learn new skills to adapt and unlearn maladaptive behaviours.."
+            description: "Child and Adolescent Counselling facilitates mental well-being among children and the young  to share their challenges and concerns, explore ways to resolve them and learn new skills to adapt and unlearn maladaptive behaviours."
           },
           {
             id: 3,
@@ -349,7 +349,7 @@ export const relatedImagesData = {
         id: 1,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849077/COGNITIVE_ASSESSMENTS_j9cvoh.jpg",
         caption: "COGNITIVE ASSESSMENTS",
-        description: "Assessment to gain an understanding of thinking and reasoning skills and to evaluate neuropsychological domains such as memory, language, executive function, abstract reasoning, attention, and visuospatial skills of individuals."
+        description: "Assessments to gain an understanding of thinking and reasoning skills and to evaluate neuropsychological domains such as memory, language, executive function, abstract reasoning, attention, and visuospatial skills of individuals."
       },
       {
         id: 2,
@@ -361,7 +361,7 @@ export const relatedImagesData = {
         id: 3,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278813/NEURO_PSYCHOLOGICAL_ASSESSMENTS_enh5sf.png",
         caption: "NEURO PSYCHOLOGICAL ASSESSMENTS",
-        description: "Assessment to examine the relationship between brain and behaviour and to help to identify the cognitive strengths and weaknesses of an individual."
+        description: "Assessments to examine the relationship between brain and behaviour and to help to identify the cognitive strengths and weaknesses of an individual."
       }
     ]
   },
@@ -373,25 +373,25 @@ export const relatedImagesData = {
         id: 1,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278925/TRAINING_FOR_CHILDREN_eqbepb.jpg",
         caption: "TRAINING FOR CHILDREN",
-        description: "Skill-based training programmes for children to focus on developing practical abilities that go beyond academic knowledge, preparing them for real-world challenges and future opportunities."
+        description: "We conduct skill-based training programmes for children to focus on developing practical abilities that go beyond academic knowledge, preparing them for real-world challenges and future opportunities."
       },
       {
         id: 2,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849147/TRAINING_FOR_STUDENTS_slwxru.jpg",
         caption: "TRAINING FOR STUDENTS",
-        description: "Training programmes for students To enhance skills and knowledge like career-specific skills, soft skills, and specialized training relevant to their field of study in various areas to prepare them for future academic or professional success."
+        description: "We conduct training programmes for students to enhance skills and knowledge like career-specific skills, soft skills, and specialized training relevant to their field of study in various areas to prepare them for future academic or professional success."
       },
       {
         id: 3,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744278924/TRAINING_FOR_MARRIED_COUPLES_xu58ua.jpg",
-        caption: "TRAINING FOR MARRIED COUPLES",
-        description: "Training programmes to help couples to improve effective communication, to recognize and express feelings, to develop an awareness of communication styles and listening habit, understand their indifferences, to build a strong foundation for their future together and to prepare them to face potential challenges."
+        caption: "TRAINING FOR COUPLES",
+        description: "We conduct training programmes to help couples to improve effective communication, to recognize and express feelings, to develop an awareness of communication styles and listening habit, understand their indifferences, to build a strong foundation for their future together and to prepare them to face potential challenges."
       },
       {
         id: 4,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743849145/TRAINING_FOR_EMPLOYEES_i095sy.jpg",
         caption: "TRAINING FOR EMPLOYEES",
-        description: "Training programmes to enhance employee knowledge, skills, and abilities, to develop strategies to improve job performance, to promote professional growth and contribute to organizational goals."
+        description: "We conduct training programmes to enhance employee knowledge, skills, and abilities, to develop strategies to improve job performance, to promote professional growth and contribute to organizational goals."
       }
     ]
   },
@@ -436,52 +436,62 @@ export const relatedImagesData = {
       {
         id: 1,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/COUNSELLING_FOR_PRISONERS_lsqgrl.jpg",
-        caption: "PROVIDE COUNSELLING AND TRAINING PROGRAMMES FOR PRISONERS BEFORE AND AFTER THEIR RELEASE"
+        caption: "COUNSELLING AND TRAINING PROGRAMMES",
+        description: "We provide counselling and training programmes for prisoners before and after their release."
       },
       {
         id: 2,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744282235/PROVIDE_FINANCIAL_HELP_JOB_ASSISTANCE_AND_TRAINING_PROGRAMMES_TO_HELP_WITH_SOCIAL_AND_PSYCHOLOGICAL_REINTEGRATION_FOR_PRISONERS_AFTER_THEI_dzndbs.jpg",
-        caption: "PROVIDE FINANCIAL HELP, JOB ASSISTANCE, AND TRAINING PROGRAMMES TO HELP WITH SOCIAL AND PSYCHOLOGICAL REINTEGRATION FOR PRISONERS AFTER THEIR RELEASE"
+        caption: "FINANCIAL HELP AND JOB ASSISTANCE",
+        description: "We provide financial help, job assistance, and training programmes to help with social and psychological reintegration for prisoners after their release."
       },
       {
         id: 3,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848398/Promote_literacy_among_women_inside_prison_qowpzk.jpg",
-        caption: "PROMOTE LITERACY AMONG WOMEN INSIDE PRISON AND RENDER TRAINING ON INCOME GENERATION ACTIVITIES AND OTHER LIFE SKILLS TRAINING PROGRAMMES"
+        caption: "LITERACY PROMOTION FOR WOMEN",
+        description: "We provide literacy promotion among women inside prison and render training on income generation activities and other life skills training programmes."
       },
       {
         id: 4,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/providing_help_for_prisoners_family_members_jxlxdq.jpg",
-        caption: "UPSKILL PRISONERS INSIDE THE PRISON AND EDUCATE THEM ON JOB OPPORTUNITIES AFTER THEIR RELEASE"
+        caption: "UPSKILLING AND JOB OPPORTUNITIES",
+        description: "We provide upskilling for prisoners inside the prison and educate them on job opportunities after their release."
       },
       {
         id: 5,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/PROVIDE_TRAINING_FOR_PRISONERS_ceuosc.jpg",
-        caption: "PROVIDE APPROPRIATE TRAINING FOR THE PRISONERS TO LEARN NEW SKILLS INSIDE THE PRISON"
+        caption: "SKILLS TRAINING",
+        description: "We provide appropriate training for the prisoners to learn new skills inside the prison."
       },
       {
         id: 6,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744281997/ESTABLISH_CENTRES_FOR_EMPLOYMENT_GENERATION_FOR_PRISONERS_AFTER_THEIR_RELEASE_oo9kyj.jpg",
-        caption: "ESTABLISH CENTRES FOR EMPLOYMENT GENERATION FOR PRISONERS AFTER THEIR RELEASE"
+        caption: "EMPLOYMENT GENERATION CENTRES",
+        description: "We provide centres for employment generation for prisoners after their release."
       },
       {
         id: 7,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/provide_legal_assistance_for_prisoners_guibzz.jpg",
-        caption: "PROVIDE LEGAL AND FINANCIAL SUPPORT TO ECONOMICALLY DOWNTRODDEN PRISONERS FOR LEGAL AID AND TO SECURE BAIL"
+        caption: "LEGAL AND FINANCIAL SUPPORT",
+        description: "We provide legal and financial support to economically downtrodden prisoners for legal aid and to secure bail."
       },
       {
         id: 8,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848398/Provide_rehabilitation_for_prisoners_who_are_mentally_ill_after_their_release_ixblwz.jpg",
-        caption: "PROVIDE REHABILITATION FOR PRISONERS WHO ARE MENTALLY ILL AFTER THEIR RELEASE"
+        caption: "MENTAL HEALTH REHABILITATION",
+        description: "We provide rehabilitation for prisoners who are mentally ill after their release."
       },
       {
         id: 9,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1743848397/Provide_educational_financial_and_social_support_to_prisoners_children_mrqmfi.jpg",
-        caption: "PROVIDE EDUCATIONAL, FINANCIAL AND SOCIAL SUPPORT TO CHILDREN OF ECONOMICALLY DOWNTRODDEN PRISONERS"
+        caption: "SUPPORT FOR PRISONERS' CHILDREN",
+        description: "We provide educational, financial and social support to children of economically downtrodden prisoners."
       },
       {
         id: 10,
         url: "https://res.cloudinary.com/dgidetrcl/image/upload/v1744301929/provide_counselling_and_training_for_prisoners_thgm1w.jpg",
-        caption: "PROVIDE REQUIRED RELIEF AND ASSISTANCE TO FAMILY MEMBERS OF ECONOMICALLY DOWNTRODDEN PRISONERS WHO ARE OUTSIDE THE PRISON"
+        caption: "FAMILY ASSISTANCE",
+        description: "We provide required relief and assistance to family members of economically downtrodden prisoners who are outside the prison."
       }
     ]
   }

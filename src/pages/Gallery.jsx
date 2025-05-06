@@ -113,7 +113,7 @@ const Gallery = () => {
             <div className="w-12 h-0.5 bg-white/60"></div>
           </div>
           <motion.p
-            className="text-white text-lg md:text-xl max-w-3xl mx-auto font-medium italic backdrop-blur-sm bg-white/5 py-3 px-6 rounded-full inline-block mt-4 border border-white/10 shadow-lg"
+            className="text-white text-lg md:text-xl max-w-4xl mx-auto font-medium italic backdrop-blur-sm bg-white/5 py-3 px-6 rounded-full inline-block mt-4 border border-white/10 shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -144,7 +144,7 @@ const Gallery = () => {
                   }`
                 }
               >
-                All
+                ALL
               </Tab>
 
               {CATEGORIES.map((category) => {

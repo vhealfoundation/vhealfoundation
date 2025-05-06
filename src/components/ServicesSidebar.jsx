@@ -85,7 +85,7 @@ const ServicesSidebar = () => {
         >
           <div className="p-4 bg-gradient-to-r from-primary to-primary/80 text-white">
             <h2 className="text-xl font-bold">Our Services</h2>
-            <p className="text-sm mt-1 text-white/80">Explore our offerings</p>
+           
           </div>
 
           <div className="p-2">

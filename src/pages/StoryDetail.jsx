@@ -24,6 +24,9 @@ const StoryDetail = () => {
         console.error("Error fetching story:", err);
         setError("Failed to load. Please try again later.");
       }
+      finally {
+        setLoading(false);
+      }
     };
 
     fetchStory();

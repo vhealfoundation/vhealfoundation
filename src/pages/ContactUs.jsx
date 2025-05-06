@@ -82,7 +82,7 @@ const Contact = () => {
     <div className="mt-16">
       <SEO
         title="Connect With Us"
-        description="Whether you're looking to volunteer, donate, or seek help, we're here to support your journey. Reach out to us through any of the channels below."
+        description="Want to seek help, donate or volunteer, please reach out to us."
         keywords={[
           'V Heal Foundation', 'contact us', 'volunteer', 'donate', 'seek help',
           'mental health support', 'counselling services', 'get in touch'
@@ -110,7 +110,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Whether you're looking to volunteer, donate, or seek help, we're here to support your journey.
+           Want to seek help, donate or volunteer, please reach out to us.
           </motion.p>
         </div>
       </div>
@@ -161,8 +161,8 @@ const Contact = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Our Mission</h2>
               <LineSeperator className="mb-4"/>
               </div>
-              <p className="text-gray-600 mb-8 text-lg">
-                Join us in our mission to provide guidance and resources to individuals rebuilding their lives. Your support makes a significant difference in the lives of those we serve.
+              <p className="text-gray-600 mb-8 text-lg text-justify">
+                Join us in our mission to provide guidance and assistance to individuals rebuilding their lives. Your support makes a significant difference in the lives of those we serve.
               </p>
               <div className="grid grid-cols-1 gap-6">
                 <button

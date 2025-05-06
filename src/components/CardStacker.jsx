@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Card from "./Card";
+import CardWithIndex from "./CardWithIndex";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import Loader from "./Loader";
 import LineSeperator from "./LineSeperator";
 
 // Component to handle motion and inView logic
-const AnimatedCard = ({ card, delay }) => {
+const AnimatedCard = ({ card, delay, index }) => {
   const { ref, inView } = useInView({
     rootMargin: window.innerWidth <= 768 ? "-30px" : "100px",
     threshold: 0.2,
@@ -22,11 +22,11 @@ const AnimatedCard = ({ card, delay }) => {
       transition={{ duration: 0.8, delay: delay || 0 }}
       className="w-full max-w-sm mb-4"
     >
-      <Card
+      <CardWithIndex
         imageSrc={card.image}
         title={card.title}
         description={card.description}
-        link={card.link}
+        index={index}
       />
     </motion.div>
   );
@@ -69,7 +69,7 @@ const CardStacker = () => {
       </div>
     );
   }
-
+console.log(data);
 
   return (
     <div>
@@ -96,11 +96,11 @@ const CardStacker = () => {
               transition={{ duration: 0.8, delay: index * 0.5 }}
               className="max-w-sm"
             >
-              <Card
+              <CardWithIndex
                 imageSrc={card.image}
                 title={card.title}
-                description={card.description}
-                link={card.link}
+                description={card.features[0]}
+                index={index}
               />
             </motion.div>
           ))
@@ -113,7 +113,7 @@ const CardStacker = () => {
       <div className="px-4 flex flex-col gap-6 items-center justify-center pt-8 pb-8 md:hidden">
         {data && data.length > 0 ? (
           data.map((card, index) => (
-            <AnimatedCard key={index} card={card} delay={index * 0.3} />
+            <AnimatedCard key={index} card={card} delay={index * 0.3} index={index} />
           ))
         ) : !loading ? (
           <p className="text-center text-gray-500">No data available</p>

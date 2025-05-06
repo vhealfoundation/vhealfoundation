@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import LineSeperator from "./LineSeperator";
 
-const AboutCard = ({ sections = [], isAbout = false }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const AboutCard = ({ sections = [], isAbout = false, initialIndex = 0 }) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -98,22 +98,22 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
     };
   }, [currentIndex]);
 
-  // Auto-slide functionality
-  useEffect(() => {
-    if (!sections || sections.length <= 1 || isPaused) return;
+  // // Auto-slide functionality
+  // useEffect(() => {
+  //   if (!sections || sections.length <= 1 || isPaused) return;
 
-    const autoSlideInterval = setInterval(() => {
-      if (currentIndex < sections.length - 1) {
-        setCurrentIndex(prevIndex => prevIndex + 1);
-      } else {
-        setCurrentIndex(0);
-      }
-    }, 5000); // Change slide every 5 seconds
+  //   const autoSlideInterval = setInterval(() => {
+  //     if (currentIndex < sections.length - 1) {
+  //       setCurrentIndex(prevIndex => prevIndex + 1);
+  //     } else {
+  //       setCurrentIndex(0);
+  //     }
+  //   }, 5000); // Change slide every 5 seconds
 
-    return () => {
-      clearInterval(autoSlideInterval);
-    };
-  }, [currentIndex, sections, isPaused]);
+  //   return () => {
+  //     clearInterval(autoSlideInterval);
+  //   };
+  // }, [currentIndex, sections, isPaused]);
 
   // Reset pause state after some inactivity
   useEffect(() => {
@@ -152,36 +152,6 @@ const AboutCard = ({ sections = [], isAbout = false }) => {
       onTouchEnd={handleTouchEnd}
     >
 
-
-{/*      <div className="max-w-3xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex text-sm font-semibold py-1 px-3 m-2 rounded-full mb-4"
-          style={{ color: '#fd8917', backgroundColor: 'rgba(253, 137, 23, 0.15)' }}
-        >
-          Mental Health • Counseling • Rehabilitation
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-3 text-2xl font-bold text-primary"
-        >
-          V Heal Foundation
-        </motion.div>
-        <LineSeperator className="mb-4" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl text-gray-400"
-        >
-          A charitable trust founded by Maria Nalini Xavier, bringing together Mental Health and Social Work professionals to promote wellbeing through counselling and rehabilitation services for the underprivileged.
-        </motion.div>
-      </div>
- */}
       {/* Core Pillars heading - only shown when isAbout is true */}
       {isAbout && (
         <div className="text-center">
