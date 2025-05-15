@@ -14,11 +14,21 @@ const WhatWeDo = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  // Get the index from URL query parameters
+  // Get the index from URL query parameters or sessionStorage
   const getIndexFromUrl = () => {
     const searchParams = new URLSearchParams(location.search);
     const indexParam = searchParams.get('index');
-    return indexParam ? parseInt(indexParam, 10) : 0;
+
+    if (indexParam) {
+      // If index is in URL, save it to sessionStorage and return it
+      const index = parseInt(indexParam, 10);
+      sessionStorage.setItem('whatWeDo-selectedIndex', index.toString());
+      return index;
+    } else {
+      // If not in URL, try to get from sessionStorage
+      const savedIndex = sessionStorage.getItem('whatWeDo-selectedIndex');
+      return savedIndex ? parseInt(savedIndex, 10) : 0;
+    }
   };
 
   useEffect(() => {

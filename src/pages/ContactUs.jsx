@@ -85,7 +85,7 @@ const Contact = () => {
         description="Want to seek help, donate or volunteer, please reach out to us."
         keywords={[
           'V Heal Foundation', 'contact us', 'volunteer', 'donate', 'seek help',
-          'mental health support', 'counselling services', 'get in touch'
+          'mental health support', 'counselling services', 'Communicate with us'
         ]}
       />
       {/* Hero Section */}
@@ -202,12 +202,12 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary">
-              Get In Touch
+              Communicate with us
             </h2>
             <LineSeperator className="mb-4"/>
 
             <p className="text-center text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
-              We're here to help you on your journey. Choose the option that best suits your needs.
+             To Enrich, Empower and Endure Lives
             </p>
           </motion.div>
 
@@ -228,7 +228,7 @@ const Contact = () => {
                     </svg>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-center mb-2 text-primary">FOR CONSULTATION</h3>
+                <h3 className="text-2xl font-bold text-center mb-2 text-primary">FOR COUNSELLING</h3>
                 <LineSeperator className="mb-4"/>
 
 
@@ -273,7 +273,7 @@ const Contact = () => {
                 <LineSeperator className="mb-4"/>
 
 
-                <p className="text-center text-gray-600 mb-8">My contribution to support their second chance...</p>
+                <p className="text-center text-gray-600 mb-8">My contribution for Prisoners Rehabilitation</p>
 
                 <div className="flex items-center justify-center gap-3 mb-6 bg-gray-50 p-3 rounded-lg">
                   <div className="p-2 rounded-full" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
@@ -310,12 +310,12 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary">
-              Involve With Us
+              Reach out to Us
             </h2>
             <LineSeperator className="mb-4"/>
 
             <p className="text-center text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
-              Reach out to us with your questions or join our team of dedicated volunteers and make a difference in the lives of those who need it most.
+               For queries, support and volunteer service
             </p>
           </motion.div>
 

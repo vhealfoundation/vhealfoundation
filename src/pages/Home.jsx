@@ -57,7 +57,7 @@ const Home = () => {
                           className="inline-flex text-sm font-semibold py-1 px-3 m-2 rounded-full mb-4"
                           style={{ color: '#fd8917', backgroundColor: 'rgba(253, 137, 23, 0.15)' }}
                         >
-                          Mental Health • Counselling • Rehabilitation
+                          Mental Health • Counselling • Training • Coaching • Rehabilitation
                         </motion.div>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ const Home = () => {
                          V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
                         </motion.div>
                       </div>
-                <AboutCard sections={aboutData} />
+                <AboutCard isMission={true} sections={aboutData} />
             </div>
             <div>
                 <DynamicCardStacker data={data}></DynamicCardStacker>

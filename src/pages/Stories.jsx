@@ -57,7 +57,7 @@ const Stories = () => {
     <div className="mt-16 pb-12 bg-gray-50">
       <SEO
         title="Accolades"
-        description="Commendations from the Champions. Inspiring journeys of transformation and hope shared by those who have experienced our services."
+        description="Commendations from Champions. Inspiring journeys of transformation and hope shared by those who have experienced our services."
         keywords={[
           'V Heal Foundation', 'accolades', 'stories', 'testimonials', 'success stories',
           'transformation', 'hope', 'mental health success'
@@ -84,7 +84,7 @@ const Stories = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Commendations from the Champions
+            Commendations from Champions
           </motion.p>
         </div>
       </div>

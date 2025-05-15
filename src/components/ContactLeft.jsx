@@ -49,9 +49,9 @@ const ContactLeft = () => {
             </span>
             <div>
               <h3 className="text-xl font-semibold text-white">Know About Our Mission</h3>
-              <p className="text-gray-100/80">
+              {/* <p className="text-gray-100/80">
                 Discover how we're making a difference and how you can be part of our mission.
-              </p>
+              </p> */}
             </div>
           </motion.li>
           
@@ -61,9 +61,9 @@ const ContactLeft = () => {
             </span>
             <div>
               <h3 className="text-xl font-semibold text-white">Volunteer Opportunities</h3>
-              <p className="text-gray-100/80">
+              {/* <p className="text-gray-100/80">
                 Find out how you can lend your time and skills to support our cause.
-              </p>
+              </p> */}
             </div>
           </motion.li>
           
@@ -72,10 +72,10 @@ const ContactLeft = () => {
               <FaCheckCircle size={22} />
             </span>
             <div>
-              <h3 className="text-xl font-semibold text-white">To Contribute, To achieve our Mission</h3>
-              <p className="text-gray-100/80">
+              <h3 className="text-xl font-semibold text-white">Contribute and help us achieve our Mission</h3>
+              {/* <p className="text-gray-100/80">
                 Get details on how to contribute and help us achieve our goals.
-              </p>
+              </p> */}
             </div>
           </motion.li>
           
@@ -85,9 +85,9 @@ const ContactLeft = () => {
             </span>
             <div>
               <h3 className="text-xl font-semibold text-white">Know about our Happenings</h3>
-              <p className="text-gray-100/80">
+              {/* <p className="text-gray-100/80">
                 Stay informed about upcoming events and ways to participate.
-              </p>
+              </p> */}
             </div>
           </motion.li>
         </ul>

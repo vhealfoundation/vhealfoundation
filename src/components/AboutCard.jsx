@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import LineSeperator from "./LineSeperator";
 
-const AboutCard = ({ sections = [], isAbout = false, initialIndex = 0 }) => {
+const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -49,6 +49,9 @@ const AboutCard = ({ sections = [], isAbout = false, initialIndex = 0 }) => {
 
     if (index >= 0 && index < sections.length) {
       setCurrentIndex(index);
+      // Save current index to sessionStorage
+      sessionStorage.setItem('whatWeDo-selectedIndex', index.toString());
+
       if (sectionRefs.current && sectionRefs.current[index]?.current) {
         sectionRefs.current[index].current.scrollIntoView({
           behavior: 'smooth',
@@ -292,58 +295,61 @@ const AboutCard = ({ sections = [], isAbout = false, initialIndex = 0 }) => {
 
                   <motion.div
                     ref={ref}
-                    className="w-full flex flex-col pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
+                    className="text-justify w-full flex flex-col pr-0 md:w-1/2 md:block md:pr-4 lg:pr-12 xl:pr-16"
                     initial={{ opacity: 0, x: 10 }}
                     animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <h3 className="h3 mb-3 text-primary text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
+                    <h3 className=" h3 mb-3 text-primary text-3xl font-bold">{sections[currentIndex]?.heading}</h3>
                     <div className="architects-daughter-regular  text-xl text-[#fd8917] mb-2">
                       {sections[currentIndex]?.subheading}
                     </div>
-                    <p className="text-xl text-primary mb-4 text-justify">
+                    <p className="text-xl text-primary mb-4">
                       {sections[currentIndex]?.description}
                     </p>
-                    <div className="text-lg text-primary -mb-2">
-                      {sections[currentIndex]?.features?.map((feature, featureIndex) => {
-                        // Split the feature by the "|" character
-                        const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
-
-                        // If there are no parts, return null
-                        if (featureParts.length === 0) return null;
-
-                        // Get the first part as the heading
-                        const heading = featureParts[0];
-                        // Get the rest of the parts as bullet points
-                        const bulletPoints = featureParts.slice(1);
-
-                        return (
-                          <div key={featureIndex} className="mb-4">
-                            {/* Render the heading */}
-                            <h4 className="font-bold text-primary mb-2">{heading}</h4>
-
-                            {/* Render the bullet points */}
-                            {bulletPoints.length > 0 && (
-                              <ul className="ml-4">
-                                {bulletPoints.map((point, pointIndex) => (
-                                  <li
-                                    key={`${featureIndex}-${pointIndex}`}
-                                    className="flex items-center mb-2"
-                                  >
-                                    <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                      </svg>
-                                    </div>
-                                    <span>{point}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
+                    {isMission ? (
+                        <div className="text-lg text-primary -mb-2">
+                        {sections[currentIndex]?.features?.map((feature, featureIndex) => {
+                          // Split the feature by the "|" character
+                          const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+  
+                          // If there are no parts, return null
+                          if (featureParts.length === 0) return null;
+  
+                          // Get the first part as the heading
+                          const heading = featureParts[0];
+                          // Get the rest of the parts as bullet points
+                          const bulletPoints = featureParts.slice(1);
+  
+                          return (
+                            <div key={featureIndex} className="mb-4">
+                              {/* Render the heading */}
+                              <h4 className="font-bold text-primary mb-2">{heading}</h4>
+  
+                              {/* Render the bullet points */}
+                              {bulletPoints.length > 0 && (
+                                <ul className="ml-4">
+                                  {bulletPoints.map((point, pointIndex) => (
+                                    <li
+                                      key={`${featureIndex}-${pointIndex}`}
+                                      className="flex items-center mb-2"
+                                    >
+                                      <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                      </div>
+                                      <span>{point}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ): null}
+                  
                   </motion.div>
                 </div>
               )}

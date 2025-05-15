@@ -16,6 +16,16 @@ const APPOINTMENT_AMOUNT = process.env.REACT_APP_APPOINTMENT_AMOUNT;
 
 const LOCALSTORAGE_KEY = "savedAppointmentDetails";
 
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+
 const AppointmentCard = ({ isStandalone }) => {
   const { user } = useKindeAuth();
   const navigate = useNavigate();
@@ -47,6 +57,18 @@ const AppointmentCard = ({ isStandalone }) => {
   useEffect(() => {
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(appointmentDetails));
   }, [appointmentDetails]);
+
+  useEffect(() => {
+    const loadRazorpay = async () => {
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+      );
+      if (!res) {
+        toast.error("Razorpay SDK failed to load. Please try again.");
+      }
+    };
+    loadRazorpay();
+  }, []);
 
   // Form validation updated to remove email validation
   const validateForm = () => {
@@ -317,13 +339,13 @@ const AppointmentCard = ({ isStandalone }) => {
       </Typography>
       <div className="bg-gray-100 rounded-md p-3 mb-4 flex flex-col justify-center items-center">
         <Typography variant="body2" className="text-gray-600 mb-1">
-          Professional Consultation
+          Professional Counselling
         </Typography>
         <Typography variant="h5" className="text-center font-bold text-primary">
           ₹{APPOINTMENT_AMOUNT}
         </Typography>
         <Typography variant="caption" className="text-gray-500 mt-1">
-          One-time payment • Secure checkout
+          Per session • Secure checkout
         </Typography>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

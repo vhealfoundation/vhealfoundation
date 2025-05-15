@@ -25,7 +25,7 @@ const AnimatedCard = ({ card, delay, index }) => {
       <CardWithIndex
         imageSrc={card.image}
         title={card.title}
-        description={card.description}
+        description={card.features[0]}
         index={index}
       />
     </motion.div>
@@ -69,7 +69,6 @@ const CardStacker = () => {
       </div>
     );
   }
-console.log(data);
 
   return (
     <div>
@@ -85,7 +84,7 @@ console.log(data);
       {loading && <Loader />}
 
 
-      <div className="hidden md:flex items-center justify-center gap-6 py-10 px-4 lg:px-20">
+      <div className="hidden md:flex items-center justify-center gap-6 py-10 px-4 md:px-8">
         {data && data.length > 0 ? (
           data.map((card, index) => (
             <motion.div

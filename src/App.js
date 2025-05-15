@@ -8,7 +8,7 @@ import Stories from "./pages/Stories";
 import Testimonials from "./pages/Testimonials";
 import Gallery from "./pages/Gallery";
 import ImageGallery from "./pages/ImageGallery";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollMemory from "./components/ScrollMemory";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles/custom-colors.css";
@@ -28,7 +28,7 @@ function App() {
     <div>
 
       <AnimatePresence>
-        <ScrollToTop />
+        <ScrollMemory />
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"

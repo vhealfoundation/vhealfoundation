@@ -524,7 +524,7 @@ export const data = [
     subtitle: "Personalized mentoring for personal productivity",
     rating: "4.8",
     backgroundColors: { top: "#43A047", bottom: "#2E7D32" }, // Gradient representing energy and progress
-    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365494/vstp8qbmbpxjq1szktcq.png",
+    image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1747021580/augustine_cnrdya.jpg",
   },
   {
     title: "REHABILITAION OF PRISONERS",
@@ -543,13 +543,13 @@ export const aboutData = [
     image: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365090/frcycmn7mo7yc5pqbrxw.png",
     alt: "Our Vision",
     heading: "OUR VISION",
-    subheading: "Transforming Lives Through Mental Well-being",
+    subheading: "Transforming lives through Mental Well-being",
     description:
-      "V Heal Foundation is a charitable trust with a vision to facilitate professional relationship to accomplish mental well-being and to transform the lives of prisoners.",
+      "V Heal Foundation is a charitable trust with a vision to facilitate mental wellness, accomplish individual professional goals and transform the lives of prisoners.",
     features: [
-      "Mental Health Support | Professional counselling services for prisoners",
-      "Rehabilitation Programmes | Comprehensive support for reintegration",
-      "Transformative Approach | Focusing on holistic well-being and dignity"
+      "Mental Health Support | Professional counselling services for individuals, families and employees at workplace",
+        "Transformative Approach | Focusing on holistic well-being and dignity",
+      "Rehabilitation Programmes | Comprehensive support for prisoners reintegration",
     ],
     reverse: false,
   },
