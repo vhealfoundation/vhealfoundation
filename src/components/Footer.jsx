@@ -31,9 +31,9 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 pt-2">
               {[
-                { icon: FaFacebookF, link: "https://www.facebook.com/organization" },
+                // { icon: FaFacebookF, link: "https://www.facebook.com/organization" },
                 { icon: FaWhatsapp, link: "https://api.whatsapp.com/send?phone=919840050175" },
-                { icon: FaInstagram, link: "https://instagram.com/organization" },
+                // { icon: FaInstagram, link: "https://instagram.com/organization" },
               ].map((social, index) => (
                 <a
                   key={index}

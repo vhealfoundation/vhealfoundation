@@ -23,7 +23,11 @@ const YourDonations = () => {
           const data = await response.json();
 
           if (data.success) {
-            setDonations(data.data);
+            // Sort by createdAt descending (latest first)
+            const sortedDonations = [...data.data].sort(
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+            setDonations(sortedDonations);
           } else {
             toast.error("No donations found for this email.");
           }
@@ -42,7 +46,6 @@ const YourDonations = () => {
   if (loading) {
     return <Loader />;
   }
-
 
   // Animation variants
   const containerVariants = {
