@@ -171,8 +171,8 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
               key={`indicator-${index}`}
               onClick={() => goToSection(index)}
               className={`h-3 rounded-full transition-all duration-300 ${currentIndex === index
-                  ? 'w-8'
-                  : 'bg-gray-300 hover:bg-gray-400 w-3 hover:w-4'
+                ? 'w-8'
+                : 'bg-gray-300 hover:bg-gray-400 w-3 hover:w-4'
                 }`}
               style={{
                 backgroundColor: currentIndex === index ? '#fd8917' : undefined
@@ -187,35 +187,35 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
       <div className="mt-8 relative">
         <AnimatePresence mode="wait">
           {sections && sections.length > 0 && (
-           <motion.div
-           key={`section-${currentIndex}`}
-           ref={sectionRefs.current[currentIndex]}
-           initial="hidden"
-           animate="visible"
-           exit="exit"
-           variants={sectionVariants}
-           className="min-h-[500px] flex items-center"
-           onMouseEnter={handleMouseEnter}
-           onMouseLeave={handleMouseLeave}
-         >
-           {isAbout ? (
-             // Modified layout for isAbout=true to fill the space below the image
-             <div className="w-full">
-               <div className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full`}>
-                 {/* Left column with image and features below */}
-                 <div className="w-full md:w-1/2 flex flex-col">
-                   <motion.div
-                     ref={ref}
-                     className="w-full mb-6"
-                     initial={{ opacity: 0, y: 50 }}
-                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                     transition={{ duration: 0.6 }}
-                   >
-                     <img
-                       className="rounded-lg shadow-lg w-full h-auto object-cover object-top max-h-[350px] md:max-h-[600px]"
-                       src={sections[currentIndex]?.image}
-                       alt={sections[currentIndex]?.alt || "Image"}
-                     />
+            <motion.div
+              key={`section-${currentIndex}`}
+              ref={sectionRefs.current[currentIndex]}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={sectionVariants}
+              className="min-h-[500px] flex items-center"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {isAbout ? (
+                // Modified layout for isAbout=true to fill the space below the image
+                <div className="w-full">
+                  <div className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full`}>
+                    {/* Left column with image and features below */}
+                    <div className="w-full md:w-1/2 flex flex-col">
+                      <motion.div
+                        ref={ref}
+                        className="w-full mb-6"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <img
+                          className="rounded-lg shadow-lg w-full h-auto object-cover object-top max-h-[350px] md:max-h-[600px]"
+                          src={sections[currentIndex]?.image}
+                          alt={sections[currentIndex]?.alt || "Image"}
+                        />
 
                       </motion.div>
                     </div>
@@ -249,23 +249,38 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                             return (
                               <div key={featureIndex} className="mb-6">
                                 <h4 className="font-bold text-primary mb-3">{heading}</h4>
-                                {bulletPoints.length > 0 && (
-                                  <ul className="ml-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-                                    {bulletPoints.map((point, pointIndex) => (
-                                      <li
-                                        key={`${featureIndex}-${pointIndex}`}
-                                        className="flex items-start mb-2"
-                                      >
-                                        <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                          </svg>
-                                        </div>
-                                        <span>{point}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
+                                {bulletPoints.length > 0 && isAbout && (
+                                  <div className="ml-4 flex flex-col md:flex-row md:gap-x-4">
+                                    {/* First Column - First 3 items */}
+                                    <ul className="flex-1 flex flex-col">
+                                      {bulletPoints.slice(0, 3).map((point, i) => (
+                                        <li key={`left-${i}`} className="flex items-start mb-2">
+                                          <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                          </div>
+                                          <span>{point}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+
+                                    {/* Second Column - Next items (3 onwards) */}
+                                    <ul className="hidden md:flex flex-1 flex-col">
+                                      {bulletPoints.slice(3).map((point, i) => (
+                                        <li key={`right-${i + 3}`} className="flex items-start mb-2">
+                                          <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                          </div>
+                                          <span>{point}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
                                 )}
+
                               </div>
                             );
                           })}
@@ -308,24 +323,24 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                       {sections[currentIndex]?.description}
                     </p>
                     {isMission ? (
-                        <div className="text-lg text-primary -mb-2">
+                      <div className="text-lg text-primary -mb-2">
                         {sections[currentIndex]?.features?.map((feature, featureIndex) => {
                           // Split the feature by the "|" character
                           const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
-  
+
                           // If there are no parts, return null
                           if (featureParts.length === 0) return null;
-  
+
                           // Get the first part as the heading
                           const heading = featureParts[0];
                           // Get the rest of the parts as bullet points
                           const bulletPoints = featureParts.slice(1);
-  
+
                           return (
                             <div key={featureIndex} className="mb-4">
                               {/* Render the heading */}
                               <h4 className="font-bold text-primary mb-2">{heading}</h4>
-  
+
                               {/* Render the bullet points */}
                               {bulletPoints.length > 0 && (
                                 <ul className="ml-4">
@@ -348,8 +363,8 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                           );
                         })}
                       </div>
-                    ): null}
-                  
+                    ) : null}
+
                   </motion.div>
                 </div>
               )}
@@ -401,8 +416,8 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
               onClick={prevSection}
               disabled={currentIndex === 0}
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-300 ${currentIndex === 0
-                  ? 'text-primary cursor-not-allowed bg-gray-100'
-                  : 'bg-white shadow-md hover:shadow-lg'
+                ? 'text-primary cursor-not-allowed bg-gray-100'
+                : 'bg-white shadow-md hover:shadow-lg'
                 }`}
               style={{
                 color: currentIndex === 0 ? undefined : '#fd8917',
@@ -419,8 +434,8 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
               onClick={nextSection}
               disabled={currentIndex === sections.length - 1}
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-300 ${currentIndex === sections.length - 1
-                  ? 'text-primary cursor-not-allowed bg-gray-100'
-                  : 'bg-white shadow-md hover:shadow-lg'
+                ? 'text-primary cursor-not-allowed bg-gray-100'
+                : 'bg-white shadow-md hover:shadow-lg'
                 }`}
               style={{
                 color: currentIndex === sections.length - 1 ? undefined : '#fd8917',

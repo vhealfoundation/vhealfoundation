@@ -31,7 +31,7 @@ export const slides = [
     backgroundPosition: "center -250px" // Default position
   },
   {
-    backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1742365494/vstp8qbmbpxjq1szktcq.png", // Replace with actual image for "Coaching"
+    backgroundImage: "https://res.cloudinary.com/dgidetrcl/image/upload/v1752290959/Banner_cywsu4.jpg", // Replace with actual image for "Coaching"
     title: "We offer Coaching",
     subtitle: "to enrich right skills to be self-reliant individuals",
     backgroundPosition: "center -50px" // Adjusted position with pixel value

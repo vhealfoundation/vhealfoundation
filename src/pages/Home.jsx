@@ -74,7 +74,7 @@ const Home = () => {
                           transition={{ duration: 0.6, delay: 0.2 }}
                           className="text-xl text-primary"
                         >
-                         V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and undeserved in prison and after their release.
+                         V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release.
                         </motion.div>
                       </div>
                 <AboutCard isMission={true} sections={aboutData} />
