@@ -108,7 +108,7 @@ const Home = () => {
                           transition={{ duration: 0.6, delay: 0.2 }}
                           className="text-xl text-primary mb-6"
                         >
-                         V Heal Foundation is the best foundation and fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing through the best counselling, training and coaching services. Our foundation specializes in counselling, rehabilitation for prisoners, and providing new life opportunities. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release, offering comprehensive rehabilitation services and a pathway to new life.
+                         V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release.
                         </motion.div>
 
                         {/* Donate Now CTA */}

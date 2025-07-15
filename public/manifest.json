@@ -1,25 +1,74 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "V Heal Foundation",
+  "name": "V Heal Foundation - Best Counselling & Mental Health Foundation",
+  "description": "V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release.",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
       "src": "logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#003153",
+  "background_color": "#ffffff",
+  "categories": ["health", "medical", "social", "education"],
+  "lang": "en",
+  "scope": "/",
+  "id": "vhealfoundation",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Donate Now",
+      "short_name": "Donate",
+      "description": "Support V Heal Foundation's mission",
+      "url": "/toconnect",
+      "icons": [
+        {
+          "src": "logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "About Us",
+      "short_name": "About",
+      "description": "Learn about our foundation",
+      "url": "/aboutus",
+      "icons": [
+        {
+          "src": "logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Testimonials",
+      "short_name": "Stories",
+      "description": "Read success stories",
+      "url": "/testimonials",
+      "icons": [
+        {
+          "src": "logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }

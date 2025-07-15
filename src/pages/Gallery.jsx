@@ -129,7 +129,7 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Happenings - Best Counselling Events & Programs
+            Happenings
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -146,7 +146,7 @@ const Gallery = () => {
           </motion.p>
 
           {/* Donate Now CTA */}
-          <motion.div
+          {/* <motion.div
             className="mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ const Gallery = () => {
               <span className="mr-2">💝</span>
               Donate Now to Support Our Programs
             </a>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
       {loading && <Loader />}

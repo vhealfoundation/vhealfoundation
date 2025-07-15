@@ -106,7 +106,7 @@ const Stories = () => {
           </motion.p>
 
           {/* Donate Now CTA */}
-          <motion.div
+          {/* <motion.div
             className="mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ const Stories = () => {
               <span className="mr-2">💝</span>
               Donate Now to Create More Success Stories
             </a>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

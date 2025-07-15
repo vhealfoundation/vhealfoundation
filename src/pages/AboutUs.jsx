@@ -138,7 +138,7 @@ const AboutUs = () => {
             animate="visible"
             variants={fadeIn}
           >
-            About the Best Foundation for Mental Health
+            About Us
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -202,7 +202,7 @@ const AboutUs = () => {
               </div>
 
               {/* Donate Now CTA */}
-              <motion.div
+              {/* <motion.div
                 className="mt-8 text-center"
                 initial="hidden"
                 whileInView="visible"
@@ -219,7 +219,7 @@ const AboutUs = () => {
                 <p className="mt-3 text-sm text-gray-600">
                   Your support helps us provide <strong>best counselling</strong> services to those in need
                 </p>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </div>
         </motion.div>

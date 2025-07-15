@@ -89,7 +89,7 @@ const Testimonials = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Testimonials - Best Counselling Success Stories
+            Testimonials
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -106,7 +106,7 @@ const Testimonials = () => {
           </motion.p>
 
           {/* Donate Now CTA */}
-          <motion.div
+          {/* <motion.div
             className="mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ const Testimonials = () => {
               <span className="mr-2">💝</span>
               Donate Now to Help More Success Stories
             </a>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

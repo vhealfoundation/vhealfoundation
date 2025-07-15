@@ -38,6 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate-sitemap": "node scripts/generateSitemap.js",
+    "generate-icons": "node scripts/generateIcons.js",
     "prebuild": "npm run generate-sitemap"
   },
   "eslintConfig": {

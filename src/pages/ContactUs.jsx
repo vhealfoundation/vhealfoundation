@@ -97,7 +97,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Connect With Best Foundation - Donate Now & Get Support
+            Connect With Us
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
