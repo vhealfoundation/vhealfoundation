@@ -34,12 +34,46 @@ const Home = () => {
     return (
         <div className="pt-12 relative">
             <SEO
-                title="Home"
-                description="V Heal Foundation - Enriching, Empowering & Enduring Lives through counseling services, psychological assessments, training programmes, coaching, and prisoner rehabilitation."
+                title="Best Counselling & Mental Health Foundation"
+                description="V Heal Foundation: Leading best counselling, coaching, and impactful social work. Donate now to support underprivileged communities and prisoner rehabilitation programs."
                 keywords={[
-                    'V Heal Foundation', 'mental health', 'counseling services', 'psychological assessments',
-                    'training programmes', 'coaching', 'prisoner rehabilitation', 'mental wellbeing'
+                    'Best Counselling', 'Best Foundation', 'Mental Health Foundation', 'Social Work', 'Donate Now',
+                    'Counselling Services', 'Coaching', 'Training', 'Prisoner Rehabilitation', 'V Heal Foundation', 'Chennai',
+                    'Psychological Assessments', 'Mental Wellbeing', 'Foundation for Mental Health', 'Counselling Foundation',
+                    'Rehabilitation for Prisoners', 'New Life', 'Second Chances', 'Mental Health Support', 'Counselling Center',
+                    'Foundation Chennai', 'Best Mental Health Foundation', 'Counselling and Coaching', 'Prisoner Support',
+                    'Life Transformation', 'Mental Health Counselling', 'Foundation Services', 'Rehabilitation Services',
+                    'Counselling Training', 'Mental Health Training', 'Foundation Work', 'Social Work Foundation'
                 ]}
+                schemaData={{
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "V Heal Foundation",
+                    "alternateName": "Best Counselling & Mental Health Foundation",
+                    "description": "Leading best counselling, coaching, and impactful social work. Supporting underprivileged communities and prisoner rehabilitation.",
+                    "url": "https://vhealfoundation.org",
+                    "logo": "https://vhealfoundation.org/logo.png",
+                    "foundingDate": "2020",
+                    "founder": {
+                        "@type": "Person",
+                        "name": "Maria Nalini Xavier"
+                    },
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+91-9840050175",
+                        "contactType": "customer service",
+                        "availableLanguage": ["English", "Tamil"]
+                    },
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Chennai",
+                        "addressRegion": "Tamil Nadu",
+                        "addressCountry": "IN"
+                    },
+                    "areaServed": "India",
+                    "serviceType": ["Mental Health Counselling", "Psychological Assessments", "Training Programs", "Coaching", "Prisoner Rehabilitation"],
+                    "keywords": "Best Counselling, Best Counselling in Chennai, Best Foundation, Mental Health, Social Work, Donate Now, Coaching, Training, Prisoner Rehabilitation"
+                }}
             />
 {/*             {showModal && <PopUpCard onClose={closeModal} />} */}
             <div className="relative z-0">
@@ -59,22 +93,38 @@ const Home = () => {
                         >
                           Mental Health • Counselling • Training • Coaching • Rehabilitation
                         </motion.div>
-                        <motion.div
+                        <motion.h1
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           className="mb-3 text-2xl font-bold text-primary"
                         >
-                          V Heal Foundation
-                        </motion.div>
+                          Empowering Lives: Best Counselling & Social Work Foundation
+                        </motion.h1>
                         <LineSeperator className="mb-4" />
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
-                          className="text-xl text-primary"
+                          className="text-xl text-primary mb-6"
                         >
-                         V Heal Foundation is a fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing though counselling, training and coaching. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release.
+                         V Heal Foundation is the best foundation and fiduciary association of Mental Health and Social Work professionals passionate to promote mental health and wellbeing through the best counselling, training and coaching services. Our foundation specializes in counselling, rehabilitation for prisoners, and providing new life opportunities. The foundation also fosters to uplift the underprivileged and the underserved inside the prisons and after their release, offering comprehensive rehabilitation services and a pathway to new life.
+                        </motion.div>
+
+                        {/* Donate Now CTA */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          className="mt-6"
+                        >
+                          <a
+                            href="/toconnect"
+                            className="inline-flex items-center px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                          >
+                            <span className="mr-2">💝</span>
+                            Donate Now to Make a Difference
+                          </a>
                         </motion.div>
                       </div>
                 <AboutCard isMission={true} sections={aboutData} />

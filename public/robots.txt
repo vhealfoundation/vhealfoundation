@@ -1,41 +1,11 @@
-# V Heal Foundation Robots.txt
-# https://www.robotstxt.org/robotstxt.html
-
-# Allow all web crawlers to access all content
 User-agent: *
 Allow: /
-
-# Disallow specific areas that shouldn't be indexed
-Disallow: /login/
-Disallow: /logout/
-Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
-Disallow: /thank-you/
-Disallow: /error/
 Disallow: /*.json$
-Disallow: /*.js$
-Disallow: /*.css$
 
-# Specific rules for major search engines
-# Google
-User-agent: Googlebot
-Allow: /
-Disallow: /login/
-Disallow: /logout/
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Disallow: /login/
-Disallow: /logout/
-
-# Crawl delay for specific bots (in seconds)
-User-agent: Slurp
-Crawl-delay: 10
-
-# Sitemap locations
 Sitemap: https://vhealfoundation.org/sitemap.xml
 
-# Host directive to specify preferred domain
-Host: https://vhealfoundation.org
+# Best Counselling & Mental Health Foundation
+# V Heal Foundation - Providing best counselling, coaching, and rehabilitation services
+# Keywords: Best Counselling, Best Foundation, Mental Health, Rehabilitation for Prisoners, New Life

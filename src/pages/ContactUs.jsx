@@ -81,7 +81,7 @@ const Contact = () => {
   return (
     <div className="mt-16">
       <SEO
-        title="Connect With Us"
+        title="Connect With Best Foundation - Donate Now & Get Support"
         description="Want to seek help, donate or volunteer, please reach out to us."
         keywords={[
           'V Heal Foundation', 'contact us', 'volunteer', 'donate', 'seek help',
@@ -97,7 +97,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Connect With Us
+            Connect With Best Foundation - Donate Now & Get Support
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>

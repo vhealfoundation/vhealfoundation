@@ -90,12 +90,36 @@ const Gallery = () => {
   return (
     <div className="mt-16">
       <SEO
-        title="Happenings"
-        description="Take a look at our events, experiences and endeavours chiselling minds and lives. Explore our gallery of counselling services, assessments, training, coaching, and rehabilitation programs."
+        title="Happenings - Best Counselling Events & Training Programs"
+        description="Explore V Heal Foundation's happenings: best counselling events, training programs, coaching sessions & prisoner rehabilitation initiatives. Donate now to support our impactful work."
         keywords={[
-          'V Heal Foundation', 'happenings', 'gallery', 'events', 'counselling services',
-          'assessments', 'training', 'coaching', 'rehabilitation of prisoners'
+          'Best Counselling', 'Best Foundation', 'Mental Health Foundation', 'Happenings', 'Events', 'Gallery',
+          'Counselling Services', 'Training Programs', 'Coaching', 'Rehabilitation', 'Rehabilitation for Prisoners',
+          'V Heal Foundation', 'Donate Now', 'Mental Health Events', 'Social Work', 'Foundation Events',
+          'New Life', 'Second Chances', 'Foundation Gallery', 'Counselling Events', 'Training Events',
+          'Coaching Sessions', 'Prisoner Rehabilitation', 'Foundation Activities', 'Mental Health Programs',
+          'Counselling Programs', 'Foundation Work', 'Social Work Foundation', 'Rehabilitation Services',
+          'Foundation Happenings', 'Mental Health Training', 'Counselling Training', 'Foundation Services'
         ]}
+        schemaData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Happenings - Best Counselling Events & Training Programs",
+          "description": "Gallery of V Heal Foundation's counselling events, training programs, coaching sessions & prisoner rehabilitation initiatives",
+          "url": "https://vhealfoundation.org/happenings",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "V Heal Foundation",
+            "alternateName": "Best Foundation for Mental Health"
+          },
+          "about": [
+            "Best Counselling Events",
+            "Training Programs",
+            "Coaching Sessions",
+            "Prisoner Rehabilitation",
+            "Mental Health Initiatives"
+          ]
+        }}
       />
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -105,7 +129,7 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Happenings
+            Happenings - Best Counselling Events & Programs
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -120,6 +144,22 @@ const Gallery = () => {
           >
             Take a look at our events, experiences and endeavours chiselling minds and lives
           </motion.p>
+
+          {/* Donate Now CTA */}
+          <motion.div
+            className="mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <a
+              href="/toconnect"
+              className="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg backdrop-blur-sm border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <span className="mr-2">💝</span>
+              Donate Now to Support Our Programs
+            </a>
+          </motion.div>
         </div>
       </div>
       {loading && <Loader />}

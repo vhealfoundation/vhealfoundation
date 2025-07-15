@@ -56,12 +56,30 @@ const Stories = () => {
   return (
     <div className="mt-16 pb-12 bg-gray-50">
       <SEO
-        title="Accolades"
-        description="Commendations from Champions. Inspiring journeys of transformation and hope shared by those who have experienced our services."
+        title="Accolades - Best Foundation Success Stories"
+        description="Commendations from Champions. Inspiring journeys of transformation through the best counselling services. Read success stories and donate now to support more transformations."
         keywords={[
-          'V Heal Foundation', 'accolades', 'stories', 'testimonials', 'success stories',
-          'transformation', 'hope', 'mental health success'
+          'Best Foundation', 'Best Counselling', 'Mental Health Foundation', 'Accolades', 'Success Stories',
+          'Transformation', 'Hope', 'Mental Health Success', 'V Heal Foundation', 'Foundation Accolades',
+          'Champions', 'Commendations', 'Donate Now', 'Inspiring Journeys', 'Life Transformation',
+          'New Life', 'Second Chances', 'Rehabilitation Success', 'Prisoner Rehabilitation', 'Foundation Success',
+          'Counselling Success', 'Mental Health Stories', 'Foundation Impact', 'Rehabilitation for Prisoners',
+          'Counselling Services', 'Foundation Services', 'Mental Health Support', 'Foundation Work',
+          'Social Work Foundation', 'Rehabilitation Services', 'Counselling and Coaching', 'Foundation Recognition'
         ]}
+        schemaData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Accolades - Best Foundation Success Stories",
+          "description": "Inspiring journeys of transformation through the best counselling services and mental health support",
+          "url": "https://vhealfoundation.org/accolades",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "V Heal Foundation",
+            "alternateName": "Best Foundation for Mental Health"
+          },
+          "about": "Success Stories and Commendations from Champions"
+        }}
       />
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -71,7 +89,7 @@ const Stories = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Accolades
+            Accolades - Best Foundation Success Stories
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -86,6 +104,22 @@ const Stories = () => {
           >
             Commendations from Champions
           </motion.p>
+
+          {/* Donate Now CTA */}
+          <motion.div
+            className="mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <a
+              href="/toconnect"
+              className="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg backdrop-blur-sm border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <span className="mr-2">💝</span>
+              Donate Now to Create More Success Stories
+            </a>
+          </motion.div>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

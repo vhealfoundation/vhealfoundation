@@ -56,12 +56,30 @@ const Testimonials = () => {
   return (
     <div className="mt-16 pb-12 bg-gray-50">
       <SEO
-        title="Testimonials"
-        description="Words speak out our vision and mission. Read testimonials from individuals who have experienced the impact of V Heal Foundation's services."
+        title="Testimonials - Best Counselling Success Stories"
+        description="Read testimonials from individuals who experienced the best counselling services at V Heal Foundation. Real stories of transformation and hope. Donate now to help more lives."
         keywords={[
-          'V Heal Foundation', 'testimonials', 'client stories', 'mental health testimonials',
-          'counselling feedback', 'training testimonials', 'coaching success stories'
+          'Best Counselling', 'Best Foundation', 'Mental Health Foundation', 'Testimonials', 'Success Stories', 'Client Stories',
+          'Mental Health Testimonials', 'V Heal Foundation', 'Counselling Feedback', 'Foundation Testimonials',
+          'Training Testimonials', 'Coaching Success', 'Donate Now', 'Counselling Success Stories',
+          'New Life', 'Second Chances', 'Life Transformation', 'Rehabilitation Success', 'Prisoner Rehabilitation',
+          'Foundation Success', 'Mental Health Success', 'Counselling Results', 'Foundation Impact',
+          'Rehabilitation for Prisoners', 'Counselling Services', 'Foundation Services', 'Mental Health Support',
+          'Counselling and Coaching', 'Foundation Work', 'Social Work Foundation', 'Rehabilitation Services'
         ]}
+        schemaData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Testimonials - Best Counselling Success Stories",
+          "description": "Real testimonials from individuals who experienced the best counselling services at V Heal Foundation",
+          "url": "https://vhealfoundation.org/testimonials",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "V Heal Foundation",
+            "alternateName": "Best Counselling Foundation"
+          },
+          "about": "Best Counselling Success Stories and Client Testimonials"
+        }}
       />
       <div className="bg-gradient-to-br from-primary/85 via-primary/70 to-orange-500/75 py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -71,7 +89,7 @@ const Testimonials = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Testimonials
+            Testimonials - Best Counselling Success Stories
           </motion.h1>
           <div className="flex items-center justify-center space-x-2 my-4">
             <div className="w-12 h-0.5 bg-white/60"></div>
@@ -86,6 +104,22 @@ const Testimonials = () => {
           >
             Words speak out our vision and mission
           </motion.p>
+
+          {/* Donate Now CTA */}
+          <motion.div
+            className="mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <a
+              href="/toconnect"
+              className="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg backdrop-blur-sm border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <span className="mr-2">💝</span>
+              Donate Now to Help More Success Stories
+            </a>
+          </motion.div>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

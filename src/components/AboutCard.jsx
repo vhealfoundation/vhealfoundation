@@ -240,44 +240,71 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                       {sections[currentIndex]?.features && sections[currentIndex]?.features.length > 0 && (
                         <div className="text-lg text-primary -mb-2">
                           {sections[currentIndex]?.features?.map((feature, featureIndex) => {
-                            const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+                            // First, replace || with a temporary placeholder to preserve it during single | split
+                            const tempFeature = feature.replace(/\|\|/g, '###LINEBREAK###');
+                            const featureParts = tempFeature.split("|").map(part => part.trim()).filter(part => part);
                             if (featureParts.length === 0) return null;
 
                             const heading = featureParts[0];
-                            const bulletPoints = featureParts.slice(1);
+                            // Restore the || delimiter in bullet points
+                            const bulletPoints = featureParts.slice(1).map(point => point.replace(/###LINEBREAK###/g, '||'));
 
                             return (
                               <div key={featureIndex} className="mb-6">
                                 <h4 className="font-bold text-primary mb-3">{heading}</h4>
-                                {bulletPoints.length > 0 && isAbout && (
+                                {bulletPoints.length > 0 && (
                                   <div className="ml-4 flex flex-col md:flex-row md:gap-x-4">
-                                    {/* First Column - First 3 items */}
+                                    {/* First Column */}
                                     <ul className="flex-1 flex flex-col">
-                                      {bulletPoints.slice(0, 3).map((point, i) => (
-                                        <li key={`left-${i}`} className="flex items-start mb-2">
-                                          <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                          </div>
-                                          <span>{point}</span>
-                                        </li>
-                                      ))}
+                                      {bulletPoints.slice(0, Math.ceil(bulletPoints.length / 2)).map((point, pointIndex) => {
+                                        // Check if the point contains double pipe delimiter for line breaks
+                                        const parts = point.split('||').map(part => part.trim());
+
+                                        return (
+                                          <li
+                                            key={`left-${pointIndex}`}
+                                            className="flex items-start mb-2"
+                                          >
+                                            <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                              </svg>
+                                            </div>
+                                            <div>
+                                              <div>{parts[0]}</div>
+                                              {parts[1] && <div className="text-gray-600 text-sm mt-1 italic">{parts[1]}</div>}
+                                            </div>
+                                          </li>
+                                        );
+                                      })}
                                     </ul>
 
-                                    {/* Second Column - Next items (3 onwards) */}
-                                    <ul className="hidden md:flex flex-1 flex-col">
-                                      {bulletPoints.slice(3).map((point, i) => (
-                                        <li key={`right-${i + 3}`} className="flex items-start mb-2">
-                                          <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                          </div>
-                                          <span>{point}</span>
-                                        </li>
-                                      ))}
-                                    </ul>
+                                    {/* Second Column - Only show on desktop and if there are more than half the items */}
+                                    {bulletPoints.length > Math.ceil(bulletPoints.length / 2) && (
+                                      <ul className="hidden md:flex flex-1 flex-col">
+                                        {bulletPoints.slice(Math.ceil(bulletPoints.length / 2)).map((point, pointIndex) => {
+                                          // Check if the point contains double pipe delimiter for line breaks
+                                          const parts = point.split('||').map(part => part.trim());
+
+                                          return (
+                                            <li
+                                              key={`right-${pointIndex}`}
+                                              className="flex items-start mb-2"
+                                            >
+                                              <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                              </div>
+                                              <div>
+                                                <div>{parts[0]}</div>
+                                                {parts[1] && <div className="text-gray-600 text-sm mt-1 italic">{parts[1]}</div>}
+                                              </div>
+                                            </li>
+                                          );
+                                        })}
+                                      </ul>
+                                    )}
                                   </div>
                                 )}
 
@@ -325,16 +352,17 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                     {isMission ? (
                       <div className="text-lg text-primary -mb-2">
                         {sections[currentIndex]?.features?.map((feature, featureIndex) => {
-                          // Split the feature by the "|" character
-                          const featureParts = feature.split("|").map(part => part.trim()).filter(part => part);
+                          // First, replace || with a temporary placeholder to preserve it during single | split
+                          const tempFeature = feature.replace(/\|\|/g, '###LINEBREAK###');
+                          const featureParts = tempFeature.split("|").map(part => part.trim()).filter(part => part);
 
                           // If there are no parts, return null
                           if (featureParts.length === 0) return null;
 
                           // Get the first part as the heading
                           const heading = featureParts[0];
-                          // Get the rest of the parts as bullet points
-                          const bulletPoints = featureParts.slice(1);
+                          // Get the rest of the parts as bullet points and restore the || delimiter
+                          const bulletPoints = featureParts.slice(1).map(point => point.replace(/###LINEBREAK###/g, '||'));
 
                           return (
                             <div key={featureIndex} className="mb-4">
@@ -344,19 +372,27 @@ const AboutCard = ({ sections = [], isAbout = false, isMission = false, initialI
                               {/* Render the bullet points */}
                               {bulletPoints.length > 0 && (
                                 <ul className="ml-4">
-                                  {bulletPoints.map((point, pointIndex) => (
-                                    <li
-                                      key={`${featureIndex}-${pointIndex}`}
-                                      className="flex items-center mb-2"
-                                    >
-                                      <div className="mt-1 p-1 rounded-full mr-2" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                      </div>
-                                      <span>{point}</span>
-                                    </li>
-                                  ))}
+                                  {bulletPoints.map((point, pointIndex) => {
+                                    // Check if the point contains double pipe delimiter for line breaks
+                                    const parts = point.split('||').map(part => part.trim());
+
+                                    return (
+                                      <li
+                                        key={`${featureIndex}-${pointIndex}`}
+                                        className="flex items-start mb-2"
+                                      >
+                                        <div className="mt-1 p-1 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: 'rgba(253, 137, 23, 0.15)' }}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#fd8917">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                          </svg>
+                                        </div>
+                                        <div>
+                                          <div>{parts[0]}</div>
+                                          {parts[1] && <div className="text-gray-600 text-sm mt-1">{parts[1]}</div>}
+                                        </div>
+                                      </li>
+                                    );
+                                  })}
                                 </ul>
                               )}
                             </div>
