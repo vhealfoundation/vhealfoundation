@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 
-const GalleryCard = ({ images }) => {
+const HappeningsCard = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const openLightbox = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+  };
 
   // Animation variants
   const containerVariants = {
@@ -11,39 +19,35 @@ const GalleryCard = ({ images }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, // Stagger animation for each image
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   const lightboxVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.3 } }
+    exit: { opacity: 0, transition: { duration: 0.3 } },
   };
 
   const imageVariants = {
     hidden: { scale: 0.8, opacity: 0 },
-    visible: { scale: 1, opacity: 1, transition: { duration: 0.4 } },
-    exit: { scale: 0.8, opacity: 0, transition: { duration: 0.3 } }
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.3 } },
+    exit: { scale: 0.8, opacity: 0, transition: { duration: 0.3 } },
   };
 
-  const openLightbox = (image) => {
-    setSelectedImage(image);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeLightbox = () => {
-    setSelectedImage(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  console.log(images);
+  if (!images || images.length === 0) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-500 text-lg">No images available for this category.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
@@ -63,7 +67,7 @@ const GalleryCard = ({ images }) => {
           >
             <motion.img
               src={image.url} // Use the `url` property from the image object
-              alt={image.caption || `Gallery Image ${index + 1}`}
+              alt={image.caption || `Happenings Image ${index + 1}`}
               className="w-full h-64 object-cover group-hover:opacity-90 transition-opacity duration-300"
             />
 
@@ -116,9 +120,11 @@ const GalleryCard = ({ images }) => {
                   <FaTimes size={24} />
                 </button>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-b-lg p-4 mt-2">
-                <h3 className="text-xl font-bold text-white text-center">{selectedImage.caption}</h3>
-              </div>
+              {selectedImage.caption && (
+                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4 rounded-b-lg">
+                  <p className="text-center">{selectedImage.caption}</p>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
@@ -127,4 +133,4 @@ const GalleryCard = ({ images }) => {
   );
 };
 
-export default GalleryCard;
+export default HappeningsCard;

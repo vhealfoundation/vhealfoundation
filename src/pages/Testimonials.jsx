@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../hoc/Layout";
-import StoryCard from "../components/StoryCard";
+import AccoladeCard from "../components/AccoladeCard";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { motion } from "framer-motion";
@@ -137,12 +137,14 @@ const Testimonials = () => {
             animate="visible"
           >
             {testimonials.map((testimonial, index) => (
-              <StoryCard
+              <AccoladeCard
                 key={testimonial._id || index}
                 id={testimonial._id || index}
                 image={testimonial.coverimage}
                 title={testimonial.title}
                 description={testimonial.description}
+                content={testimonial.content}
+                isTestimonial={false}
               />
             ))}
           </motion.div>

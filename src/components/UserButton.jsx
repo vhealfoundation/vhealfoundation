@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import CustomButton from "./CustomButton";
 
-export default function UserButton() {
+export default function UserButton({ showInSidebar = false, mobileHeaderOnly = false }) {
     const { isAuthenticated, user, login, logout } = useKindeAuth();
     const [isClicked, setIsClicked] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Track loading state
@@ -49,6 +49,28 @@ export default function UserButton() {
                 <div className="w-5 h-5 border-2 border-gray-300 border-t-primary rounded-full animate-spin"></div>
             </div>
         );
+    }
+
+    // If in sidebar and not authenticated, show sign in button
+    if (showInSidebar && !isAuthenticated) {
+        return (
+            <CustomButton
+                onClick={login}
+                className="w-full bg-primary text-white font-semibold hover:bg-primary-dark text-sm"
+            >
+                Sign In
+            </CustomButton>
+        );
+    }
+
+    // If in sidebar and authenticated, don't show anything (avatar will be in header)
+    if (showInSidebar && isAuthenticated) {
+        return null;
+    }
+
+    // If in mobile header and not authenticated, don't show anything
+    if (mobileHeaderOnly && !isAuthenticated) {
+        return null;
     }
 
     return (

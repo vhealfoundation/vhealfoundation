@@ -9,7 +9,7 @@ import Slider from "../components/Slider";
 import ContactCard from "../components/ContactCard";
 import ContactLeft from "../components/ContactLeft";
 import { data, aboutData, testimonials } from "../constants/data";
-import StoriesBanner from "../components/StoriesBanner";
+import AccoladesBanner from "../components/AccoladesBanner";
 import Reviews from "../components/Reviews";
 import PopUpCard from "../components/PopUpCard";
 import { motion } from "framer-motion";
@@ -139,7 +139,7 @@ const Home = () => {
                 <Slider testimonials={testimonials} />
             </div> */}
             <div className="">
-                <StoriesBanner />
+                <AccoladesBanner />
             </div>
             <div className="">
                 <Reviews />

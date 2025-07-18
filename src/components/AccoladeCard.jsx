@@ -2,9 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const StoryCard = ({ id, image, title, description, isTestimonial = false }) => {
+const AccoladeCard = ({ id, image, title, description, content, isTestimonial = false }) => {
   // Determine the target route based on isTestimonial prop
   const targetRoute = isTestimonial ? `/testimonials/${id}` : `/accolades/${id}`;
+
+  // Extract name and designation from content[0].title if available, otherwise use main title
+  let name = title;
+  let designation = "";
+
+  if (content && content.length > 0 && content[0].title) {
+    const fullTitle = content[0].title;
+    if (fullTitle.includes(",")) {
+      const parts = fullTitle.split(",");
+      name = parts[0].trim();
+      designation = parts.slice(1).join(",").trim();
+    } else {
+      name = fullTitle;
+    }
+  } else if (title && title.includes(",")) {
+    const parts = title.split(",");
+    name = parts[0].trim();
+    designation = parts.slice(1).join(",").trim();
+  }
 
   return (
     // Entire card wrapped in Link for navigation
@@ -29,7 +48,7 @@ const StoryCard = ({ id, image, title, description, isTestimonial = false }) => 
         <div className="relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
-            alt={title}
+            alt={name}
             className="w-full h-full object-contain"
             whileHover={{ scale: 1.08 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -45,13 +64,6 @@ const StoryCard = ({ id, image, title, description, isTestimonial = false }) => 
              Prisoner
             </span>
           </div> ) : null}
-
-          {/* Category Badge */}
-     {/*      <div className="absolute top-4 right-12 bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-md z-10">
-            <span className="text-white text-sm font-medium">
-              {isTestimonial ? "Accolade" : "Testimonial"}
-            </span>
-          </div> */}
         </div>
 
         {/* Content with modern styling */}
@@ -63,8 +75,13 @@ const StoryCard = ({ id, image, title, description, isTestimonial = false }) => 
               <div className="w-12 h-1 bg-orange-500"></div>
             </div>
             <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
-              {title}
+              {name}
             </h3>
+            {designation && (
+              <p className="text-gray-600 text-sm md:text-base italic font-semibold mt-1">
+                {designation}
+              </p>
+            )}
           </div>
 
           {/* Description with better typography */}
@@ -103,4 +120,4 @@ const StoryCard = ({ id, image, title, description, isTestimonial = false }) => 
   );
 };
 
-export default StoryCard;
+export default AccoladeCard;

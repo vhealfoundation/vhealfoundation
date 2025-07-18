@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import UserButton from "./UserButton";
+import MobileUserAvatar from "./MobileUserAvatar";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -40,16 +41,21 @@ const Navbar = () => {
     { id: 1, text: "Home", link: "/" },
     { id: 2, text: "About Us", link: "/aboutus" },
     { id: 3, text: "Happenings", link: "/happenings" },
-    // { id: 4, text: "Accolades", link: "/accolades" },
-    { id: 4, text: "Testimonials", link: "/testimonials" },
-    { id: 5, text: "To Connect", link: "/toconnect" },
+    { id: 4, text: "Accolades", link: "/accolades" },
+    { id: 5, text: "Testimonials", link: "/testimonials" },
+    { id: 6, text: "To Connect", link: "/toconnect" },
   ];
 
   return (
     <div className="fixed top-0 left-0 w-full bg-primary flex justify-between md:justify-between items-center h-16 px-4 md:px-2 z-50">
       {/* Mobile Navigation Toggle */}
       <div className="flex items-center justify-between w-full md:hidden">
-        {/* Logo on the left */}
+        {/* Hamburger on the left */}
+        <div onClick={handleNav} className="mt-1">
+          {nav ? <AiOutlineClose size={20} className="text-white" /> : <AiOutlineMenu size={20} className="text-white" />}
+        </div>
+
+        {/* Logo in the center */}
         <Link to="/" className="flex items-center gap-2" >
           <img src={logo} alt="Logo" className="w-10 h-10" />
           <div>
@@ -62,13 +68,8 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* User Avatar and Hamburger on the right */}
-        <div className="flex items-center gap-4">
-          <UserButton />
-          <div onClick={handleNav} className="mt-1">
-            {nav ? <AiOutlineClose size={20} className="text-white" /> : <AiOutlineMenu size={20} className="text-white" />}
-          </div>
-        </div>
+        {/* Empty space to balance the layout */}
+        <div className="w-6"></div>
       </div>
 
       <div className="hidden md:flex items-center">
@@ -128,23 +129,36 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div
         ref={navRef}
-        className={`${nav ? "right-0" : "right-[-100%]"} mt-16 fixed top-0 right-0 w-[70%] h-full bg-[#000300] z-50 border-l border-gray-900 transition-all duration-500`}
+        className={`${nav ? "left-0" : "left-[-100%]"} mt-16 fixed top-0 left-0 w-[70%] h-full bg-[#000300] z-50 border-r border-gray-900 transition-all duration-500`}
       >
-        <ul className="flex flex-col items-start p-4">
-          {navItems.map((item) => (
-            <Link to={item.link} key={item.id}>
-              <li
-                className={`p-4 border-b border-gray-600 w-full cursor-pointer ${activeNav === item.link ? "text-white" : "text-white"}`}
-                onClick={() => {
-                  setActiveNav(item.link);
-                  setNav(false); // Close mobile nav after click
-                }}
-              >
-                {item.text}
-              </li>
-            </Link>
-          ))}
-        </ul>
+        <div className="flex flex-col h-full">
+          {/* User Avatar Section at Top */}
+          <div className="p-4 border-b border-gray-600">
+            <MobileUserAvatar />
+          </div>
+
+          {/* Navigation Items */}
+          <ul className="flex flex-col items-start flex-1">
+            {navItems.map((item) => (
+              <Link to={item.link} key={item.id} className="w-full">
+                <li
+                  className={`p-4 border-b border-gray-600 w-full cursor-pointer ${activeNav === item.link ? "text-white" : "text-white"}`}
+                  onClick={() => {
+                    setActiveNav(item.link);
+                    setNav(false); // Close mobile nav after click
+                  }}
+                >
+                  {item.text}
+                </li>
+              </Link>
+            ))}
+          </ul>
+
+          {/* Sign In Button at Bottom (only when not authenticated) */}
+          <div className="p-4 border-t border-gray-600">
+            <UserButton showInSidebar={true} />
+          </div>
+        </div>
       </div>
 
     </div>

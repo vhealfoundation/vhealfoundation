@@ -4,16 +4,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/ContactUs";
-import Stories from "./pages/Stories";
+import Accolades from "./pages/Accolades";
 import Testimonials from "./pages/Testimonials";
-import Gallery from "./pages/Gallery";
+import Happenings from "./pages/Happenings";
 import ImageGallery from "./pages/ImageGallery";
 import ScrollMemory from "./components/ScrollMemory";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles/custom-colors.css";
 import WhatWeDo from "./pages/WhatWeDo";
-import StoryDetail from "./pages/StoryDetail";
+import AccoladeDetail from "./pages/AccoladeDetail";
 import TestimonialDetail from "./pages/TestimonialDetail";
 import Beneficiaries from "./pages/Beneficiaries";
 import ThankYou from "./pages/ThankYou";
@@ -57,12 +57,12 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}><Gallery /></motion.div>} />
+            transition={{ duration: 0.8 }}><Happenings /></motion.div>} />
           <Route path="/accolades" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}><Stories /></motion.div>} />
+            transition={{ duration: 0.8 }}><Accolades /></motion.div>} />
               <Route path="/testimonials" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -77,7 +77,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}><StoryDetail /></motion.div>} />
+            transition={{ duration: 0.8 }}><AccoladeDetail /></motion.div>} />
           <Route path="/beneficiaries" element={<motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

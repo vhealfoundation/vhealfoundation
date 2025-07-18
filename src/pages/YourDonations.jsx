@@ -93,60 +93,105 @@ const YourDonations = () => {
 
       {donations.length > 0 ? (
         <motion.div
-          className="overflow-x-auto rounded-xl shadow-xl"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <table className="min-w-full bg-white border border-gray-200 table-auto">
-            <thead className="bg-primary text-white">
-              <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold">S.No</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold">Beneficiary</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold">Amount</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold">Date</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold">Payment Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {donations.map((donation, index) => (
-                <motion.tr
-                  key={donation._id}
-                  className="transition-all hover:bg-orange-50 cursor-pointer border-b border-gray-200"
-                  variants={itemVariants}
-                >
-                  <td className="px-6 py-4 text-sm text-gray-700">{index + 1}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700 flex items-center">
-                    <div className="w-10 h-10 rounded-full overflow-hidden mr-3 border-2 border-orange-200">
+          {donations.map((donation, index) => (
+            <motion.div
+              key={donation._id}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+            >
+              {/* Card Header */}
+              <div className="bg-gradient-to-r from-primary to-orange-500 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                       <img
-                        src={donation?.beneficiary?.image || "https://via.placeholder.com/40"}
+                        src={donation?.beneficiary?.image || "https://via.placeholder.com/48"}
                         alt="Beneficiary"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="font-medium">{donation?.beneficiary?.name}</span>
-                  </td>
-                  <td className="px-6 py-4 text-sm font-medium" style={{ color: '#fd8917' }}>₹{donation?.amount}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700">
-                    {new Date(donation?.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 text-sm">
-                    <span
-                      className={`${
-                        donation.status === "Paid"
-                          ? "bg-green-100 text-green-800"
-                          : donation.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-red-100 text-red-800"
-                      } px-3 py-1 rounded-full text-xs font-medium`}
-                    >
-                      {donation.status}
-                    </span>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+                    <div>
+                      <h3 className="text-white font-semibold text-sm">
+                        {donation?.beneficiary?.name}
+                      </h3>
+                      <p className="text-white/80 text-xs">Beneficiary</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-white/80 text-xs">Donation #{index + 1}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-4 space-y-4">
+                {/* Amount */}
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-primary">₹{donation?.amount}</p>
+                  <p className="text-gray-500 text-sm">Donation Amount</p>
+                </div>
+
+                {/* Date */}
+                <div className="flex items-center justify-center space-x-2 text-gray-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-sm">
+                    {new Date(donation?.createdAt).toLocaleDateString('en-US', {
+                      weekday: 'short',
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+
+                {/* Status */}
+                <div className="flex justify-center">
+                  <span
+                    className={`${
+                      donation.status === "Paid"
+                        ? "bg-green-100 text-green-800"
+                        : donation.status === "Pending"
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-red-100 text-red-800"
+                    } px-4 py-2 rounded-full text-sm font-medium flex items-center`}
+                  >
+                    {donation.status === "Paid" && (
+                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {donation.status === "Pending" && (
+                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {donation.status !== "Paid" && donation.status !== "Pending" && (
+                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {donation.status}
+                  </span>
+                </div>
+              </div>
+
+              {/* Card Footer */}
+              <div className="bg-gray-50 px-4 py-3">
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Transaction ID</span>
+                  <span className="font-mono">{donation?._id?.slice(-8)}</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       ) : (
         <motion.div

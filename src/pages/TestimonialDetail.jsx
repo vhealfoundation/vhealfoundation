@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../hoc/Layout";
-import StoryDetailCard from "../components/StoryDetailCard";
+import AccoladeDetailCard from "../components/AccoladeDetailCard";
 import axios from "axios";
 import Loader from "../components/Loader";
 
@@ -45,11 +45,11 @@ const TestimonialDetail = () => {
       {loading && <Loader />}
       <div className="flex flex-col items-center gap-4">
       </div>
-      <StoryDetailCard 
-        coverImage={testimonial.coverimage} 
-        title={testimonial.title} 
-        description={testimonial.description} 
-        content={testimonial.content} 
+      <AccoladeDetailCard
+        coverImage={testimonial.coverimage}
+        title={testimonial.title}
+        description={testimonial.description}
+        content={testimonial.content}
       />
     </div>
   );
