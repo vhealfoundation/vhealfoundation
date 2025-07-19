@@ -143,13 +143,16 @@ const AccoladesBanner = () => {
                       // Extract name and designation from content[0].title
                       let name = accolade.title;
                       let designation = "";
+                      let designationParts = [];
 
                       if (accolade.content && accolade.content.length > 0 && accolade.content[0].title) {
                         const fullTitle = accolade.content[0].title;
                         if (fullTitle.includes(",")) {
-                          const parts = fullTitle.split(",");
+                          // Split by single comma, but handle double commas (,,) to keep parts together
+                          const parts = fullTitle.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
                           name = parts[0].trim();
-                          designation = parts.slice(1).join(",").trim();
+                          designationParts = parts.slice(1);
+                          designation = designationParts.join(", ");
                         } else {
                           name = fullTitle;
                         }
@@ -180,10 +183,10 @@ const AccoladesBanner = () => {
                               <h4 className="text-white font-semibold text-sm truncate">
                                 {name}
                               </h4>
-                              {designation && (
-                                <div className="bg-orange-400/30 px-2 py-1 rounded mt-1 mb-2">
-                                  <p className="text-orange-100 text-xs truncate font-medium">
-                                    {designation}
+                              {designationParts.length > 0 && (
+                                <div className="mt-1 mb-2">
+                                  <p className="text-orange-200 text-xs italic truncate">
+                                    {designationParts[0]}{designationParts.length > 1 ? '...' : ''}
                                   </p>
                                 </div>
                               )}

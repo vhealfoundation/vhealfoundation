@@ -16,7 +16,7 @@ const TestimonialDetail = () => {
     const fetchTestimonial = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/testimonials/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/stories/${id}`);
         setTestimonial(response.data.data); 
     
       } catch (err) {

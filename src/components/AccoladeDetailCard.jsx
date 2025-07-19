@@ -21,20 +21,24 @@ const AccoladeDetailCard = ({ coverImage, title, description, content }) => {
   // Extract name and designation from content[0].title if available, otherwise use main title
   let name = title;
   let designation = "";
+  let designationParts = [];
 
   if (content && content.length > 0 && content[0].title) {
     const fullTitle = content[0].title;
     if (fullTitle.includes(",")) {
-      const parts = fullTitle.split(",");
+      // Split by single comma, but handle double commas (,,) to keep parts together
+      const parts = fullTitle.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
       name = parts[0].trim();
-      designation = parts.slice(1).join(",").trim();
+      designationParts = parts.slice(1);
+      designation = designationParts.join(", ");
     } else {
       name = fullTitle;
     }
   } else if (title && title.includes(",")) {
-    const parts = title.split(",");
+    const parts = title.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
     name = parts[0].trim();
-    designation = parts.slice(1).join(",").trim();
+    designationParts = parts.slice(1);
+    designation = designationParts.join(", ");
   }
 
   return (
@@ -79,12 +83,16 @@ const AccoladeDetailCard = ({ coverImage, title, description, content }) => {
               <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-wide">
                 {name}
               </h1>
-              
-              {designation && (
-                <div className="bg-orange-400/20 border border-orange-300/50 px-6 py-3 rounded-full backdrop-blur-sm">
-                  <p className="text-xl md:text-2xl text-orange-100 italic font-medium">
-                    {designation}
-                  </p>
+
+              {designationParts.length > 0 && (
+                <div className="bg-orange-400/20 border border-orange-300/50 px-6 py-4 rounded-2xl backdrop-blur-sm max-w-4xl mx-auto">
+                  <div className="text-lg md:text-xl text-orange-100 italic font-medium text-center">
+                    {designationParts.map((part, index) => (
+                      <p key={index} className="leading-relaxed">
+                        {part}{index < designationParts.length - 1 ? ',' : ''}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -147,10 +155,22 @@ const AccoladeDetailCard = ({ coverImage, title, description, content }) => {
                     <div className="w-8 h-0.5 bg-orange-400"></div>
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                   </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-bold text-primary leading-tight">
-                    {section.title}
-                  </h2>
+
+                  <div className="text-3xl md:text-4xl font-bold text-primary leading-tight">
+                    {(() => {
+                      // Apply same formatting logic to section titles
+                      if (section.title && section.title.includes(",")) {
+                        const parts = section.title.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
+                        return parts.map((part, index) => (
+                          <h2 key={index} className="leading-tight">
+                            {part}{index < parts.length - 1 ? ',' : ''}
+                          </h2>
+                        ));
+                      } else {
+                        return <h2>{section.title}</h2>;
+                      }
+                    })()}
+                  </div>
                 </div>
 
                 <div className="prose prose-lg max-w-none">

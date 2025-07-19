@@ -49,7 +49,7 @@ const AccoladeDetail = () => {
       {loading && <Loader />}
       <div className="flex flex-col items-center gap-4">
       </div>
-      <AccoladeDetailCard  coverImage={accolade.coverimage} title={accolade.title} description={accolade.description} content={accolade.content} />
+      <AccoladeDetailCard  coverImage={accolade.coverimage} title={accolade.title} description={accolade.description} content={accolade.content} /> 
     </div>
   );
 };

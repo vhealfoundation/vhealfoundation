@@ -9,20 +9,24 @@ const AccoladeCard = ({ id, image, title, description, content, isTestimonial = 
   // Extract name and designation from content[0].title if available, otherwise use main title
   let name = title;
   let designation = "";
+  let designationParts = [];
 
   if (content && content.length > 0 && content[0].title) {
     const fullTitle = content[0].title;
     if (fullTitle.includes(",")) {
-      const parts = fullTitle.split(",");
+      // Split by single comma, but handle double commas (,,) to keep parts together
+      const parts = fullTitle.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
       name = parts[0].trim();
-      designation = parts.slice(1).join(",").trim();
+      designationParts = parts.slice(1);
+      designation = designationParts.join(", ");
     } else {
       name = fullTitle;
     }
   } else if (title && title.includes(",")) {
-    const parts = title.split(",");
+    const parts = title.split(/(?<!,),(?!,)/).map(part => part.replace(/,,/g, ',').trim());
     name = parts[0].trim();
-    designation = parts.slice(1).join(",").trim();
+    designationParts = parts.slice(1);
+    designation = designationParts.join(", ");
   }
 
   return (
@@ -58,12 +62,12 @@ const AccoladeCard = ({ id, image, title, description, content, isTestimonial = 
           <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Left badge */}
-          {!isTestimonial ? (
+          {/* {!isTestimonial ? (
         <div className="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-md z-10">
             <span className="text-white text-sm font-medium">
              Prisoner
             </span>
-          </div> ) : null}
+          </div> ) : null} */}
         </div>
 
         {/* Content with modern styling */}
@@ -77,10 +81,14 @@ const AccoladeCard = ({ id, image, title, description, content, isTestimonial = 
             <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
               {name}
             </h3>
-            {designation && (
-              <p className="text-gray-600 text-sm md:text-base italic font-semibold mt-1">
-                {designation}
-              </p>
+            {designationParts.length > 0 && (
+              <div className="text-gray-600 text-sm md:text-base italic font-semibold mt-1">
+                {designationParts.map((part, index) => (
+                  <p key={index} className="leading-tight">
+                    {part}{index < designationParts.length - 1 ? ',' : ''}
+                  </p>
+                ))}
+              </div>
             )}
           </div>
 

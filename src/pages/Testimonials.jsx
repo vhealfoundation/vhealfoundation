@@ -144,7 +144,7 @@ const Testimonials = () => {
                 title={testimonial.title}
                 description={testimonial.description}
                 content={testimonial.content}
-                isTestimonial={false}
+                isTestimonial={true}
               />
             ))}
           </motion.div>

@@ -127,7 +127,7 @@ const Accolades = () => {
                 title={accolade.title}
                 description={accolade.description}
                 content={accolade.content}
-                isTestimonial={true}
+                isTestimonial={false}
               />
             ))}
           </motion.div>
