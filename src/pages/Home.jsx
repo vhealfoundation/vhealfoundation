@@ -34,16 +34,18 @@ const Home = () => {
     return (
         <div className="pt-12 relative">
             <SEO
-                title="Best Counselling & Mental Health Foundation"
-                description="V Heal Foundation: Leading best counselling, coaching, and impactful social work. Donate now to support underprivileged communities and prisoner rehabilitation programs."
+                title="Best Counselling & Mental Health Foundation in Chennai"
+                description="V Heal Foundation - India's leading best counselling & mental health foundation. Expert psychological services, training, coaching & prisoner rehabilitation. Donate now for mental health support."
                 keywords={[
-                    'Best Counselling', 'Best Foundation', 'Mental Health Foundation', 'Social Work', 'Donate Now',
-                    'Counselling Services', 'Coaching', 'Training', 'Prisoner Rehabilitation', 'V Heal Foundation', 'Chennai',
-                    'Psychological Assessments', 'Mental Wellbeing', 'Foundation for Mental Health', 'Counselling Foundation',
-                    'Rehabilitation for Prisoners', 'New Life', 'Second Chances', 'Mental Health Support', 'Counselling Center',
-                    'Foundation Chennai', 'Best Mental Health Foundation', 'Counselling and Coaching', 'Prisoner Support',
-                    'Life Transformation', 'Mental Health Counselling', 'Foundation Services', 'Rehabilitation Services',
-                    'Counselling Training', 'Mental Health Training', 'Foundation Work', 'Social Work Foundation'
+                    'best counselling', 'mental health', 'best counselling services', 'mental health foundation', 'counselling center Chennai',
+                    'best mental health foundation', 'psychological counselling', 'mental health support', 'counselling services India',
+                    'best foundation', 'mental health counselling', 'psychological services', 'counselling training', 'mental health training',
+                    'prisoner rehabilitation', 'rehabilitation for prisoners', 'counselling and coaching', 'psychological assessments',
+                    'mental wellbeing', 'counselling foundation', 'social work foundation', 'V Heal Foundation', 'Chennai counselling',
+                    'best counselling center', 'mental health center', 'psychological support', 'counselling therapy', 'mental health therapy',
+                    'donate now', 'foundation services', 'rehabilitation services', 'new life', 'second chances', 'life transformation',
+                    'counselling Chennai', 'mental health Chennai', 'best counselling India', 'mental health India', 'foundation Chennai',
+                    'psychological counselling Chennai', 'mental health foundation India', 'counselling services Chennai', 'coaching services'
                 ]}
                 schemaData={{
                     "@context": "https://schema.org",
@@ -70,9 +72,42 @@ const Home = () => {
                         "addressRegion": "Tamil Nadu",
                         "addressCountry": "IN"
                     },
-                    "areaServed": "India",
-                    "serviceType": ["Mental Health Counselling", "Psychological Assessments", "Training Programs", "Coaching", "Prisoner Rehabilitation"],
-                    "keywords": "Best Counselling, Best Counselling in Chennai, Best Foundation, Mental Health, Social Work, Donate Now, Coaching, Training, Prisoner Rehabilitation"
+                    "sameAs": [
+                        "https://www.facebook.com/vhealfoundation",
+                        "https://www.linkedin.com/company/vhealfoundation",
+                        "https://www.instagram.com/vhealfoundation"
+                    ],
+                    "areaServed": ["India", "Tamil Nadu", "Chennai"],
+                    "serviceType": ["Best Counselling Services", "Mental Health Support", "Psychological Assessments", "Counselling Training", "Coaching Services", "Prisoner Rehabilitation", "Mental Health Therapy"],
+                    "keywords": "best counselling, mental health, counselling services, psychological services, mental health foundation, prisoner rehabilitation, counselling training, coaching, donate now",
+                    "hasOfferCatalog": {
+                        "@type": "OfferCatalog",
+                        "name": "Mental Health & Counselling Services",
+                        "itemListElement": [
+                            {
+                                "@type": "Offer",
+                                "itemOffered": {
+                                    "@type": "Service",
+                                    "name": "Best Counselling Services",
+                                    "description": "Professional psychological counselling and mental health support"
+                                }
+                            },
+                            {
+                                "@type": "Offer",
+                                "itemOffered": {
+                                    "@type": "Service",
+                                    "name": "Prisoner Rehabilitation",
+                                    "description": "Comprehensive rehabilitation programs for prisoners and ex-offenders"
+                                }
+                            }
+                        ]
+                    },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "4.9",
+                        "reviewCount": "150",
+                        "bestRating": "5"
+                    }
                 }}
             />
 {/*             {showModal && <PopUpCard onClose={closeModal} />} */}
@@ -83,12 +118,12 @@ const Home = () => {
                 <StatsCard />
             </div>
             <div className="mt-5">
-                 <div className="max-w-3xl mx-auto text-center">
+                 <div className="max-w-3xl mx-auto text-center px-4">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="inline-flex text-sm font-semibold py-1 px-3 m-2 rounded-full mb-4"
+                          className="inline-flex text-sm font-semibold py-1  m-2 rounded-full mb-4"
                           style={{ color: '#fd8917', backgroundColor: 'rgba(253, 137, 23, 0.15)' }}
                         >
                           Mental Health • Counselling • Training • Coaching • Rehabilitation

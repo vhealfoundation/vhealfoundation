@@ -2,17 +2,40 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import CustomButton from "./CustomButton";
+import toast from "react-hot-toast";
+import { FaSignInAlt } from 'react-icons/fa';
 
 export default function UserButton({ showInSidebar = false, mobileHeaderOnly = false }) {
     const { isAuthenticated, user, login, logout } = useKindeAuth();
     const [isClicked, setIsClicked] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Track loading state
+    const [prevAuthState, setPrevAuthState] = useState(null);
     const dropdownRef = useRef(null); // Reference to the dropdown container
 
     useEffect(() => {
         // Check if authentication state is available
         if (isAuthenticated !== undefined) {
             setIsLoading(false);
+
+            // Show toast notifications for login/logout
+            if (prevAuthState !== null && prevAuthState !== isAuthenticated) {
+                if (isAuthenticated && user) {
+                    // User just logged in
+                    toast.success(`Login successful! Welcome ${user.given_name || user.email}!`, {
+                        duration: 4000,
+                        icon: '👋',
+                    });
+                } else if (!isAuthenticated && prevAuthState === true) {
+                    // User just logged out
+                    toast.success('Logged out successfully!', {
+                        duration: 3000,
+                        icon: '👋',
+                    });
+                }
+            }
+
+            // Update previous auth state
+            setPrevAuthState(isAuthenticated);
         }
 
         // Add event listener for Kinde auth state changes
@@ -27,7 +50,7 @@ export default function UserButton({ showInSidebar = false, mobileHeaderOnly = f
         return () => {
             window.removeEventListener('storage', handleAuthChange);
         };
-    }, [isAuthenticated]); // Re-run this when `isAuthenticated` changes
+    }, [isAuthenticated, user, prevAuthState]); // Re-run this when `isAuthenticated` changes
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -43,7 +66,15 @@ export default function UserButton({ showInSidebar = false, mobileHeaderOnly = f
     }, []);
 
     if (isLoading) {
-        // Show a minimal loading indicator instead of nothing
+        // Show different loading states based on context
+        if (showInSidebar) {
+            return (
+                <div className="w-full bg-gray-200 text-gray-500 px-4 py-2 rounded-md text-sm text-center">
+                    Loading...
+                </div>
+            );
+        }
+        // Show a minimal loading indicator for other contexts
         return (
             <div className="flex items-center justify-center w-10 h-10">
                 <div className="w-5 h-5 border-2 border-gray-300 border-t-primary rounded-full animate-spin"></div>
@@ -51,21 +82,24 @@ export default function UserButton({ showInSidebar = false, mobileHeaderOnly = f
         );
     }
 
-    // If in sidebar and not authenticated, show sign in button
-    if (showInSidebar && !isAuthenticated) {
-        return (
-            <CustomButton
-                onClick={login}
-                className="w-full bg-primary text-white font-semibold hover:bg-primary-dark text-sm"
-            >
-                Sign In
-            </CustomButton>
-        );
-    }
-
-    // If in sidebar and authenticated, don't show anything (avatar will be in header)
-    if (showInSidebar && isAuthenticated) {
-        return null;
+    // If in sidebar, show sign in button when not authenticated, nothing when authenticated
+    if (showInSidebar) {
+        if (!isAuthenticated) {
+            return (
+                <button
+                    onClick={login}
+                    className="w-full bg-primary text-white font-semibold hover:bg-primary-dark text-sm px-4 py-2 rounded-md transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 0a4 4 0 01-4 4H3a2 2 0 01-2-2V7a2 2 0 012-2h4a4 4 0 014 4v1" />
+                    </svg>
+                    Sign In
+                </button>
+            );
+        } else {
+            // User is authenticated, don't show anything in sidebar (avatar is handled separately)
+            return null;
+        }
     }
 
     // If in mobile header and not authenticated, don't show anything
@@ -146,7 +180,13 @@ export default function UserButton({ showInSidebar = false, mobileHeaderOnly = f
                                     {/* Sign Out Button */}
                                     <Link>
                                         <button
-                                            onClick={logout}
+                                            onClick={() => {
+                                                logout();
+                                                toast.success('Logged out successfully!', {
+                                                    duration: 3000,
+                                                    icon: '👋',
+                                                });
+                                            }}
                                             className="w-full rounded-md bg-red-500 text-white px-4 py-2 text-sm hover:bg-red-600 transition-all"
                                         >
                                             Sign Out
@@ -162,6 +202,7 @@ export default function UserButton({ showInSidebar = false, mobileHeaderOnly = f
                     onClick={login}
                     className="md:mb-0 bg-gray-200 text-tertiary font-semibold hover:bg-gray-300 text-sm md:text-base"
                 >
+                    <FaSignInAlt className="h-4 w-4" /> {/* Use the imported icon here */}
                     Sign In
                 </CustomButton>
             )}

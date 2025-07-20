@@ -57,9 +57,20 @@ const SEO = ({
       {/* Enhanced Meta Tags for SEO */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow" />
+      <meta name="bingbot" content="index, follow" />
       <meta name="author" content="V Heal Foundation" />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
+      <meta name="distribution" content="global" />
+      <meta name="rating" content="general" />
+      <meta name="geo.region" content="IN-TN" />
+      <meta name="geo.placename" content="Chennai" />
+      <meta name="geo.position" content="13.0827;80.2707" />
+      <meta name="ICBM" content="13.0827, 80.2707" />
+      <meta name="theme-color" content="#1e40af" />
+      <meta name="msapplication-TileColor" content="#1e40af" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
       {/* Canonical Link */}
       <link rel="canonical" href={canonical} />

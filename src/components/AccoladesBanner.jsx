@@ -110,7 +110,7 @@ const AccoladesBanner = () => {
                 </h2>
                 
                 <p className="text-white/90 text-lg leading-relaxed">
-                  Discover inspiring testimonials from distinguished professionals who recognize our commitment to transformation and rehabilitation.
+                  Discover inspiring testimonials from distinguished professionals who recognize our commitment to Enrich, Empower and Endure Lives.
                 </p>
 
                 <motion.button

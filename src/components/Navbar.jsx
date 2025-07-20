@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import UserButton from "./UserButton";
 import MobileUserAvatar from "./MobileUserAvatar";
 import logo from "../assets/logo.png";
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/"); // State for active nav item
   const navRef = useRef(); // Ref for closing mobile nav on outside click
   const location = useLocation(); // To detect current route
+  const { isAuthenticated, login } = useKindeAuth(); // Get authentication state and login function
 
   // Update activeNav state based on current route
   useEffect(() => {
@@ -132,7 +134,7 @@ const Navbar = () => {
         className={`${nav ? "left-0" : "left-[-100%]"} mt-16 fixed top-0 left-0 w-[70%] h-full bg-[#000300] z-50 border-r border-gray-900 transition-all duration-500`}
       >
         <div className="flex flex-col h-full">
-          {/* User Avatar Section at Top */}
+          {/* User Avatar Section at Top - Always show (handles auth states internally) */}
           <div className="p-4 border-b border-gray-600">
             <MobileUserAvatar />
           </div>
@@ -154,10 +156,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Sign In Button at Bottom (only when not authenticated) */}
-          <div className="p-4 border-t border-gray-600">
-            <UserButton showInSidebar={true} />
-          </div>
+
         </div>
       </div>
 

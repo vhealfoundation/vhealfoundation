@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
+import { FaSignInAlt } from 'react-icons/fa';
+import CustomButton from "./CustomButton";
 
 export default function MobileUserAvatar() {
-    const { isAuthenticated, user, logout } = useKindeAuth();
+    const { isAuthenticated, user, logout, login } = useKindeAuth();
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -27,8 +30,27 @@ export default function MobileUserAvatar() {
         };
     }, [isAuthenticated]);
 
-    if (isLoading || !isAuthenticated) {
-        return null;
+    if (isLoading) {
+        return (
+            <div className="w-full bg-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm text-center">
+                Loading...
+            </div>
+        );
+    }
+
+    // If not authenticated, show sign-in button
+    if (!isAuthenticated) {
+        return (
+
+ <CustomButton
+                    onClick={login}
+                    className="md:mb-0 bg-gray-200 text-tertiary font-semibold hover:bg-gray-300 text-sm md:text-base"
+                >
+                    <FaSignInAlt className="h-4 w-4" /> {/* Use the imported icon here */}
+                    Sign In
+                </CustomButton>
+
+        );
     }
 
     const expandVariants = {
@@ -115,7 +137,13 @@ export default function MobileUserAvatar() {
                             </Link>
 
                             <button
-                                onClick={logout}
+                                onClick={() => {
+                                    logout();
+                                    toast.success('Logged out successfully!', {
+                                        duration: 3000,
+                                        icon: '👋',
+                                    });
+                                }}
                                 className="w-full flex items-center p-1.5 text-red-400 hover:text-red-300 hover:bg-gray-700 rounded transition-colors text-xs"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
